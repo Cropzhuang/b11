@@ -8,128 +8,149 @@
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
 <!--<link rel="shortcut icon" href="" type="image/x-icon" /> 
 <link rel="stylesheet" type="text/css" href="./styles.css">-->
-	<link href="../examples.css" rel="stylesheet" type="text/css">
-	<!--[if lte IE 8]><script language="javascript" type="text/javascript" src="js/excanvas.min.js"></script><![endif]-->
-	<script language="javascript" type="text/javascript" src="js/jquery.js"></script>
-	<script language="javascript" type="text/javascript" src="js/jquery.flot.js"></script>
+<!--[if lte IE 8]><script  type="text/javascript" src="js/excanvas.min.js"></script><![endif]-->
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/jquery.flot.js"></script>
 <link type="text/css" rel="stylesheet" href="css/layout.css" />
-<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<link type="text/css" rel="stylesheet" href="css/example.css" />
 <script src="js/common.js"></script>
 
 <script type="text/javascript">
 	$(function() {
 
 		var d1 = [];
-		for (var i = 0; i < 14; i += 0.5) {
-			d1.push([i, Math.sin(i)]);
+		for ( var i = 0; i < 14; i += 0.5) {
+			d1.push([ i, Math.sin(i) ]);
 		}
 
-		var d2 = [[0, 3], [4, 8], [8, 5], [9, 13]];
+		var d2 = [ [ 0, 3 ], [ 4, 8 ], [ 8, 5 ], [ 9, 13 ] ];
 
 		var d3 = [];
-		for (var i = 0; i < 14; i += 0.5) {
-			d3.push([i, Math.cos(i)]);
+		for ( var i = 0; i < 14; i += 0.5) {
+			d3.push([ i, Math.cos(i) ]);
 		}
 
 		var d4 = [];
-		for (var i = 0; i < 14; i += 0.1) {
-			d4.push([i, Math.sqrt(i * 10)]);
+		for ( var i = 0; i < 14; i += 0.1) {
+			d4.push([ i, Math.sqrt(i * 10) ]);
 		}
 
 		var d5 = [];
-		for (var i = 0; i < 14; i += 0.5) {
-			d5.push([i, Math.sqrt(i)]);
+		for ( var i = 0; i < 14; i += 0.5) {
+			d5.push([ i, Math.sqrt(i) ]);
 		}
 
 		var d6 = [];
-		for (var i = 0; i < 14; i += 0.5 + Math.random()) {
-			d6.push([i, Math.sqrt(2*i + Math.sin(i) + 5)]);
+		for ( var i = 0; i < 14; i += 0.5 + Math.random()) {
+			d6.push([ i, Math.sqrt(2 * i + Math.sin(i) + 5) ]);
 		}
 
-		$.plot("#placeholder", [{
-			data: d1,
-			lines: { show: true, fill: true }
+		$.plot("#index2_body", [ {
+			data : d1,
+			lines : {
+				show : true,
+				fill : true
+			}
 		}, {
-			data: d2,
-			bars: { show: true }
+			data : d2,
+			bars : {
+				show : true
+			}
 		}, {
-			data: d3,
-			points: { show: true }
+			data : d3,
+			points : {
+				show : true
+			}
 		}, {
-			data: d4,
-			lines: { show: true }
+			data : d4,
+			lines : {
+				show : true
+			}
 		}, {
-			data: d5,
-			lines: { show: true },
-			points: { show: true }
+			data : d5,
+			lines : {
+				show : true
+			},
+			points : {
+				show : true
+			}
 		}, {
-			data: d6,
-			lines: { show: true, steps: true }
-		}]);
-
+			data : d6,
+			lines : {
+				show : true,
+				steps : true
+			}
+		} ]);
 
 	});
-
-
-		  
 </script>
 <style type="text/css">
-
-
 </style>
 </head>
 <body>
-	<div id="nav" align="center" >
-		<div id="nav_"  style="overflow:hidden;width:950px;">
-			<div >武汉B11</div>
-			<div >首页</div>
-			<div >能耗</div>
-			<div >能效</div> 
-			<div >设备</div>			
+	<div id="nav" align="center">
+		<div id="nav_" style="overflow:hidden;width:950px;">
+			<div>武汉B11</div>
+			<div>首页</div>
+			<div>能耗</div>
+			<div>能效</div>
+			<div>设备</div>
 		</div>
 	</div>
-	<div id="index1" align="center" >
-		<div id="index1_"  style="overflow:hidden;width:950px;">
+	<div id="index1" align="center">
+		<div  style="overflow:hidden;width:950px;">
 			<div id="index1_title">施耐德电气(中国)武汉分公司B11大楼</div>
+			<div id="index1_body"></div>
 		</div>
 	</div>
-	
-	<div id="index2" align="center" >
-		<div id="index2_"  style="overflow:hidden;width:950px;">
+
+	<div id="index2" align="center">
+		<div  style="overflow:hidden;width:950px;">
 			<div class="title">能耗趋势及预测图</div>
-			<div id="index2_h2" ></div>
-			
-			
+			<div id="index2_h2"></div>
+			<div id="index2_body"></div>
+
 		</div>
 	</div>
-	<div id="index3" align="center" >
-		<div id="index3_"  style="overflow:hidden;width:950px;">
+	<div id="index3" align="center">
+		<div  style="overflow:hidden;width:950px;">
 			<div class="title">关键区域</div>
+			<div id="index3_">
+				<div id="index3_head">
+					<div style="width:33%">
+						<img src="images/i3_h1.jpg" alt="">数据机房
+					</div>
+					<div style="width:33%">
+						<img src="images/i3_h2.jpg" alt="">一层主会议室
+					</div>
+					<div style="width:33%">
+						<img src="images/i3_h3.jpg" alt="">一层展厅
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
-	<div id="index4" align="center" >
-		<div id="index4_"  style="overflow:hidden;width:950px;">
+	<div id="index4" align="center">
+		<div  style="overflow:hidden;width:950px;">
 			<div class="title">办公区域</div>
+			<table id="index4_">
+			</table>
 		</div>
 	</div>
-	<div id="index5" align="center" >
-		<div id="index5_"  style="overflow:hidden;width:950px;">
+	<div id="index5" align="center">
+		<div  style="overflow:hidden;width:950px;">
 			<div class="title">电力系统</div>
 		</div>
 	</div>
-	<div id="index6" align="center" >
-		<div id="index6_"  style="overflow:hidden;width:950px;">
+	<div id="index6" align="center">
+		<div  style="overflow:hidden;width:950px;">
 			<div class="title">设备</div>
 		</div>
 	</div>
-	<div id="foot" align="center" >
-		<div id="f1"  >
-		Copyright © 20014-2015  施耐德电气(中国)有限公司上海分公司版权所有
-		</div>
-		<div id="f2" >
-		楼宇事业部能力中心Support
-		</div>
+	<div id="foot" align="center">
+		<div id="f1">Copyright © 20014-2015 施耐德电气(中国)有限公司上海分公司版权所有</div>
+		<div id="f2">楼宇事业部能力中心Support</div>
 	</div>
-	
+
 </body>
 </html>

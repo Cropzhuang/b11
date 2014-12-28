@@ -4,7 +4,7 @@ body {
 	margin: 0px;
 	padding: 0px;
 	background: #ffffff;
-	font-family:"å¾®è½¯é›…é»‘";
+	font-family:"Î¢ÈíÑÅºÚ";
 	overflow-x:hidden;
 	overflow-y:scroll;
 }
@@ -17,7 +17,7 @@ border:0;
 a {
 	text-decoration: none;
 	color: black;
-	font-family: "å¾®è½¯é›…é»‘";
+	font-family: "Î¢ÈíÑÅºÚ";
 }
 
 li {
@@ -34,7 +34,7 @@ h3 {
 #nav{
 	background:#555555  none repeat scroll 0 0;
 	color:white;
-	font-family: "é»‘ä½“";
+	font-family: "ºÚÌå";
 	height:63px;
 	line-height: 63px;
 }
@@ -77,6 +77,11 @@ h3 {
 	text-align: left;
 	font-size:24px;
 }
+#index1_body{
+	background:url("../images/i1_bg.jpg");
+	width:950px;height:518px;float:left;
+	
+}
 
 #index2{
 	background:#ffffff  none repeat scroll 0 0;
@@ -85,16 +90,49 @@ h3 {
 #index2_ {
 	
 }
-
+#index2_h2 {
+	height:93px;
+	float:left;
+	width:100%;
+}
+#index2_body {
+	height:250px;
+	float:left;
+	width:100%;
+}
 #index3{
 	background:#F2F2F2  none repeat scroll 0 0;
 	height:520px;
+}
+#index3_{
+	width:100%;
+	background: #ffffff ;
+	height:400px;
+	float:left;
+}
+#index3_head{
+	width:100%;
+	height:53px;
+	line-height:53px;
+	font-weight:bold;
+	float:left;
+}
+#index3_head div{
+	font-size:18px;
+	text-align:center;
+	float:left;
+	
 }
 #index4{
 	background:#F2F2F2  none repeat scroll 0 0;
 	height:449px;
 }
-
+#index4_{
+	width:100%;
+	background: #ffffff ;
+	height:300px;
+	float:left;
+}
 #index5{
 	background:#ffffff  none repeat scroll 0 0;
 	height:710px;
@@ -131,7 +169,7 @@ h3 {
 	padding-left: 25px;
 	font-size: 12px;
 	line-height: 25px;
-	font-family: "å¾®è½¯é›…é»‘";
+	font-family: "Î¢ÈíÑÅºÚ";
 	background:#fcfbf8;
 	color:#666666;
 }
