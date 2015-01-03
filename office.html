@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>武汉B11</title>
+
+<meta http-equiv="keywords" content="武汉B11">
+<meta http-equiv="description" content="武汉B11">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<!--<link rel="shortcut icon" href="" type="image/x-icon" /> 
+<link rel="stylesheet" type="text/css" href="./styles.css">-->
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/jquery.flot.js"></script>
+<!--[if lte IE 8]><script  type="text/javascript" src="js/excanvas.min.js"></script><![endif]-->
+
+<link type="text/css" rel="stylesheet" href="css/layout.css" />
+<link type="text/css" rel="stylesheet" href="css/example.css" />
+<script src="js/common.js"></script>
+
+<script type="text/javascript">
+	$(function() {
+
+		var d1 = [];
+		for ( var i = 0; i < 14; i += 0.5) {
+			d1.push([ i, Math.sin(i) ]);
+		}
+
+		var d2 = [ [ 0, 3 ], [ 4, 8 ], [ 8, 5 ], [ 9, 13 ] ];
+
+		var d3 = [];
+		for ( var i = 0; i < 14; i += 0.5) {
+			d3.push([ i, Math.cos(i) ]);
+		}
+
+		var d4 = [];
+		for ( var i = 0; i < 14; i += 0.1) {
+			d4.push([ i, Math.sqrt(i * 10) ]);
+		}
+
+		var d5 = [];
+		for ( var i = 0; i < 14; i += 0.5) {
+			d5.push([ i, Math.sqrt(i) ]);
+		}
+
+		var d6 = [];
+		for ( var i = 0; i < 14; i += 0.5 + Math.random()) {
+			d6.push([ i, Math.sqrt(2 * i + Math.sin(i) + 5) ]);
+		}
+
+		$.plot("#index2_body", [ {
+			data : d1,
+			lines : {
+				show : true,
+				fill : true
+			}
+		}, {
+			data : d2,
+			bars : {
+				show : true
+			}
+		}, {
+			data : d3,
+			points : {
+				show : true
+			}
+		}, {
+			data : d4,
+			lines : {
+				show : true
+			}
+		}, {
+			data : d5,
+			lines : {
+				show : true
+			},
+			points : {
+				show : true
+			}
+		}, {
+			data : d6,
+			lines : {
+				show : true,
+				steps : true
+			}
+		} ]);
+
+	});
+</script>
+<style type="text/css">
+</style>
+</head>
+<body>
+	<div id="nav" align="center">
+		<div id="nav_" style="overflow:hidden;width:950px;">
+			<div class="wuhanb11 yahei">
+			</div>
+			<div  class="nav">
+				首页
+			</div>
+			<div  class="nav">
+				能耗
+			</div>
+			<div id="nav3" class="nav" style="position:relative">
+				能效
+				<div id="efficiency" class="sub_nav" style="z-index: 1000">
+					<div class="eff">数据机房</div>
+					<div class="eff">主会议室</div>
+					<div class="eff">一楼展厅</div>
+					<div class="eff">办公区域</div>
+				</div>
+			</div>
+			<div id="nav4" class="nav" style="position:relative">
+				设备
+				<div id="device" class="sub_nav" style="z-index: 1000">
+					<div class="dev">数据机房</div>
+					<div class="dev">主会议室</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+<div id="efficiency1" style="height:1050px" class="back_grey" align="center">
+		<div id="efficiency1_" style="overflow:hidden;width:950px;">
+			办公区域
+		</div>
+	</div>
+	<div id="efficiency2" style="height:531px" class="back_grey" align="center">
+		<div  style="overflow:hidden;width:950px;">
+			<div class="title">能耗分类趋势</div>
+			<div id="efficiency2_h2"></div>
+			<div id="efficiency2_body"></div>
+
+		</div>
+	</div>
+	<div id="efficiency3" style="height:550px" class="back_grey" align="center">
+		<div  style="overflow:hidden;width:950px;">
+			<div class="title">每日耗电趋势(kWh)</div>
+			<div id="energe3_">
+				
+			</div>
+		</div>
+	</div>
+	<div id="efficiency4" style="height:550px;" align="center">
+		<div  style="overflow:hidden;width:950px;">
+			<div class="title">逐时能耗趋势及占用状态</div>
+			
+		</div>
+	</div>
+	<div id="foot" align="center">
+		<div id="f1">Copyright © 20014-2015 施耐德电气(中国)有限公司上海分公司版权所有</div>
+		<div id="f2">楼宇事业部能力中心Support</div>
+	</div>
+
+</body>
+</html>

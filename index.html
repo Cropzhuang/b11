@@ -11,140 +11,317 @@
 <!--[if lte IE 8]><script  type="text/javascript" src="js/excanvas.min.js"></script><![endif]-->
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/jquery.flot.js"></script>
+<script language="javascript" type="text/javascript"
+	src="js/jquery.flot.pie.js"></script>
 <link type="text/css" rel="stylesheet" href="css/layout.css" />
 <link type="text/css" rel="stylesheet" href="css/example.css" />
-<script src="js/common.js"></script>
-
+<script type="text/javascript"  src="js/common.js"></script>
+<script type="text/javascript" src="js/home.js"></script>
+<script type="text/javascript" src="js/raphael.js"></script>
 <script type="text/javascript">
-	$(function() {
-
-		var d1 = [];
-		for ( var i = 0; i < 14; i += 0.5) {
-			d1.push([ i, Math.sin(i) ]);
-		}
-
-		var d2 = [ [ 0, 3 ], [ 4, 8 ], [ 8, 5 ], [ 9, 13 ] ];
-
-		var d3 = [];
-		for ( var i = 0; i < 14; i += 0.5) {
-			d3.push([ i, Math.cos(i) ]);
-		}
-
-		var d4 = [];
-		for ( var i = 0; i < 14; i += 0.1) {
-			d4.push([ i, Math.sqrt(i * 10) ]);
-		}
-
-		var d5 = [];
-		for ( var i = 0; i < 14; i += 0.5) {
-			d5.push([ i, Math.sqrt(i) ]);
-		}
-
-		var d6 = [];
-		for ( var i = 0; i < 14; i += 0.5 + Math.random()) {
-			d6.push([ i, Math.sqrt(2 * i + Math.sin(i) + 5) ]);
-		}
-
-		$.plot("#index2_body", [ {
-			data : d1,
-			lines : {
-				show : true,
-				fill : true
-			}
+	window.onload = function() {
+		/*
+		var r = Raphael("holder", 480, 480);
+		param = {
+			stroke : "#fff",
+			"stroke-width" : 25
+		};
+*/
+		//i5 pie
+		var pieData = [ {
+			label : "",
+			data : 68
 		}, {
-			data : d2,
-			bars : {
-				show : true
-			}
-		}, {
-			data : d3,
-			points : {
-				show : true
-			}
-		}, {
-			data : d4,
-			lines : {
-				show : true
-			}
-		}, {
-			data : d5,
-			lines : {
-				show : true
+			label : "",
+			data : 22
+		} ];
+		$.plot("#i5_pie", pieData, {
+			series : {
+				pie : {
+					show : true,
+					radius : 1,
+					label : {
+						show : true,
+						radius : 0.5,
+						formatter : labelFormatter,
+						background : {
+							opacity : 0.8
+						}
+					}
+				}
 			},
-			points : {
-				show : true
+			legend : {
+				show : false
 			}
-		}, {
-			data : d6,
-			lines : {
-				show : true,
-				steps : true
-			}
-		} ]);
-
-	});
+		});
+		function labelFormatter(label, series) {
+			return "<div style='font-size:20px; text-align:center; padding:12px; color:white;'>"
+					+ label + "<br/>" + Math.round(series.percent) + "%</div>";
+		}
+	}
 </script>
 <style type="text/css">
+#holder {
+	float:left;
+	height: 480px;
+	width: 480px;
+}
 </style>
 </head>
 <body>
 	<div id="nav" align="center">
 		<div id="nav_" style="overflow:hidden;width:950px;">
-			<div>武汉B11</div>
-			<div>首页</div>
-			<div>能耗</div>
-			<div>能效</div>
-			<div>设备</div>
-		</div>
-	</div>
-	<div id="index1" align="center">
-		<div  style="overflow:hidden;width:950px;">
-			<div id="index1_title">施耐德电气(中国)武汉分公司B11大楼</div>
-			<div id="index1_body"></div>
-		</div>
-	</div>
-
-	<div id="index2" align="center">
-		<div  style="overflow:hidden;width:950px;">
-			<div class="title">能耗趋势及预测图</div>
-			<div id="index2_h2"></div>
-			<div id="index2_body"></div>
-
-		</div>
-	</div>
-	<div id="index3" align="center">
-		<div  style="overflow:hidden;width:950px;">
-			<div class="title">关键区域</div>
-			<div id="index3_">
-				<div id="index3_head">
-					<div style="width:33%">
-						<img src="images/i3_h1.jpg" alt="">数据机房
-					</div>
-					<div style="width:33%">
-						<img src="images/i3_h2.jpg" alt="">一层主会议室
-					</div>
-					<div style="width:33%">
-						<img src="images/i3_h3.jpg" alt="">一层展厅
-					</div>
+			<div class="wuhanb11 yahei">
+			</div>
+			<div  class="nav">
+				首页
+			</div>
+			<div  class="nav">
+				能耗
+			</div>
+			<div id="nav3" class="nav" style="position:relative">
+				能效
+				<div id="efficiency" class="sub_nav" style="z-index: 1000">
+					<div class="eff">数据机房</div>
+					<div class="eff">主会议室</div>
+					<div class="eff">一楼展厅</div>
+					<div class="eff">办公区域</div>
+				</div>
+			</div>
+			<div id="nav4" class="nav" style="position:relative">
+				设备
+				<div id="device" class="sub_nav" style="z-index: 1000">
+					<div class="dev">数据机房</div>
+					<div class="dev">主会议室</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<div id="index4" align="center">
-		<div  style="overflow:hidden;width:950px;">
-			<div class="title">办公区域</div>
-			<table id="index4_">
+	<div id="index1" class="back_black" align="center">
+		<div style="overflow:hidden;width:950px;">
+			<div id="index1_title" class="dwhite">施耐德电气(中国)武汉分公司B11大楼</div>
+			<div id="index1_body">
+				<div id="i1_left">
+					<div class="r">312</div>
+					<div class="r">312</div>
+					<div class="r">332</div>
+					<div class="r">322</div>
+					<div class="r">3552</div>
+				</div>
+				<div id="holder">111</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="index2" class="back_white" align="center">
+		<div style="overflow:hidden;width:950px;">
+			<div class="title">能耗趋势及预测图</div>
+			<div id="index2_h2" class="l">
+				<div>
+					当前天气：<span id="i2_1">晴</span> 气温：<span id="i2_2">21</span>°C 相对湿度：<span
+						id="i2_3">70%</span> PM2.5：<span id="i2_4">45</span><br />
+					当前楼内人员：<span id="i2_5">237</span> 已消耗当日计划能源：<span id="i2_6">62%</span>
+				</div>
+				<div class="r">
+					<img src="images/i2_blue.jpg" alt="">实测能耗<img alt=""
+						src="images/i2_grey.jpg">预测能耗<img alt=""
+						src="images/i2_line.jpg">实测及预测（人.时）
+				</div>
+			</div>
+			<div id="index2_body"></div>
+			<div id="weather" class="heiti">
+				<div class="w"><img src="images/rain_0.jpg" alt="">12/18°C</div>
+				<div class="w"><img src="images/sun_0.jpg" alt="">12/18°C</div>
+				<div class="w"><img src="images/sun_0.jpg" alt="">12/18°C</div>
+				<div class="w"><img src="images/rain_1.jpg" alt="">12/18°C</div>
+				<div class="w"><img src="images/rain_1.jpg" alt="">12/18°C</div>
+				<div class="w"><img src="images/sun_1.jpg" alt="">12/18°C</div>
+			</div>
+		</div>
+	</div>
+	<div id="index3" class="back_grey" align="center">
+		<div style="overflow:hidden;width:950px;">
+			<div class="title">关键区域</div>
+			<table id="index3_" class="table">
+				<tr id="index3_head">
+					<th colspan=2><img src="images/i3_h1.jpg" alt=""></th>
+					<th colspan=2><img src="images/i3_h2.jpg" alt=""></th>
+					<th colspan=2><img src="images/i3_h3.jpg" alt=""></th>
+				</tr>
+				<tr>
+					<td class="l">报警</td>
+					<td class="r">5</td>
+					<td class="l">报警</td>
+					<td class="r">2</td>
+					<td class="l">报警</td>
+					<td class="r">48</td>
+				</tr>
+				<tr>
+					<td class="l">温度</td>
+					<td class="r">5</td>
+					<td class="l">占用状态</td>
+					<td class="r">2</td>
+					<td class="l">占用状态</td>
+					<td class="r">48</td>
+				</tr>
+				<tr>
+					<td class="l">湿度</td>
+					<td class="r">5</td>
+					<td class="l">温度</td>
+					<td class="r">2</td>
+					<td class="l">温度</td>
+					<td class="r">48</td>
+				</tr>
+				<tr>
+					<td class="l">PUE</td>
+					<td class="r">5</td>
+					<td class="l">二氧化碳浓度</td>
+					<td class="r">2</td>
+					<td class="l">下次参观时间</td>
+					<td class="r">48</td>
+				</tr>
+				<tr>
+					<td class="l">状态</td>
+					<td class="r">5</td>
+					<td class="l">状态</td>
+					<td class="r">2</td>
+					<td class="l">状态</td>
+					<td class="r">48</td>
+				</tr>
 			</table>
 		</div>
 	</div>
-	<div id="index5" align="center">
-		<div  style="overflow:hidden;width:950px;">
-			<div class="title">电力系统</div>
+	<div id="index4" class="back_grey" align="center">
+		<div style="overflow:hidden;width:950px;">
+			<div class="title">办公区域</div>
+			<table id="index4_" class="table">
+				<tr>
+					<th width="16%"></th>
+					<th width="14%">人数</th>
+					<th width="14%">报警</th>
+					<th width="14%">能耗</th>
+					<th width="14%">平均温度</th>
+					<th width="14%">会议室占用比</th>
+					<th width="14%">状态</th>
+				</tr>
+				<tr>
+					<td>1F</td>
+					<td>1F</td>
+					<td>1F</td>
+					<td>1F</td>
+					<td>1F</td>
+					<td>1F</td>
+					<td>1F</td>
+				</tr>
+				<tr>
+					<td>2F</td>
+					<td>1F</td>
+					<td>1F</td>
+					<td>1F</td>
+					<td>1F</td>
+					<td>1F</td>
+					<td>1F</td>
+				</tr>
+				<tr>
+					<td>3F</td>
+					<td>1F</td>
+					<td>1F</td>
+					<td>1F</td>
+					<td>1F</td>
+					<td>1F</td>
+					<td>1F</td>
+				</tr>
+				<tr>
+					<td>4F</td>
+					<td>1F</td>
+					<td>1F</td>
+					<td>1F</td>
+					<td>1F</td>
+					<td>1F</td>
+					<td>1F</td>
+				</tr>
+				<tr>
+					<td>5F</td>
+					<td>1F</td>
+					<td>1F</td>
+					<td>1F</td>
+					<td>1F</td>
+					<td>1F</td>
+					<td>1F</td>
+				</tr>
+			</table>
 		</div>
 	</div>
-	<div id="index6" align="center">
-		<div  style="overflow:hidden;width:950px;">
+	<div id="index5" class="back_white" align="center">
+		<div class="back_grey" style="overflow:hidden;width:950px;">
+			<div class="title">电力系统</div>
+			<div id="index5_">
+				<div id="index5_left">
+					<div id="i5_pie"></div>
+					<div>
+						<img src="images/light.jpg" alt="">
+					</div>
+				</div>
+				<div id="index5_right" class="back_grey">
+					<div class="i5_right_bg"></div>
+					<div class="i5_right_bg"></div>
+					<div class="i5_right_bg"></div>
+					<div class="i5_right_bg"></div>
+				</div>
+			</div>
+			<div id="index5_2" class="back_grey">
+				<div class="head">故障</div>
+				<div class="head">预警</div>
+				<div class="head">维护</div>
+				<div class="head">事件提醒</div>
+				<div class="body"></div>
+				<div class="body"></div>
+				<div class="body"></div>
+				<div class="body"></div>
+
+			</div>
+		</div>
+	</div>
+	<div id="index6" class="back_white" align="center">
+		<div style="overflow:hidden;width:950px;background:#e8e8e8">
 			<div class="title">设备</div>
+			<div class="i6_c">
+				<div class="i6_title l">新风系统</div>
+				<div class="r">
+					<div class="orange_s">2</div>
+				</div>
+				<div class="r">2340kWh</div>
+				<div class="r">60%</div>
+				<div class="r">正常</div>
+			</div>
+			<div class="i6_c">
+				<div class="i6_title l">给排水系统</div>
+				<div class="r">
+					<div class="orange_s">2</div>
+				</div>
+				<div class="r">2340kWh</div>
+				<div class="r">60%</div>
+				<div class="r">正常</div>
+			</div>
+			<div class="i6_c">
+				<div class="i6_title l">照明系统</div>
+				<div class="r">
+					<div class="orange_s">2</div>
+				</div>
+				<div class="r">2340kWh</div>
+				<div class="r">60%</div>
+				<div class="r">正常</div>
+			</div>
+			<div class="i6_c">
+				<div class="i6_title l">电梯系统</div>
+				<div class="r">
+					<div class="orange_l">25</div>
+				</div>
+				<div class="r">2340kWh</div>
+				<div class="r">60%</div>
+				<div class="r">正常</div>
+			</div>
+
 		</div>
 	</div>
 	<div id="foot" align="center">
