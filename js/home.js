@@ -1,4 +1,99 @@
-$(function() {
+$(function(){
+	set_i2();
+	set_runway(60,70,75,55,36);
+	
+});
+function set_runway(run0,run1,run2,run3,run4){
+	var runwayColor=["#949adc","#cbad89","#79b89e","#e99e4a","#cfd75a"];
+    var  r = Raphael("holder", 480, 480),
+     R = 227,
+     init = true,
+      param = {stroke: "#646464", "stroke-width": 25},
+      hash = document.location.hash,
+        marksAttr = {fill: hash || "#444", stroke: "none"},
+		path;
+    // Custom Attribute
+	
+    r.customAttributes.arc = function (value, total, R,i) {
+		total=100;
+        var alpha = 360 / total * value,
+            a = (90 - alpha) * Math.PI / 180,
+            x = 240 + R * Math.cos(a),
+            y = 240 - R * Math.sin(a),
+           // color = "hsb(".concat(Math.round(R) / 200, ",", value / total, ", .75)"),
+            path;
+        if (total == value) {
+            path = [["M", 240, 240 - R], ["A", R, R, 0, 1, 1, 299.99, 240 - R]];
+        } else {
+            path = [["M", 240, 240 - R], ["A", R, R, 0, +(alpha > 180), 1, x, y]];
+        }
+        return {path: path, stroke: runwayColor[i]};
+    };
+
+   
+    var runway0 = r.path().attr(param).attr({arc: [0, 100, R,0]});
+    R -= 33;
+  
+    var runway1 = r.path().attr(param).attr({arc: [0, 100, R,1]});
+    R -= 33;
+ 
+    var runway2 = r.path().attr(param).attr({arc: [0, 100, R,2]});
+    R -= 33;
+ 
+    var runway3 = r.path().attr(param).attr({arc: [0, 100, R,3]});
+    R -= 33;
+
+    var runway4 = r.path().attr(param).attr({arc: [0, 100, R,4]});
+    //var pm = r.circle(300, 300, 16).attr({stroke: "none", fill: Raphael.hsb2rgb(15 / 200, 1, .75).hex});
+    //html[5].style.color = Raphael.hsb2rgb(15 / 200, 1, .75).hex;
+
+    function updateVal(value, total, R, hand, id) {
+        
+   
+   
+	if (init) {
+            hand.animate({arc: [value, total, R,id]}, 900, ">");
+        } 
+	/*	
+		else {
+            if (!value || value == total) {
+                value = total;
+                hand.animate({arc: [value, total, R]}, 750, "bounce", function () {
+                    hand.attr({arc: [0, total, R]});
+                });
+            } else {
+                hand.animate({arc: [value, total, R]}, 750, "elastic");
+            }
+        }*/
+        
+    }
+
+    function drawMarks(R, total) {
+        total=100;
+		/*
+        var color = "hsb(".concat(Math.round(R) / 200, ", 1, .75)"),
+            out = r.set();
+        
+        return out;
+		*/
+    }
+
+    
+       
+        updateVal(run0, 100, 227, runway0, 0);
+        updateVal(run1, 100, 194, runway1, 1);
+        updateVal(run2, 100, 161, runway2, 2);
+        updateVal(run3, 100, 128, runway3, 3);
+        updateVal(run4, 100, 95, runway4, 4);
+        
+        
+		//调用自身
+        //setTimeout(arguments.callee, 1000);
+        init = false;
+   
+   
+}
+function set_i2() {
 		var d1 = [];
 		for ( var i = 0; i < 14; i += 0.5) {
 			d1.push([ i, Math.sin(i) ]);
@@ -63,4 +158,4 @@ $(function() {
 			}
 		} ]);
 
-	});
+	}

@@ -11,11 +11,10 @@
 <!--[if lte IE 8]><script  type="text/javascript" src="js/excanvas.min.js"></script><![endif]-->
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/jquery.flot.js"></script>
-<script language="javascript" type="text/javascript"
-	src="js/jquery.flot.pie.js"></script>
+<script type="text/javascript" src="js/jquery.flot.pie.js"></script>
+<script type="text/javascript" src="js/raphael.js"></script>
 <link type="text/css" rel="stylesheet" href="css/layout.css" />
-<link type="text/css" rel="stylesheet" href="css/example.css" />
-<script type="text/javascript"  src="js/common.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
 <script type="text/javascript" src="js/home.js"></script>
 <script type="text/javascript" src="js/raphael.js"></script>
 <script type="text/javascript">
@@ -26,7 +25,7 @@
 			stroke : "#fff",
 			"stroke-width" : 25
 		};
-*/
+		 */
 		//i5 pie
 		var pieData = [ {
 			label : "",
@@ -62,23 +61,20 @@
 </script>
 <style type="text/css">
 #holder {
-	float:left;
+	float: left;
+	margin:5px 0 0 146px;
 	height: 480px;
 	width: 480px;
 }
+
 </style>
 </head>
 <body>
 	<div id="nav" align="center">
 		<div id="nav_" style="overflow:hidden;width:950px;">
-			<div class="wuhanb11 yahei">
-			</div>
-			<div  class="nav nav_">
-				首页
-			</div>
-			<div  class="nav">
-				能耗
-			</div>
+			<div class="wuhanb11 yahei"></div>
+			<div class="nav nav_">首页</div>
+			<div class="nav">能耗</div>
 			<div id="nav3" class="nav" style="position:relative">
 				能效
 				<div id="efficiency" class="sub_nav" style="z-index: 1000">
@@ -108,7 +104,7 @@
 					<div class="r">322</div>
 					<div class="r">3552</div>
 				</div>
-				<div id="holder">111</div>
+				<div id="holder"></div>
 			</div>
 		</div>
 	</div>
@@ -130,12 +126,24 @@
 			</div>
 			<div id="index2_body"></div>
 			<div id="weather" class="heiti">
-				<div class="w"><img src="images/rain_0.jpg" alt="">12/18°C</div>
-				<div class="w"><img src="images/sun_0.jpg" alt="">12/18°C</div>
-				<div class="w"><img src="images/sun_0.jpg" alt="">12/18°C</div>
-				<div class="w"><img src="images/rain_1.jpg" alt="">12/18°C</div>
-				<div class="w"><img src="images/rain_1.jpg" alt="">12/18°C</div>
-				<div class="w"><img src="images/sun_1.jpg" alt="">12/18°C</div>
+				<div class="w">
+					<img src="images/rain_0.jpg" alt="">12/18°C
+				</div>
+				<div class="w">
+					<img src="images/sun_0.jpg" alt="">12/18°C
+				</div>
+				<div class="w">
+					<img src="images/sun_0.jpg" alt="">12/18°C
+				</div>
+				<div class="w">
+					<img src="images/rain_1.jpg" alt="">12/18°C
+				</div>
+				<div class="w">
+					<img src="images/rain_1.jpg" alt="">12/18°C
+				</div>
+				<div class="w">
+					<img src="images/sun_1.jpg" alt="">12/18°C
+				</div>
 			</div>
 		</div>
 	</div>
@@ -144,9 +152,12 @@
 			<div class="title">关键区域</div>
 			<table id="index3_" class="table">
 				<tr id="index3_head">
-					<th colspan=2><img src="images/i3_h1.jpg" alt=""></th>
-					<th colspan=2><img src="images/i3_h2.jpg" alt=""></th>
-					<th colspan=2><img src="images/i3_h3.jpg" alt=""></th>
+					<th colspan=2><img src="images/i3_h1.jpg" alt="">
+					</th>
+					<th colspan=2><img src="images/i3_h2.jpg" alt="">
+					</th>
+					<th colspan=2><img src="images/i3_h3.jpg" alt="">
+					</th>
 				</tr>
 				<tr>
 					<td class="l">报警</td>

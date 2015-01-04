@@ -127,7 +127,13 @@ ul {
 	line-height: 63px;
 	font-family: "Microsoft Yahei";
 }
-
+#nav3{
+	position: relative; z-index: 100;
+}
+#nav4{
+	position: relative; z-index: 100;
+	
+}
 .nav {
 	width: 15%;
 	float: left;
