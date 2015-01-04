@@ -9,7 +9,7 @@ body {
 }
 
 img {
-	border: 0;
+	border: 0; display:block;
 }
 
 .heiti {
@@ -142,6 +142,9 @@ ul {
 	font-size: 48px;
 	font-weight: bold;
 }
+.nav_{
+	background: #00bb3c none repeat scroll 0 0;
+}
 #nav_ .nav:hover {
 	background: #00bb3c none repeat scroll 0 0;
 	cursor: pointer;
@@ -220,7 +223,7 @@ ul {
 }
 
 #index2_body {
-	height: 250px;
+	height: 350px;
 	float: left;
 	width: 100%;
 }
@@ -425,7 +428,12 @@ ul {
 #efficiency1_ {
 	background: #ffffff;
 }
-
+.e4_left{
+	width: 701px; height: 390px; float: left;
+}
+.e4_right{
+	width: 249px; height: 390px; float: left;
+}
 #alarm {
 	font-size: 18px;
 	width: 890px;

@@ -18,70 +18,93 @@
 
 <script type="text/javascript">
 	$(function() {
-
-		var d1 = [];
-		for ( var i = 0; i < 14; i += 0.5) {
-			d1.push([ i, Math.sin(i) ]);
+	var x_ticks=[];
+		var e21 = [];
+		var e22 = [];
+		var e23 = [];
+		var e24 = [];
+		var e25 = [];
+		var lines_e2=[];
+		var e2_stroke=["#a6f34b","#fc6565","#73d5ff","#48ae5b","#f3a24b"];
+		for (var i=0;i<5;i++){
+		lines_e2[i]={ show: true ,color:e2_stroke[i],lineWidth:3};
 		}
-
-		var d2 = [ [ 0, 3 ], [ 4, 8 ], [ 8, 5 ], [ 9, 13 ] ];
-
-		var d3 = [];
-		for ( var i = 0; i < 14; i += 0.5) {
-			d3.push([ i, Math.cos(i) ]);
+		for ( var i = 0; i < 31; i += 1) {
+			e21.push([ i,(Math.sin(i)*Math.random())*2000+2000]);
+			e22.push([ i,(Math.sin(i)*Math.random())*2000+2000]);
+			e23.push([ i,(Math.sin(i)*Math.random())*2000+2000]);
+			e24.push([ i,(Math.sin(i)*Math.random())*2000+2000]);
+			e25.push([ i,(Math.sin(i)*Math.random())*2000+2000]);
+			x_ticks.push(i);
 		}
+	var options = {
+        series: { shadowSize: 0 }, // drawing is faster without shadows
+        xaxis: { min: 0, max: 30 ,ticks: x_ticks },
+        yaxis: { min: 0, max: 4000 ,ticks: [1000,2000,3000,4000]},
+        grid:{
+        borderColor:"#dadfe1",
+        }
+    };
+		
 
-		var d4 = [];
-		for ( var i = 0; i < 14; i += 0.1) {
-			d4.push([ i, Math.sqrt(i * 10) ]);
+
+		$.plot("#index2_body", [
+		{
+		data : e21,
+		lines:lines_e2[0]
+		},{
+		data : e22,
+		lines:lines_e2[1]
+		},
+		{
+		data : e23,
+		lines:lines_e2[2]
+		},
+		{
+		data : e24,
+		lines:lines_e2[3]
+		},
+		{
+		data : e25,
+		lines:lines_e2[4]
 		}
-
-		var d5 = [];
-		for ( var i = 0; i < 14; i += 0.5) {
-			d5.push([ i, Math.sqrt(i) ]);
-		}
-
-		var d6 = [];
-		for ( var i = 0; i < 14; i += 0.5 + Math.random()) {
-			d6.push([ i, Math.sqrt(2 * i + Math.sin(i) + 5) ]);
-		}
-
-		$.plot("#index2_body", [ {
-			data : d1,
+		],options);
+		/*
+		 {
+			data : e21,
 			lines : {
 				show : true,
-				fill : true
+				fill : false
 			}
-		}, {
-			data : d2,
-			bars : {
-				show : true
-			}
-		}, {
-			data : d3,
-			points : {
-				show : true
-			}
-		}, {
-			data : d4,
-			lines : {
-				show : true
-			}
-		}, {
-			data : d5,
-			lines : {
-				show : true
-			},
-			points : {
-				show : true
-			}
-		}, {
-			data : d6,
+		},{
+			data : e22,
 			lines : {
 				show : true,
-				steps : true
+				fill : false
 			}
-		} ]);
+		},{
+			data : e23,
+			lines : {
+				show : true,
+				fill : false
+			}
+		},{
+			data : e24,
+			lines : {
+				show : true,
+				fill : false
+			}
+		},
+		{
+			data : e25,
+			lines : {
+				show : true,
+				fill : false
+			}
+		}
+		 
+		
+		*/
 
 	});
 </script>
@@ -122,7 +145,7 @@ height:100px;width:250px;padding:40px 15px;float:left;line-height:28px;
 			<div  class="nav">
 				首页
 			</div>
-			<div  class="nav">
+			<div  class="nav nav_">
 				能耗
 			</div>
 			<div id="nav3" class="nav" style="position:relative">
@@ -208,16 +231,18 @@ height:100px;width:250px;padding:40px 15px;float:left;line-height:28px;
 	<div id="energe3" style="height:668px" class="back_grey" align="center">
 		<div  style="overflow:hidden;width:950px;">
 			<div class="title">类比</div>
+			<img src="images/energe/h3_head.jpg">
 			<div id="energe3_">
-				<img src="images/energe/h3_head.jpg">
-				<div style="background:url(images/energe/h3_body.jpg) no-repeat;width:950px;height:440px;margin-top:-5px;"></div>
+				<div style="background:url(images/energe/h3_body.jpg) no-repeat;width:950px;height:440px;"></div>
 			</div>
 		</div>
 	</div>
 	<div id="energe4" style="height:580px;" align="center">
 		<div  style="overflow:hidden;width:950px;">
 			<div class="title">昨日分时耗电量</div>
-			
+			<img src="images/energe/e4_head.jpg" alt="">
+			<div  class="e4_left back_grey"></div>
+			<div class="e4_right back_grey"></div>
 		</div>
 	</div>
 	<div id="energe5" style="height:540px" align="center">
