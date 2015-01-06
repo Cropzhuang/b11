@@ -9,25 +9,31 @@ body {
 }
 
 img {
-	border: 0; display:block;
+	border: 0;
+	display: block;
 }
 
 .heiti {
 	font-family: "SimHei";
 }
-.yahei{
-	font-family: "Microsoft Yahei";
+.arial{
+	font-family: "arial";
 	
 }
+.yahei {
+	font-family: "Microsoft Yahei";
+}
+
 a {
 	text-decoration: none;
 	color: white;
 	font-family: "Microsoft Yahei";
 }
-.dwhite{
-	color:#eaeaea;
-	
+
+.dwhite {
+	color: #eaeaea;
 }
+
 .red {
 	color: #c80000;
 }
@@ -71,7 +77,7 @@ h3 {
 
 .r img {
 	padding: 0 10px;
-	display:initial;
+	display: initial;
 }
 
 .l {
@@ -83,44 +89,49 @@ ul {
 	margin: 0;
 	padding: 0;
 }
-.orange_s{
-	background:url("../images/ishort.png") no-repeat scroll;
-	text-align:center;
-	width:50px;
-	height:24px;
-	font-size:16px;
-	margin:4px;
-	line-height:24px;
-	color:white;
+
+.orange_s {
+	background: url("../images/ishort.png") no-repeat scroll;
+	text-align: center;
+	width: 50px;
+	height: 24px;
+	font-size: 16px;
+	margin: 4px;
+	line-height: 24px;
+	color: white;
 }
-.orange_l{
-	background:url("../images/ilong.png") no-repeat scroll;
-	text-align:center;
-	width:50px;
-	height:24px;
-	font-size:16px;
-	margin:4px;
-	line-height:24px;
-	color:white;
+
+.orange_l {
+	background: url("../images/ilong.png") no-repeat scroll;
+	text-align: center;
+	width: 50px;
+	height: 24px;
+	font-size: 16px;
+	margin: 4px;
+	line-height: 24px;
+	color: white;
 }
 
 #efficiency {
 	background: #00bb3c none repeat scroll 0 0;
 	cursor: pointer;
-	display:none;
+	display: none;
 }
 
 #efficiency div:hover {
 	background: #00a234 none repeat scroll 0 0;
 }
-#device{
+
+#device {
 	background: #00bb3c none repeat scroll 0 0;
 	cursor: pointer;
-	display:none;
+	display: none;
 }
+
 #device div:hover {
 	background: #00a234 none repeat scroll 0 0;
 }
+
 #nav {
 	background: #555555 none repeat scroll 0 0;
 	color: white;
@@ -128,30 +139,36 @@ ul {
 	line-height: 63px;
 	font-family: "Microsoft Yahei";
 }
-#nav3{
-	position: relative; z-index: 100;
+
+#nav3 {
+	position: relative;
+	z-index: 100;
 }
-#nav4{
-	position: relative; z-index: 100;
-	
+
+#nav4 {
+	position: relative;
+	z-index: 100;
 }
+
 .nav {
 	width: 15%;
 	float: left;
 	font-size: 18px;
 }
 
-.wuhanb11{
-	background:url("../images/index.jpg") no-repeat scroll;
+.wuhanb11 {
+	background: url("../images/index.jpg") no-repeat scroll;
 	float: left;
 	width: 24%;
-	height:63px;
+	height: 63px;
 	font-size: 48px;
 	font-weight: bold;
 }
-.nav_{
+
+.nav_ {
 	background: #00bb3c none repeat scroll 0 0;
 }
+
 #nav_ .nav:hover {
 	background: #00bb3c none repeat scroll 0 0;
 	cursor: pointer;
@@ -199,11 +216,30 @@ ul {
 	height: 289px;
 	float: left;
 	background: url("../images/i1_left.png") no-repeat scroll;
-	margin:20px;
-	padding-top:169px;
-	color:white;
-	font-size:14px;
-	line-height:24px;
+	margin: 20px;
+	padding-top: 169px;
+	color: white;
+	font-size: 14px;
+	line-height: 24px;
+}
+
+#i1_right {
+	float: left;
+	margin:5px 0 0 146px;
+	height: 480px;
+	width: 480px;
+}
+
+#holder_center {
+	position: absolute;
+	margin: 165px 165px;
+	width: 150px;
+	height: 150px;
+	line-height:150px;
+	color:#d5d6d5;
+	font-size:67px;
+	text-align:center;
+	background: url(../images/runway_circle.png) no-repeat scroll;
 }
 
 #index1_body {
@@ -234,22 +270,25 @@ ul {
 	float: left;
 	width: 100%;
 }
-#weather{
-	width:950px;
-	height:71px;
-	font-size:12px;
+
+#weather {
+	width: 950px;
+	height: 71px;
+	font-size: 12px;
 }
 
-#weather div{
-	width:46px;
-	height:71px;
-	float:left;
-	padding:0 25px;
-	font-weight:bold;
+#weather div {
+	width: 46px;
+	height: 71px;
+	float: left;
+	padding: 0 25px;
+	font-weight: bold;
 }
-#weather div:FIRST-CHILD{
-	padding:0px;
+
+#weather div:FIRST-CHILD {
+	padding: 0px;
 }
+
 #index3_ .l {
 	width: 127px;
 }
@@ -313,27 +352,34 @@ ul {
 	width: 235px;
 	color: white;
 }
-#i5_pie{
-	height:300px;
-	width:300px;
-	float:left;
-	margin:55px 55px 20px 55px;
+
+#i5_pie {
+	height: 300px;
+	width: 300px;
+	float: left;
+	margin: 55px 55px 20px 55px;
 }
-#index5_left{
-	width:410px;
-	height:460px;
-	float:left;
+
+#index5_left {
+	width: 410px;
+	height: 460px;
+	float: left;
 }
-#index5_right{
-	width:540px;
-	height:460px;
-	float:left;
+
+#index5_right {
+	width: 540px;
+	height: 460px;
+	float: left;
 }
-.i5_right_bg{
-	background:url("../images/circle.jpg") no-repeat scroll;
-	width:208px;height:102px;float:left;
-	margin:50px 30px 0 30px;
+
+.i5_right_bg {
+	background: url("../images/circle.jpg") no-repeat scroll;
+	width: 208px;
+	height: 102px;
+	float: left;
+	margin: 50px 30px 0 30px;
 }
+
 #index5_2 .head {
 	background: #AAAAAA;
 	height: 37px;
@@ -349,9 +395,13 @@ ul {
 #index6 {
 	height: 600px;
 }
-.i6_title{
-	margin:35px  0 0 258px;font-size:18px;font-weight:bold;
+
+.i6_title {
+	margin: 35px 0 0 258px;
+	font-size: 18px;
+	font-weight: bold;
 }
+
 .i6_c {
 	width: 473px;
 	height: 212px;
@@ -359,18 +409,22 @@ ul {
 	float: left;
 	margin: 1px;
 }
-.i6_c .r{
-	padding-right:30px;
-	font-weight:bold;
-	line-height:32px;
-	font-size:14px;
+
+.i6_c .r {
+	padding-right: 30px;
+	font-weight: bold;
+	line-height: 32px;
+	font-size: 14px;
 }
-.i6_c .r .orange_s{
-	margin-left:390px;
+
+.i6_c .r .orange_s {
+	margin-left: 390px;
 }
-.i6_c .r .orange_l{
-	margin-left:390px;
+
+.i6_c .r .orange_l {
+	margin-left: 390px;
 }
+
 #foot {
 	background: #555555 none repeat scroll 0 0;
 	height: 150px;
@@ -419,28 +473,51 @@ ul {
 	height: 255px;
 	float: left;
 }
-#e1_left{
-	width:555px;height:235px;line-height:203px;float:left;color:#666666;
+
+#e1_left {
+	width: 555px;
+	height: 235px;
+	line-height: 203px;
+	float: left;
+	color: #666666;
 }
-.e1_content{
-	width:153px;float:left;font-size:26px;
+
+.e1_content {
+	width: 153px;
+	float: left;
+	font-size: 26px;
 }
-.e1_bottom{
-	text-align:left;float: left; line-height: 25px; height: 25px; width: 100%;color:white;font-size:14px;
+
+.e1_bottom {
+	text-align: left;
+	float: left;
+	line-height: 25px;
+	height: 25px;
+	width: 100%;
+	color: white;
+	font-size: 14px;
 }
-.e1_bottom span:FIRST-CHILD{
-	margin-left:100px;
-	
+
+.e1_bottom span:FIRST-CHILD {
+	margin-left: 100px;
 }
+
 #efficiency1_ {
 	background: #ffffff;
 }
-.e4_left{
-	width: 701px; height: 390px; float: left;
+
+.e4_left {
+	width: 701px;
+	height: 390px;
+	float: left;
 }
-.e4_right{
-	width: 249px; height: 390px; float: left;
+
+.e4_right {
+	width: 249px;
+	height: 390px;
+	float: left;
 }
+
 #alarm {
 	font-size: 18px;
 	width: 890px;
