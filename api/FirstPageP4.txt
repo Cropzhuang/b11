@@ -1,0 +1,3 @@
+
+<?xml version="1.0" encoding="UTF-8"?>
+<string xmlns="http://tempuri.org/">people1:94,alarm1:4,energy1:195.198999999993,temprature1:14.5,MeetingRoom1:2/3;people2:78,alarm2:16,energy2:143.006999999998,temprature2:19,MeetingRoom2:1/3;people3:98,alarm3:14,energy3:147.725000000006,temprature3:19,MeetingRoom3:1/3;people4:91,alarm4:13,energy4:153.634000000006,temprature4:19,MeetingRoom4:2/3;people5:72,alarm5:11,energy5:161.020250000007,temprature5:22,MeetingRoom5:1/3;</string>
