@@ -210,7 +210,22 @@ ul {
 	text-align: left;
 	font-size: 24px;
 }
+.i1value{
+	float:left;position:absolute;color:white;display:none;
+}
 
+#i10{
+}
+#i11{
+	
+}
+#i12{
+	
+}
+#i13{
+}
+#i14{
+}
 #i1_left {
 	width: 190px;
 	height: 289px;

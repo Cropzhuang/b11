@@ -53,3 +53,34 @@ function request(paras) {
 		return returnValue;
 	}
 }
+function query(action,start,end,callback){
+	var params;
+	if(start!=null&&start!="")
+		params={pStartTime:start,pEndTime:end};
+	
+	 $.ajax({
+         url:"api/"+action+".xml",  
+         type:"POST",  
+         dataType:"xml",  
+         data:params,
+         error: function(xml){  
+             alert('Error loading XML document'+xml);  
+         },  
+         success: callback
+	 });
+}
+function query(action,callback){
+	 $.ajax({
+         url:"api/"+action+".xml",  
+         type:"POST",  
+         dataType:"xml",  
+         error: function(xml){  
+             alert('Error loading XML document'+xml);  
+         },  
+         success: callback
+	 });
+}
+function floor(number){
+	number=number.replace(/[^0-9]/ig,""); 
+	return Math.floor(number);
+}

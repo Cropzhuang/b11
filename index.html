@@ -19,13 +19,26 @@
 <script type="text/javascript" src="js/raphael.js"></script>
 <script type="text/javascript">
 	window.onload = function() {
-		/*
-		var r = Raphael("holder", 480, 480);
-		param = {
-			stroke : "#fff",
-			"stroke-width" : 25
-		};
-		 */
+		query("FirstPageP1", function(xml) {
+			var data = $(xml).find("string").text();
+			var a = data.split(",");
+			$("#i1_left .r").each(function(n, d) {
+				$(this).text(Math.floor(a[n].split(":")[1]));
+			});
+		});
+		query("FirstPageP1Leed", function(xml) {
+				var data = $(xml).find("string").text();
+				var a = data.split(",");
+				var d=[floor(a[0].split(":")[1]), floor(a[1].split(":")[1]), floor(a[2].split(":")[1]), floor(a[3].split(":")[1]), floor(a[4].split(":")[1])];
+				set_runway(d[0],d[1],d[2],d[3],d[4]);
+
+		});
+		query("FirstPageP2EnergyData",function(xml){
+			var data = $(xml).find("string").text();
+		
+		});
+			
+			
 		//i5 pie
 		var pieData = [ {
 			label : "",
@@ -65,7 +78,6 @@
 	height: 480px;
 	width: 480px;
 }
-
 </style>
 </head>
 <body>
@@ -103,12 +115,17 @@
 					<div class="r">322</div>
 					<div class="r">3552</div>
 				</div>
-				<div id="i1_right" >
-				<div id="holder"></div>
-				<div id="holder_center" class="arial">71</div>
-				
-				<img style="float:left;position:absolute" id="runway_title" src="images/runway_title.png">
-			</div>
+				<div id="i1_right">
+					<div id="holder"></div>
+					<div id="holder_center" class="arial"></div>
+					<img style="float:left;position:absolute" id="runway_title"
+						src="images/runway_title.png">
+					<div id="i10" class="i1value">12</div>
+					<div id="i11" class="i1value">65</div>
+					<div id="i12" class="i1value">34</div>
+					<div id="i13" class="i1value">55</div>
+					<div id="i14" class="i1value">44</div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -156,12 +173,9 @@
 			<div class="title">关键区域</div>
 			<table id="index3_" class="table">
 				<tr id="index3_head">
-					<th colspan=2><img src="images/i3_h1.jpg" alt="">
-					</th>
-					<th colspan=2><img src="images/i3_h2.jpg" alt="">
-					</th>
-					<th colspan=2><img src="images/i3_h3.jpg" alt="">
-					</th>
+					<th colspan=2><img src="images/i3_h1.jpg" alt=""></th>
+					<th colspan=2><img src="images/i3_h2.jpg" alt=""></th>
+					<th colspan=2><img src="images/i3_h3.jpg" alt=""></th>
 				</tr>
 				<tr>
 					<td class="l">报警</td>
@@ -268,16 +282,16 @@
 		</div>
 	</div>
 	<div id="index5" class="back_white" align="center">
-		<div  style="overflow:hidden;width:950px;">
+		<div style="overflow:hidden;width:950px;">
 			<div class="title">电力系统</div>
 			<div id="index5_" class="back_grey">
-				<div id="index5_left" ">
+				<div id="index5_left"">
 					<div id="i5_pie"></div>
-					
-						<img src="images/light.jpg" alt="">
-					
+
+					<img src="images/light.jpg" alt="">
+
 				</div>
-				<div id="index5_right" >
+				<div id="index5_right">
 					<div class="i5_right_bg"></div>
 					<div class="i5_right_bg"></div>
 					<div class="i5_right_bg"></div>
