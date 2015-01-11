@@ -13,11 +13,15 @@
 <!--[if lte IE 8]><script  type="text/javascript" src="js/excanvas.min.js"></script><![endif]-->
 
 <link type="text/css" rel="stylesheet" href="css/layout.css" />
-<link type="text/css" rel="stylesheet" href="css/example.css" />
 <script src="js/common.js"></script>
 
 <script type="text/javascript">
 	$(function() {
+	query("FirstPageP1", function(xml) {
+			var data = $(xml).find("string").text();
+			var a = data.split(",");
+			alert(a);
+		});
 	var x_ticks=[];
 		var e21 = [];
 		var e22 = [];

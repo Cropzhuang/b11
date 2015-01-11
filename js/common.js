@@ -54,15 +54,13 @@ function request(paras) {
 	}
 }
 function query(action,start,end,callback){
-	var params;
-	if(start!=null&&start!="")
-		params={pStartTime:start,pEndTime:end};
-	
+//	var params;
+//	if(start!=null&&start!="")
+//		params={pStartTime:start,pEndTime:end};
 	 $.ajax({
          url:"api/"+action+".xml",  
          type:"POST",  
          dataType:"xml",  
-         data:params,
          error: function(xml){  
              alert('Error loading XML document'+xml);  
          },  
@@ -75,12 +73,18 @@ function query(action,callback){
          type:"POST",  
          dataType:"xml",  
          error: function(xml){  
-             alert('Error loading XML document'+xml);  
-         },  
+             alert('Error loading XML document'+xml); 
+         },
          success: callback
 	 });
 }
+function getValue(data){
+	var d=data.split(":");
+	var value=data.replace((d[0]+":"),"");
+	return value;
+	
+}
 function floor(number){
-	number=number.replace(/[^0-9]/ig,""); 
+	number=number.replace(";","");
 	return Math.floor(number);
 }
