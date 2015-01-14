@@ -19,6 +19,7 @@
 <script type="text/javascript" src="js/raphael.js"></script>
 <script type="text/javascript">
 	window.onload = function() {
+		//1
 		query("FirstPageP1", function(xml) {
 			var data = $(xml).find("string").text();
 			var a = data.split(",");
@@ -33,11 +34,32 @@
 				set_runway(d[0],d[1],d[2],d[3],d[4]);
 
 		});
+		
+		//p2
 		query("FirstPageP2EnergyData",function(xml){
 			var data = $(xml).find("string").text();
-		
-		});
+			var color=["#a0e1ff","#ebebeb","#d2d2d2"];
 			
+			
+		});
+
+
+		//p3
+		query("FirstPageP3",function(xml){
+			var s = $(xml).find("string").text();
+			var a=s.split(";");
+			var k=0;
+			for(var i=0;i<a.length;i++){
+				var d=a[i].split(",");
+				for(var j=0;j<d.length;j++){
+					$("#i3_"+k).html(getValue(d[j]));
+					k+=1;
+				}
+			}
+		 
+		});
+		
+		//p4
 			
 		//i5 pie
 		var pieData = [ {
@@ -179,43 +201,51 @@
 				</tr>
 				<tr>
 					<td class="l">报警</td>
-					<td class="r">5</td>
+					<td id="i3_0" class="r"></td>
 					<td class="l">报警</td>
-					<td class="r">2</td>
+					<td id="i3_5" class="r"></td>
 					<td class="l">报警</td>
-					<td class="r">48</td>
+					<td id="i3_10" class="r"></td>
+				</tr>
+				<tr>
+					<td class="l">能耗</td>
+					<td id="i3_1" class="r"></td>
+					<td class="l">能耗</td>
+					<td id="i3_6" class="r"></td>
+					<td class="l">能耗</td>
+					<td id="i3_11" class="r"></td>
 				</tr>
 				<tr>
 					<td class="l">温度</td>
-					<td class="r">5</td>
+					<td id="i3_2" class="r"></td>
 					<td class="l">占用状态</td>
-					<td class="r">2</td>
+					<td id="i3_7" class="r"></td>
 					<td class="l">占用状态</td>
-					<td class="r">48</td>
+					<td id="i3_12" class="r"></td>
 				</tr>
 				<tr>
 					<td class="l">湿度</td>
-					<td class="r">5</td>
+					<td id="i3_3" class="r"></td>
 					<td class="l">温度</td>
-					<td class="r">2</td>
+					<td id="i3_8" class="r"></td>
 					<td class="l">温度</td>
-					<td class="r">48</td>
+					<td id="i3_13" class="r"></td>
 				</tr>
 				<tr>
 					<td class="l">PUE</td>
-					<td class="r">5</td>
+					<td id="i3_4" class="r"></td>
 					<td class="l">二氧化碳浓度</td>
-					<td class="r">2</td>
+					<td id="i3_9" class="r"></td>
 					<td class="l">下次参观时间</td>
-					<td class="r">48</td>
+					<td id="i3_14" class="r"></td>
 				</tr>
 				<tr>
 					<td class="l">状态</td>
-					<td class="r">5</td>
+					<td class="r"></td>
 					<td class="l">状态</td>
-					<td class="r">2</td>
+					<td class="r"></td>
 					<td class="l">状态</td>
-					<td class="r">48</td>
+					<td class="r"></td>
 				</tr>
 			</table>
 		</div>
