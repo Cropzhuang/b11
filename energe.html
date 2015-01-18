@@ -11,17 +11,29 @@
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/jquery.flot.js"></script>
 <!--[if lte IE 8]><script  type="text/javascript" src="js/excanvas.min.js"></script><![endif]-->
-
+<script type="text/javascript" src="js/d3.v3.js"></script>
+  <script type="text/javascript" src="js/radar-chart.js"></script>
 <link type="text/css" rel="stylesheet" href="css/layout.css" />
+<link type="text/css" rel="stylesheet" href="css/radar-chart.css">
 <script src="js/common.js"></script>
-
+<script src="js/energe.js"></script>
 <script type="text/javascript">
 	$(function() {
-	query("FirstPageP1", function(xml) {
+	query("SecondPageP1M1", function(xml) {
 			var data = $(xml).find("string").text();
 			var a = data.split(",");
-			alert(a);
+			for(var i=0;i<4;i++){
+			$("#e1_"+i).text(floor(getValue(a[i])));
+			}
+			$("#e1_"+4).text(getValue(a[4]).substring(0, 4));
+			
 		});
+		
+		
+		
+		
+		
+		
 	var x_ticks=[];
 		var e21 = [];
 		var e22 = [];
@@ -49,9 +61,6 @@
         borderColor:"#dadfe1",
         }
     };
-		
-
-
 		$.plot("#index2_body", [
 		{
 		data : e21,
@@ -73,44 +82,12 @@
 		lines:lines_e2[4]
 		}
 		],options);
-		/*
-		 {
-			data : e21,
-			lines : {
-				show : true,
-				fill : false
-			}
-		},{
-			data : e22,
-			lines : {
-				show : true,
-				fill : false
-			}
-		},{
-			data : e23,
-			lines : {
-				show : true,
-				fill : false
-			}
-		},{
-			data : e24,
-			lines : {
-				show : true,
-				fill : false
-			}
-		},
-		{
-			data : e25,
-			lines : {
-				show : true,
-				fill : false
-			}
-		}
-		 
-		
-		*/
-
 	});
+	
+	//radar 
+	
+	
+	
 </script>
 <style type="text/css">
 td{
@@ -137,7 +114,7 @@ float: left;padding:0 10px;
 height:72px;width:100%;float:left;font-size:12px;color:#e5e5e5;
 }
 #e1_left{
-height:100px;width:250px;padding:40px 15px;float:left;line-height:28px;
+height:100px;width:300px;padding:40px 15px;float:left;line-height:28px;
 }
 </style>
 </head>
@@ -175,11 +152,11 @@ height:100px;width:250px;padding:40px 15px;float:left;line-height:28px;
 		<div id="energe1_" style="overflow:hidden;width:950px;">
 			<div id="energe1_head">
 			<table id="e1_left" >
-				<tr><td class="l">实际发电量(kWh)</td><td class="r">279</td></tr>
-				<tr><td class="l">实际发电量(kWh)</td><td class="r">279</td></tr>
-				<tr><td class="l">实际发电量(kWh)</td><td class="r">279</td></tr>
-				<tr><td class="l">实际发电量(kWh)</td><td class="r">279</td></tr>
-				<tr><td class="l">实际发电量(kWh)</td><td class="r">279</td></tr>
+				<tr><td class="l">实际发电量(kWh)</td><td id="e1_0" class="r">279</td></tr>
+				<tr><td class="l">实际耗电量(kWh)</td><td id="e1_1" class="r">279</td></tr>
+				<tr><td class="l">水耗(吨)</td><td id="e1_2" class="r">279</td></tr>
+				<tr><td class="l">冷/热量(kWh)</td><td id="e1_3" class="r">279</td></tr>
+				<tr><td class="l">碳排放(ICO2e)</td><td id="e1_4" class="r">279</td></tr>
 			</table>
 			</div>
 			<div id="energe1_body" class="e1_b1">
@@ -236,8 +213,10 @@ height:100px;width:250px;padding:40px 15px;float:left;line-height:28px;
 		<div  style="overflow:hidden;width:950px;">
 			<div class="title">类比</div>
 			<img src="images/energe/h3_head.jpg">
-			<div id="energe3_">
-				<div style="background:url(images/energe/h3_body.jpg) no-repeat;width:950px;height:440px;"></div>
+			<div id="energe3_" style="background:#ffffff;float:left">
+			<div id="radar0">
+			</div>
+			<div id="radar1">
 			</div>
 		</div>
 	</div>

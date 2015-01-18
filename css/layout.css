@@ -69,7 +69,9 @@ h3 {
 .white {
 	color: white;
 }
-
+.xieti{
+	font-style:italic;
+}
 .r {
 	text-align: right;
 	padding: 0 10px;
@@ -480,6 +482,9 @@ ul {
 	background: url("../images/energe/energe1_bg.jpg") no-repeat scroll 0 0;
 	height: 600px;
 }
+#energe3_{
+	background:#ffffff;float:left;
+}
 
 /***efficiency****/
 .efficiency_body {
@@ -488,7 +493,12 @@ ul {
 	height: 255px;
 	float: left;
 }
-
+.efficiency_pue{
+	background: url("../images/efficiency/machine/machine1.jpg") no-repeat scroll;
+	width: 950px;
+	height: 255px;
+	float: left;
+}
 #e1_left {
 	width: 555px;
 	height: 235px;
@@ -502,7 +512,9 @@ ul {
 	float: left;
 	font-size: 26px;
 }
-
+.e2_content{
+	line-height:38px;width:155px;margin-left:750px;margin-top:60px;font-style:italic;font-weight: bold;
+}
 .e1_bottom {
 	text-align: left;
 	float: left;

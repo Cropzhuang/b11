@@ -88,3 +88,23 @@ function floor(number){
 	number=number.replace(";","");
 	return Math.floor(number);
 }
+function week(){
+	var date =new Date();
+	var dArray=new Array(7);
+	var seconds=date.getTime();
+	for(var i=0;i<7;i++){
+		dArray[7-i]=date.setTime(seconds);
+		seconds-=3600*1000*24;
+	}
+	return dArray;
+}
+function month(){
+	var date =new Date();
+	var dArray=new Array(30);
+	var seconds=date.getTime();
+	for(var i=0;i<30;i++){
+		dArray[30-i]=date.setTime(seconds);
+		seconds-=3600*1000*24;
+	}
+	return dArray;
+}
