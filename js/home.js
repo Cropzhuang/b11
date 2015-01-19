@@ -1,5 +1,8 @@
 $(function() {
 	set_i2();
+
+	set_i4();
+	set_i5();
 });
 function set_runway(run0, run1, run2, run3, run4) {
 	var runwayColor = [ "#949adc", "#cbad89", "#79b89e", "#e99e4a", "#cfd75a",
@@ -120,7 +123,7 @@ function set_runway(run0, run1, run2, run3, run4) {
 		 */
 	}
 	function drawFontPosition(percentBefore, R, dom) {
-		var percent = (percentBefore - 1)/100, path=new Array();
+		var percent = (percentBefore - 1) / 100, path = new Array();
 		if (percent < 0.25 && percent >= 0) {
 			path = [ 240 * percent / 0.25, 240 - R ];
 
@@ -131,40 +134,42 @@ function set_runway(run0, run1, run2, run3, run4) {
 					/ 0.25 * R;
 			// color = "hsb(".concat(Math.round(R) / 200, ",", value / total, ",
 			// .75)"),
-			path = [ x-8, y-10 ];
+			path = [ x - 8, y - 10 ];
 
 		} else if (percent <= 1 && percent > 0.75) {
 			var alpha = 360 * 0.75, a = (90 - alpha) * Math.PI / 180, x = 240
 					+ R * Math.cos(a), y = 240 - R * Math.sin(a), endY = 240 - (percent - 0.75) / 0.25 * 75;
-			path = [ x-10, endY ];
+			path = [ x - 10, endY ];
 		}
-		$("#"+dom).attr("style","margin-left:"+path[0]+"px;margin-top:"+path[1]+"px;");
-		$("#"+dom).text(percentBefore);
-		setTimeout(function(){
-			$("#"+dom).fadeIn("1000");
+		$("#" + dom).attr("style",
+				"margin-left:" + path[0] + "px;margin-top:" + path[1] + "px;");
+		$("#" + dom).text(percentBefore);
+		setTimeout(function() {
+			$("#" + dom).fadeIn("1000");
 		}, 1000);
 	}
 	(function() {
 		updateVal(100, 100, 227, runway0bg, 5);
 		updateVal(run0, 100, 227, runway0, 0);
-		drawFontPosition(run0,227,"i10");
-		
+		drawFontPosition(run0, 227, "i10");
+
 		updateVal(100, 100, 194, runway1bg, 5);
 		updateVal(run1, 100, 194, runway1, 1);
-		drawFontPosition(run1,194,"i11");
-		
+		drawFontPosition(run1, 194, "i11");
+
 		updateVal(100, 100, 161, runway2bg, 5);
 		updateVal(run2, 100, 161, runway2, 2);
-		drawFontPosition(run2,161,"i12");
-		
+		drawFontPosition(run2, 161, "i12");
+
 		updateVal(100, 100, 128, runway3bg, 5);
 		updateVal(run3, 100, 128, runway3, 3);
-		drawFontPosition(run3,128,"i13");
-		
+		drawFontPosition(run3, 128, "i13");
+
 		updateVal(100, 100, 95, runway4bg, 5);
 		updateVal(run4, 100, 95, runway4, 4);
-		drawFontPosition(run4,95,"i14");
-$("#holder_center").text(Math.floor((run0+run1+run2+run3+run4)/5));
+		drawFontPosition(run4, 95, "i14");
+		$("#holder_center").text(
+				Math.floor((run0 + run1 + run2 + run3 + run4) / 5));
 		// 调用自身
 		// setTimeout(arguments.callee, 1000);
 		init = false;
@@ -236,5 +241,46 @@ function set_i2() {
 			steps : true
 		}
 	} ]);
+}
 
+function set_i4() {
+
+	query("FirstPageP4", function(xml) {
+		var data = $(xml).find("string").text();
+		var a = data.split(";");
+		var dataAll = new Array();
+		for ( var i = 0; i < a.length; i++) {
+
+			for ( var j = 0; j < a[i].split(",").length; j++)
+				dataAll.push(a[i].split(",")[j]);
+		}
+		$("#index4_ .d").each(function(n, d) {
+			var value=dataAll[n].split(":")[1];
+			switch (n % 5) {
+			case 1:
+				if(value==0){
+					
+				}else	if(value<10)
+					$(this).html("<div class='orange_s'>"+value+"</div>");
+				else if(value<=99){
+					$(this).html("<div class='orange_l'>"+value+"</div>");
+				}else {
+					$(this).html("<div class='orange_l'>99</div>");;
+				}
+					break;
+			case 3:
+				$(this).text(floor(value)+"°C");
+				break;
+			case 4:
+				$(this).text(value);
+				break;
+			default :
+				$(this).text(floor(value));
+			}
+		});
+	});
+}
+function set_i5() {
+	
+	
 }
