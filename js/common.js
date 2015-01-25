@@ -2,7 +2,7 @@ $(function() {
 	var goArray1 = [ "index.html", "energe.html", "machine.html", "device.html" ];
 	var efficiencyArray = [ "machine.html", "meeting.html", "exhibition.html",
 			"office.html" ];
-	var deviceArray=["wind.html", "electric.html"];
+	var deviceArray=["wind.html", "electric.html","light.html"];
 	$(".nav").click(function() {
 		if ($(this).index() < 3)
 			location.href = goArray1[$(this).index() - 1];
@@ -87,6 +87,10 @@ function getValue(data){
 function floor(number){
 	number=number.replace(";","");
 	return Math.floor(number);
+}
+function round2(number){
+	number=number.replace(";","");
+	return Math.round(number*100)/100;
 }
 function week(){
 	var date =new Date();

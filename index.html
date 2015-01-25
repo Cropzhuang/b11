@@ -28,39 +28,73 @@
 			});
 		});
 		query("FirstPageP1Leed", function(xml) {
-				var data = $(xml).find("string").text();
-				var a = data.split(",");
-				var d=[floor(a[0].split(":")[1]), floor(a[1].split(":")[1]), floor(a[2].split(":")[1]), floor(a[3].split(":")[1]), floor(a[4].split(":")[1])];
-				set_runway(d[0],d[1],d[2],d[3],d[4]);
-
-		});
-		
-		//p2
-		query("FirstPageP2EnergyData",function(xml){
 			var data = $(xml).find("string").text();
-			var color=["#a0e1ff","#ebebeb","#d2d2d2"];
-			
-			
+			var a = data.split(",");
+			var d = [ floor(a[0].split(":")[1]), floor(a[1].split(":")[1]),
+					floor(a[2].split(":")[1]), floor(a[3].split(":")[1]),
+					floor(a[4].split(":")[1]) ];
+			set_runway(d[0], d[1], d[2], d[3], d[4]);
+
 		});
 
+		//p2
+		query("FirstPageP2EnergyData", function(xml) {
+			var data = $(xml).find("string").text();
+			var color = [ "#a0e1ff", "#ebebeb", "#d2d2d2" ];
+
+		});
 
 		//p3
-		query("FirstPageP3",function(xml){
+		query("FirstPageP3", function(xml) {
 			var s = $(xml).find("string").text();
-			var a=s.split(";");
-			var k=0;
-			for(var i=0;i<a.length;i++){
-				var d=a[i].split(",");
-				for(var j=0;j<d.length;j++){
-					$("#i3_"+k).html(getValue(d[j]));
-					k+=1;
+			var a = s.split(";");
+			var k = 0;
+			for ( var i = 0; i < a.length; i++) {
+				var d = a[i].split(",");
+				for ( var j = 0; j < d.length; j++) {
+					switch (k) {
+					case 0:
+					case 5:
+					case 11:
+						if (floor(getValue(d[j])) > 9)
+							$("#i3_" + k)
+									.html(
+											"<div class='orange_l'>"
+													+ round2(getValue(d[j]))
+													+ "</div>");
+						else
+							$("#i3_" + k)
+									.html(
+											"<div class='orange_s'>"
+													+ round2(getValue(d[j]))
+													+ "</div>");
+
+						break;
+					case 2:
+					case 8:
+					case 14:
+						$("#i3_" + k).text(round2(getValue(d[j])) + "°C");
+						break;
+					case 3:
+						$("#i3_" + k).text(round2(getValue(d[j])) + "%");
+						break;
+					case 9:
+						$("#i3_" + k).text(round2(getValue(d[j])) + "ppm");
+						break;
+					case 15:
+						$("#i3_" + k).text(getValue(d[j]).substring(9, 20));
+						break;
+					default:
+						$("#i3_" + k).text(round2(getValue(d[j])));
+						break;
 				}
+				k += 1;
 			}
-		 
-		});
-		
+		}
+	}	);
+
 		//p4
-			
+
 		//i5 pie
 		var pieData = [ {
 			label : "",
@@ -120,8 +154,9 @@
 			<div id="nav4" class="nav" style="position:relative">
 				设备
 				<div id="device" class="sub_nav" style="z-index: 1000">
-					<div class="dev">数据机房</div>
-					<div class="dev">主会议室</div>
+					<div class="dev">新风机组</div>
+					<div class="dev">配电系统</div>
+					<div class="dev">光伏发电</div>
 				</div>
 			</div>
 		</div>
@@ -205,7 +240,7 @@
 					<td class="l">报警</td>
 					<td id="i3_5" class="r"></td>
 					<td class="l">报警</td>
-					<td id="i3_10" class="r"></td>
+					<td id="i3_11" class="r"></td>
 				</tr>
 				<tr>
 					<td class="l">能耗</td>
@@ -213,7 +248,7 @@
 					<td class="l">能耗</td>
 					<td id="i3_6" class="r"></td>
 					<td class="l">能耗</td>
-					<td id="i3_11" class="r"></td>
+					<td id="i3_12" class="r"></td>
 				</tr>
 				<tr>
 					<td class="l">温度</td>
@@ -221,7 +256,7 @@
 					<td class="l">占用状态</td>
 					<td id="i3_7" class="r"></td>
 					<td class="l">占用状态</td>
-					<td id="i3_12" class="r"></td>
+					<td id="i3_13" class="r"></td>
 				</tr>
 				<tr>
 					<td class="l">湿度</td>
@@ -229,7 +264,7 @@
 					<td class="l">温度</td>
 					<td id="i3_8" class="r"></td>
 					<td class="l">温度</td>
-					<td id="i3_13" class="r"></td>
+					<td id="i3_14" class="r"></td>
 				</tr>
 				<tr>
 					<td class="l">PUE</td>
@@ -237,7 +272,15 @@
 					<td class="l">二氧化碳浓度</td>
 					<td id="i3_9" class="r"></td>
 					<td class="l">下次参观时间</td>
-					<td id="i3_14" class="r"></td>
+					<td id="i3_15" class="r"></td>
+				</tr>
+				<tr>
+					<td class="l">UPS负荷</td>
+					<td id="i3_5_" class="r"></td>
+					<td class="l">会议场景模式</td>
+					<td id="i3_10" class="r"></td>
+					<td class="l">当日参观次数</td>
+					<td id="i3_16" class="r"></td>
 				</tr>
 				<tr>
 					<td class="l">状态</td>

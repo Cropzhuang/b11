@@ -312,7 +312,7 @@ ul {
 }
 
 #index3 {
-	height: 550px;
+	height: 650px;
 }
 /*height:400px;*/
 #index3_ {
@@ -504,6 +504,12 @@ ul {
 }
 .efficiency_pue{
 	background: url("../images/efficiency/machine/machine1.jpg") no-repeat scroll;
+	width: 950px;
+	height: 255px;
+	float: left;
+}
+.wind_body{
+	background: url("../images/device/wind/e1_bg.jpg") no-repeat scroll;
 	width: 950px;
 	height: 255px;
 	float: left;
