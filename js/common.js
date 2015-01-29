@@ -53,10 +53,22 @@ function request(paras) {
 		return returnValue;
 	}
 }
+
+function get(key,str){
+	str=str.substring(str.indexOf(key));
+	var a = str.replace(/+key+:/g,"");
+	var b=a.split(";")[0];
+	var c=b.split(",");
+	if(c.length>1)
+		return b.split(",");
+	else
+		return b.split(",")[0];
+	
+}
 function query(action,start,end,callback){
-//	var params;
-//	if(start!=null&&start!="")
-//		params={pStartTime:start,pEndTime:end};
+// var params;
+// if(start!=null&&start!="")
+// params={pStartTime:start,pEndTime:end};
 	 $.ajax({
          url:"api/"+action+".xml",  
          type:"POST",  

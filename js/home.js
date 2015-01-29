@@ -250,7 +250,6 @@ function set_i4() {
 		var a = data.split(";");
 		var dataAll = new Array();
 		for ( var i = 0; i < a.length; i++) {
-
 			for ( var j = 0; j < a[i].split(",").length; j++)
 				dataAll.push(a[i].split(",")[j]);
 		}
@@ -281,6 +280,13 @@ function set_i4() {
 	});
 }
 function set_i5() {
-	
-	
+	query("FirstPageP5", function(xml) {
+		var data = $(xml).find("string").text();
+		
+		if(true)
+			$("#i5_4").html("<div class='orange_s'>"+value+"</div>");
+		else
+			$("#i5_4").html("<div class='orange_l'>"+value+"</div>");
+		
+	})
 }

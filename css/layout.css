@@ -205,7 +205,14 @@ ul {
 #index1 {
 	height: 600px;
 }
-
+#index3_ .orange_l{
+	float:right;
+	
+}
+#index3_ .orange_s{
+	float:right;
+	
+}
 #index1_title {
 	line-height: 54px;
 	margin-top: 20px;
