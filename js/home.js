@@ -178,69 +178,115 @@ function set_runway(run0, run1, run2, run3, run4) {
 }
 
 function set_i2() {
-	var d1 = [];
-	for ( var i = 0; i < 14; i += 0.5) {
-		d1.push([ i, Math.sin(i) ]);
-	}
-
-	var d2 = [ [ 0, 3 ], [ 4, 8 ], [ 8, 5 ], [ 9, 13 ] ];
-
-	var d3 = [];
-	for ( var i = 0; i < 14; i += 0.5) {
-		d3.push([ i, Math.cos(i) ]);
-	}
-
-	var d4 = [];
-	for ( var i = 0; i < 14; i += 0.1) {
-		d4.push([ i, Math.sqrt(i * 10) ]);
-	}
-
-	var d5 = [];
-	for ( var i = 0; i < 14; i += 0.5) {
-		d5.push([ i, Math.sqrt(i) ]);
-	}
-
-	var d6 = [];
-	for ( var i = 0; i < 14; i += 0.5 + Math.random()) {
-		d6.push([ i, Math.sqrt(2 * i + Math.sin(i) + 5) ]);
-	}
-
-	$.plot("#index2_body", [ {
-		data : d1,
-		lines : {
-			show : true,
-			fill : true
+	var start=dateBefore(12*24*3600*1000);
+	var end=new Date();
+	var startString=setDateString(start);
+	var endString=setDateString(end);
+	var realEnergy=new Array(),
+	planEnergy=new Array(),
+	energyPerPeople=new Array(),
+	x_ticks=new Array();
+	
+	queryDate("FirstPageP2EnergyData",startString,endString, function(xml) {
+		var data = $(xml).find("string").text();
+		data=data.replace(/;/g,",");
+		var a = data.split(",");
+		for ( var i = 0; i < a.length-1; i++) {
+			var num=parseInt(i/4)*3;
+			var dateNew=dateBefore((12-num)*24*3600*1000);
+			x_ticks.push(num);
+			switch(i%4){
+			case 0:
+				continue;
+			case 1:
+				realEnergy.push([num,floor(getValue(a[i]))]);
+				break;
+			case 2:
+				planEnergy.push([num+1,floor(getValue(a[i]))]);
+				break;
+			case 3:
+				energyPerPeople.push([num,floor(getValue(a[i]))*200]);
+				break;
+			default:
+				break;
+			}
+			
 		}
-	}, {
-		data : d2,
-		bars : {
-			show : true
+		var options = {
+				colors:["#42b4e6","#b1b1b1","#a1a1a1"],
+		        series: { shadowSize: 0 }, // drawing is faster without shadows
+		        xaxis: { show:false },
+		        yaxis: { show:true },
+		        grid:{
+		        borderColor:"#dadfe1",
+		        }
+		    };
+		$.plot("#index2_body", [ {
+			data : realEnergy,
+			bars : {
+				show : true,
+				fill : true
+			}
+		}, {
+			data : planEnergy,
+			bars : {
+				show : true,
+				fill : true
+			}
+		}, {
+			data : energyPerPeople,
+			lines : {
+				show : true
+			}
+		} ],options);
+	});
+	queryDate("FirstPageP2Weather",startString,endString, function(xml) {
+		var data = $(xml).find("string").text();
+		data=data.replace(/;/g,",");
+		var a = data.split(",");
+		var maxTempArray=new Array(),
+		minTempArray=new Array(),
+		weatherArray=new Array(),
+		imgArray=new Array();
+		
+		for(var i=0;i<a.length;i++){
+			switch(i%6){
+			case 0:
+			case 1:
+			case 2:
+				break;
+			case 3:
+				minTempArray.push(floor(getValue(a[i])));
+				break;
+			case 4:
+				maxTempArray.push(floor(getValue(a[i])));
+				break;
+			case 5:
+				var value=getValue(a[i]);
+				weatherArray.push(value);
+				if(value.indexOf("雨")>-1){
+					imgArray.push("rain");
+				}else if(value.indexOf("晴")==0){
+					imgArray.push("sun");
+				}
+				else if(value.indexOf("多云")>-1){
+					imgArray.push("cloud");
+				}else {
+					imgArray.push("rain");
+				}
+				
+				break;
+				default:break;
+			}
+			
 		}
-	}, {
-		data : d3,
-		points : {
-			show : true
-		}
-	}, {
-		data : d4,
-		lines : {
-			show : true
-		}
-	}, {
-		data : d5,
-		lines : {
-			show : true
-		},
-		points : {
-			show : true
-		}
-	}, {
-		data : d6,
-		lines : {
-			show : true,
-			steps : true
-		}
-	} ]);
+		$("#weather .w").each(function(n, d) {
+			$(d).html("<img src=\"images/"+imgArray[n]+"_0.jpg\" alt=\"\">"+minTempArray[n]+"/"+maxTempArray[n]+"°C");
+		
+		})
+	});
+	
+	
 }
 
 function set_i4() {
@@ -282,11 +328,80 @@ function set_i4() {
 function set_i5() {
 	query("FirstPageP5", function(xml) {
 		var data = $(xml).find("string").text();
+		var a = data.split(";");
+		var dataAll = new Array();
+		for ( var i = 0; i < a.length; i++) {
+			for ( var j = 0; j < a[i].split(",").length; j++)
+				dataAll.push(a[i].split(",")[j]);
+		}
+		//i5 pie
+		var pieData = [ {
+			label : "",
+			data : floor(getValue(dataAll[0]))
+		}, {
+			label : "",
+			data :100-floor(getValue(dataAll[0]))
+		} ];
+		$.plot("#i5_pie", pieData, {
+			series : {
+				pie : {
+					show : true,
+					radius : 1,
+					label : {
+						show : true,
+						radius : 0.5,
+						formatter : labelFormatter,
+						background : {
+							opacity : 0.8
+						}
+					}
+				}
+			},
+			legend : {
+				show : false
+			}
+		});
+		function labelFormatter(label, series) {
+			return "<div style='font-size:20px; text-align:center; padding:0px; color:white;'>"
+					+ label + "<br/>" + Math.round(series.percent) + "%</div>";
+		}
 		
+		$("#index5_right .i5_right_bg").each(function(n, d) {
+			var percent=getValue(dataAll[n+1]);
+			if(percent<1){
+				percent*=100;
+			}
+			var picPointer= Math.round(percent/7);
+			if(picPointer<1){
+				picPointer=1;
+			}else if(picPointer>13){
+				picPointer=13;
+			}
+			var content="";
+			if(n==0){
+				content="功率因数0."+percent+" 优";
+			}else if(n==1){
+				content="谐波畸变 "+percent+"% 优";
+			}else if(n==2){
+				content="负荷 "+percent+"% 中";
+			}else if(n==3){
+				content="已用电量 "+percent+"% 预警";
+			}
+			$(d).html("<img src=\"images/home/i5_"+picPointer+".png\" alt=\"\">"+content);
+			
+		});
+		for (var i=0;i<4;i++){
+		var alarm=getValue(dataAll[i+5]);
+		if(alarm<=10)
+			$("#i5_"+(i+4)).html("<div class='orange_s'>"+alarm+"</div>");
+		else 
+			$("#i5_"+(i+4)).html("<div class='orange_l'>"+alarm+"</div>");
+		}
+		/*
 		if(true)
 			$("#i5_4").html("<div class='orange_s'>"+value+"</div>");
 		else
 			$("#i5_4").html("<div class='orange_l'>"+value+"</div>");
-		
+		*/
 	})
 }

@@ -95,37 +95,7 @@
 
 		//p4
 
-		//i5 pie
-		var pieData = [ {
-			label : "",
-			data : 68
-		}, {
-			label : "",
-			data : 22
-		} ];
-		$.plot("#i5_pie", pieData, {
-			series : {
-				pie : {
-					show : true,
-					radius : 1,
-					label : {
-						show : true,
-						radius : 0.5,
-						formatter : labelFormatter,
-						background : {
-							opacity : 0.8
-						}
-					}
-				}
-			},
-			legend : {
-				show : false
-			}
-		});
-		function labelFormatter(label, series) {
-			return "<div style='font-size:20px; text-align:center; padding:12px; color:white;'>"
-					+ label + "<br/>" + Math.round(series.percent) + "%</div>";
-		}
+	
 	}
 </script>
 <style type="text/css">
@@ -204,23 +174,41 @@
 			</div>
 			<div id="index2_body"></div>
 			<div id="weather" class="heiti">
-				<div class="w">
+				<div class="w" >
 					<img src="images/rain_0.jpg" alt="">12/18°C
 				</div>
-				<div class="w">
-					<img src="images/sun_0.jpg" alt="">12/18°C
+				<div class="w" >
+					<img src="images/rain_0.jpg" alt="">12/18°C
 				</div>
-				<div class="w">
-					<img src="images/sun_0.jpg" alt="">12/18°C
+				<div class="w" >
+					<img src="images/rain_0.jpg" alt="">12/18°C
 				</div>
-				<div class="w">
-					<img src="images/rain_1.jpg" alt="">12/18°C
+				<div class="w" >
+					<img src="images/rain_0.jpg" alt="">12/18°C
 				</div>
-				<div class="w">
-					<img src="images/rain_1.jpg" alt="">12/18°C
+				<div class="w" >
+					<img src="images/rain_0.jpg" alt="">12/18°C
 				</div>
-				<div class="w">
-					<img src="images/sun_1.jpg" alt="">12/18°C
+				<div class="w" >
+					<img src="images/rain_0.jpg" alt="">12/18°C
+				</div>
+				<div class="w" >
+					<img src="images/rain_0.jpg" alt="">12/18°C
+				</div>
+				<div class="w" >
+					<img src="images/rain_0.jpg" alt="">12/18°C
+				</div>
+				<div class="w" >
+					<img src="images/rain_0.jpg" alt="">12/18°C
+				</div>
+				<div class="w" >
+					<img src="images/rain_0.jpg" alt="">12/18°C
+				</div>
+				<div class="w" >
+					<img src="images/rain_0.jpg" alt="">12/18°C
+				</div>
+				<div class="w" >
+					<img src="images/rain_0.jpg" alt="">12/18°C
 				</div>
 			</div>
 		</div>
@@ -365,10 +353,20 @@
 
 				</div>
 				<div id="index5_right">
-					<div class="i5_right_bg"></div>
-					<div class="i5_right_bg"></div>
-					<div class="i5_right_bg"></div>
-					<div class="i5_right_bg"></div>
+					<div class="i5_right_bg">
+					<img src="images/home/i5_12.png" alt="">
+					功率因数0.95优
+					</div>
+					<div class="i5_right_bg">
+					<img src="images/home/i5_12.png" alt="">
+					功率因数0.95优
+					</div><div class="i5_right_bg">
+					<img src="images/home/i5_12.png" alt="">
+					功率因数0.95优
+					</div><div class="i5_right_bg">
+					<img src="images/home/i5_12.png" alt="">
+					功率因数0.95优
+					</div>
 				</div>
 			</div>
 			<div id="index5_2" class="back_grey">

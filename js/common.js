@@ -53,7 +53,7 @@ function request(paras) {
 		return returnValue;
 	}
 }
-
+/*
 function get(key,str){
 	str=str.substring(str.indexOf(key));
 	var a = str.replace(/+key+:/g,"");
@@ -64,11 +64,11 @@ function get(key,str){
 	else
 		return b.split(",")[0];
 	
-}
-function query(action,start,end,callback){
+}*/
+function queryDate(action,start,end,callback){
 // var params;
 // if(start!=null&&start!="")
-// params={pStartTime:start,pEndTime:end};
+var params={pStartTime:start,pEndTime:end};
 	 $.ajax({
          url:"api/"+action+".xml",  
          type:"POST",  
@@ -123,4 +123,14 @@ function month(){
 		seconds-=3600*1000*24;
 	}
 	return dArray;
+}
+function dateBefore(time){
+	var date=new Date();
+	var nowTime=date.getTime()-time;
+	date.setTime(nowTime);
+	return date;
+}
+function setDateString(date){
+	return date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
+	
 }
