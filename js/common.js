@@ -70,6 +70,7 @@ function queryDate(action,start,end,callback){
 // if(start!=null&&start!="")
 var params={pStartTime:start,pEndTime:end};
 	 $.ajax({
+		// url:action,  
          url:"api/"+action+".xml",  
          type:"POST",  
          dataType:"xml",  
@@ -81,6 +82,7 @@ var params={pStartTime:start,pEndTime:end};
 }
 function query(action,callback){
 	 $.ajax({
+		// url:action,  
          url:"api/"+action+".xml",  
          type:"POST",  
          dataType:"xml",  
