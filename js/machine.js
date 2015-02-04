@@ -1,4 +1,5 @@
 $(function() {
+	set_head();
 });
 
 function set_head() {
@@ -11,25 +12,28 @@ function set_head() {
 			var content="";
 			switch(i){
 			case 0:
-				content=floor(getValue(a[i]));
+				content=Math.round(getValue(a[i])*10)/10;
+				break;
+			case 1:
+				content=Math.round(getValue(a[i])*10)/10;
 				break;
 			case 2:
 				content=floor(getValue(a[i]))+"%";
 				break;
 			default:break;
 			}
-			$("#e1_"+i).text(content);
+			$("#e11_"+i).text(content);
 		}
     });
 	query("ThirdPageMenu1P1M2", function(xml) {
 		var data = $(xml).find("string").text();
 		data=data.replace(/;/g,",");
 		var a = data.split(",");
+		var content="";
 		for ( var i = 0; i < (a.length-1); i++) {
-			var content=floor(getValue(a[i]))+"kWh";
-			
-			$("#e12_"+i).text(content);
+			content+=floor(getValue(a[i]))+"kWh<br/>";
 		}
+		$(".e2_content").html(content);
     });
 		
 }
@@ -231,7 +235,6 @@ function set_e6(dayCount) {
 		},
 		],options);
 	});
-}
 
 
 
