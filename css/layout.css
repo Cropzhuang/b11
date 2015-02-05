@@ -95,7 +95,7 @@ ul {
 
 
 .orange_l {
-	background: url("../images/ilong.png") no-repeat scroll;
+	background: url("../images/ilong.png") no-repeat 50% 50% scroll;
 	text-align: center;
 	width: 50px;
 	height: 24px;
@@ -274,7 +274,6 @@ ul {
 }
 
 #index2_h2 {
-	height: 73px;
 	float: left;
 	line-height: 20px;
 	margin-top: 20px;
@@ -589,7 +588,7 @@ ul {
 	margin: 0 20px;
 }
 .orange_s {
-	background: url("../images/ishort.png") no-repeat scroll;
+	background: url("../images/ishort.png") no-repeat 50% 50%  scroll;
 	text-align: center;
 	width: 50px;
 	height: 24px;
