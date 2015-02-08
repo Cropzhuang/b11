@@ -15,76 +15,8 @@
 <link type="text/css" rel="stylesheet" href="css/layout.css" />
 <link type="text/css" rel="stylesheet" href="css/example.css" />
 <script src="js/common.js"></script>
+<script src="js/office.js"></script>
 
-<script type="text/javascript">
-	$(function() {
-
-		var d1 = [];
-		for ( var i = 0; i < 14; i += 0.5) {
-			d1.push([ i, Math.sin(i) ]);
-		}
-
-		var d2 = [ [ 0, 3 ], [ 4, 8 ], [ 8, 5 ], [ 9, 13 ] ];
-
-		var d3 = [];
-		for ( var i = 0; i < 14; i += 0.5) {
-			d3.push([ i, Math.cos(i) ]);
-		}
-
-		var d4 = [];
-		for ( var i = 0; i < 14; i += 0.1) {
-			d4.push([ i, Math.sqrt(i * 10) ]);
-		}
-
-		var d5 = [];
-		for ( var i = 0; i < 14; i += 0.5) {
-			d5.push([ i, Math.sqrt(i) ]);
-		}
-
-		var d6 = [];
-		for ( var i = 0; i < 14; i += 0.5 + Math.random()) {
-			d6.push([ i, Math.sqrt(2 * i + Math.sin(i) + 5) ]);
-		}
-
-		$.plot("#index2_body", [ {
-			data : d1,
-			lines : {
-				show : true,
-				fill : true
-			}
-		}, {
-			data : d2,
-			bars : {
-				show : true
-			}
-		}, {
-			data : d3,
-			points : {
-				show : true
-			}
-		}, {
-			data : d4,
-			lines : {
-				show : true
-			}
-		}, {
-			data : d5,
-			lines : {
-				show : true
-			},
-			points : {
-				show : true
-			}
-		}, {
-			data : d6,
-			lines : {
-				show : true,
-				steps : true
-			}
-		} ]);
-
-	});
-</script>
 <style type="text/css">
 </style>
 </head>
@@ -124,17 +56,16 @@
 			<div style="margin-top:40px;"><img src="images/efficiency/office/office_head.jpg"></div>
 			<div class="efficiency_body">
 				<div id="e1_left">
-					<div class="e1_content r" >612</div>
-				<div class="e1_content r" >23.5°C</div>
-				<div class="e1_content r" >61%</div>
+					<div id="e11_0" class="e1_content r" >612</div>
+				<div id="e11_1" class="e1_content r" >2.5</div>
+				<div id="e11_2" class="e1_content r" >61%</div>
 				
-				<div class="e1_bottom"  style="display:none">
-					<span ><img src="images/efficiency/icon_clean.jpg" alt=""></span>
-					<span ><img src="images/efficiency/icon_repair.jpg" alt=""></span>
+				<div class="e1_bottom"  >
+					<div id="e11_3">12</div><div id="e11_4">22</div>
 				</div>
 				</div>
 				<div id="e1_right">
-					<div class="e2_content r xieti " >612<br/>612<br/>612<br/>612<br/>612<br/></div>
+					<div class="e2_content r xieti " ></div>
 				</div>
 			</div>
 			<div id="alarm" class="red l heiti">报警</div>
@@ -148,7 +79,7 @@
 	<div id="efficiency2" style="height:531px" class="back_grey" align="center">
 		<div  style="overflow:hidden;width:950px;">
 			<div class="title">能耗分类趋势</div>
-			<div id="efficiency2_h2"></div>
+			<img src="images/efficiency/trend_head.jpg" alt="">
 			<div id="efficiency2_body"></div>
 
 		</div>
@@ -156,7 +87,7 @@
 	<div id="efficiency3" style="height:550px" class="back_grey" align="center">
 		<div  style="overflow:hidden;width:950px;">
 			<div class="title">每日耗电趋势(kWh)</div>
-			<div id="energe3_">
+			<div id="energe3_" class="chart">
 				
 			</div>
 		</div>
@@ -164,7 +95,9 @@
 	<div id="efficiency4" style="height:550px;" align="center">
 		<div  style="overflow:hidden;width:950px;">
 			<div class="title">逐时能耗趋势及占用状态</div>
-			
+			<div id="energe4_" class="chart">
+				
+			</div>
 		</div>
 	</div>
 	<div id="foot" align="center">

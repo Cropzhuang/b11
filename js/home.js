@@ -3,6 +3,7 @@ $(function() {
 
 	set_i4();
 	set_i5();
+	set_i6();
 });
 function set_runway(run0, run1, run2, run3, run4) {
 	var runwayColor = [ "#949adc", "#cbad89", "#79b89e", "#e99e4a", "#cfd75a",
@@ -210,12 +211,21 @@ function set_i2() {
 			default:
 				break;
 			}
-			
+		}
+		var ticks=new Array();
+		for(var i=0;i<36;i++){
+			if(i%3==1){
+			var day=dateBefore((12-parseInt(i/3))*24*3600*1000);
+			ticks.push([i,day.getDate()]);
+			}else{
+				ticks.push([i,""]);
+				
+			}
 		}
 		var options = {
 				colors:["#42b4e6","#b1b1b1","#a1a1a1"],
 		        series: { shadowSize: 0 }, // drawing is faster without shadows
-		        xaxis: { show:false },
+		        xaxis: {  ticks: ticks, min: 0, max: 36 },
 		        yaxis: { show:true },
 		        grid:{
 		        borderColor:"#dadfe1",
@@ -404,4 +414,38 @@ function set_i5() {
 			$("#i5_4").html("<div class='orange_l'>"+value+"</div>");
 		*/
 	})
+}
+function set_i6() {
+
+	query("FirstPageP6", function(xml) {
+		var data = $(xml).find("string").text();
+		var a = data.split(";");
+		var dataAll = new Array();
+		for ( var i = 0; i < a.length; i++) {
+			for ( var j = 0; j < a[i].split(",").length; j++)
+				dataAll.push(a[i].split(",")[j]);
+		}
+		$("#index6 .r").each(function(n, d) {
+			var value=dataAll[n].split(":")[1];
+			switch (n % 4) {
+			case 0:
+				if(value<10)
+					$(this).html("<div class='orange_s'>"+value+"</div>");
+				else if(value<=99){
+					$(this).html("<div class='orange_l'>"+value+"</div>");
+				}else {
+					$(this).html("<div class='orange_l'>99+</div>");;
+				}
+					break;
+			case 1:
+				$(this).text(floor(value)+"kWh");
+				break;
+			case 2:
+				$(this).text(floor(value)+"%");
+				break;
+			default :
+				$(this).text(floor(value));
+			}
+		});
+	});
 }

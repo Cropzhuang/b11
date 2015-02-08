@@ -69,11 +69,13 @@ function queryDate(action,start,end,callback){
 // var params;
 // if(start!=null&&start!="")
 var params={pStartTime:start,pEndTime:end};
+	
 	 $.ajax({
-		// url:action,  
-         url:"api/"+action+".xml",  
-         type:"POST",  
+		 url:"Service1.asmx/"+action,  
+         //url:"api/"+action+".xml",  
+         type:"post",
          dataType:"xml",  
+         data:params,
          error: function(xml){  
              alert('Error loading XML document'+xml);  
          },  
@@ -82,9 +84,9 @@ var params={pStartTime:start,pEndTime:end};
 }
 function query(action,callback){
 	 $.ajax({
-		// url:action,  
-         url:"api/"+action+".xml",  
-         type:"POST",  
+		 url:"Service1.asmx/"+action,  
+       //  url:"api/"+action+".xml",  
+         type:"post",  
          dataType:"xml",  
          error: function(xml){  
              alert('Error loading XML document'+xml); 

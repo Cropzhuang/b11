@@ -17,7 +17,6 @@ function set_e2(dayCount) {
 	eF4=new Array(),
 	eF5=new Array(),
 	x_ticks=new Array();
-	
 	queryDate("SecondPageP2",startString,endString, function(xml) {
 		var data = $(xml).find("string").text();
 		data=data.replace(/;/g,",");
@@ -45,6 +44,11 @@ function set_e2(dayCount) {
 				break;
 			}
 		}
+		var ticks=new Array();
+		for(var i=0;i<dayCount;i++){
+			var day=dateBefore((dayCount-i)*24*3600*1000);
+			ticks.push([i,day.getDate()]);
+		}
 		var lines_e2=[];
 		var e2_stroke=["#a6f34b","#fc6565","#73d5ff","#48ae5b","#f3a24b"];
 		for (var i=0;i<5;i++){
@@ -52,7 +56,7 @@ function set_e2(dayCount) {
 		}
 	var options = {
         series: { shadowSize: 0 }, // drawing is faster without shadows
-        xaxis: {show:false },
+        xaxis: {show:true,ticks:ticks },
         grid:{
         borderColor:"#dadfe1",
         }
@@ -81,13 +85,16 @@ function set_e2(dayCount) {
 	});
 }
 function set_e4() {
-	
+	var start=dateBefore(2*24*3600*1000);
+	var end=dateBefore(1*24*3600*1000);
+	var startString=setDateString(start);
+	var endString=setDateString(end);
 	var eair=new Array(),
 	eplugin=new Array(),
 	elight=new Array(),
 	x_ticks=new Array();
 	
-	query("SecondPageP4", function(xml) {
+	queryDate("SecondPageP4",startString,endString, function(xml) {
 		var data = $(xml).find("string").text();
 		data=data.replace(/;/g,",");
 		var a = data.split(",");
@@ -147,9 +154,8 @@ function set_e5(dayCount) {
 	var e1=new Array(),
 	e2=new Array(),
 	e3=new Array(),
-	e4=new Array(),
+	e4=new Array();
 	
-	x_ticks=new Array();
 	
 	queryDate("SecondPageP5",startString,endString, function(xml) {
 		var data = $(xml).find("string").text();
@@ -177,10 +183,15 @@ function set_e5(dayCount) {
 				break;
 			}
 		}
+		var ticks=new Array();
+		for(var i=0;i<dayCount;i++){
+			var day=dateBefore((dayCount-i)*24*3600*1000);
+			ticks.push([i,day.getDate()]);
+		}
 	var options = {
 			colors:["#c15d5f","#58df15","#4badec","#ffffff"],
         series: { shadowSize: 0 }, // drawing is faster without shadows
-        xaxis: {show:false },
+        xaxis: {show:true ,ticks:ticks},
         grid:{
         borderColor:"#dadfe1",
         }
@@ -226,7 +237,7 @@ function set_e6(dayCount) {
 	var e1=new Array(),
 	e2=new Array(),
 	e3=new Array(),
-	x_ticks=new Array();
+	ticks=new Array();
 	
 	queryDate("SecondPageP6",startString,endString, function(xml) {
 		var data = $(xml).find("string").text();
@@ -250,10 +261,15 @@ function set_e6(dayCount) {
 				break;
 			}
 		}
+		ticks=new Array();
+		for(var i=0;i<dayCount;i++){
+			var day=dateBefore((dayCount-i)*24*3600*1000);
+			ticks.push([i,day.getDate()]);
+		}
 	var options = {
 			colors:["#c15d5f","#e4b04b","#169fff"],
         series: { shadowSize: 0 }, // drawing is faster without shadows
-        xaxis: {show:false },
+        xaxis: {show:true,ticks:ticks },
         grid:{
         borderColor:"#dadfe1",
         }

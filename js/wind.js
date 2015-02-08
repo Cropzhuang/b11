@@ -1,14 +1,13 @@
 $(function() {
 	set_head();
-	set_e2();
 	//set_e3();
-	set_e3(30);
-	set_e4();
+	set_e2(30);
+	set_e3();
 });
 
 function set_head() {
 	
-	query("ThirdPageMenu1P1M1", function(xml) {
+	query("FourthPageMenu1P1M1", function(xml) {
 		var data = $(xml).find("string").text();
 		data=data.replace(/;/g,",");
 		var a = data.split(",");
@@ -19,23 +18,17 @@ function set_head() {
 				content=Math.round(getValue(a[i])*10)/10;
 				break;
 			case 1:
-				content=Math.round(getValue(a[i])*10)/10;
+				content=Math.round(getValue(a[i])*10)/10+"°C";
 				break;
 			case 2:
 				content=floor(getValue(a[i]))+"%";
-				break;
-			case 3:
-				content=floor(getValue(a[i]));
-				break;
-			case 4:
-				content=floor(getValue(a[i]))+"Lux";
 				break;
 			default:break;
 			}
 			$("#e11_"+i).text(content);
 		}
     });
-	query("ThirdPageMenu1P1M2", function(xml) {
+	query("FourthPageMenu1P1M2", function(xml) {
 		var data = $(xml).find("string").text();
 		data=data.replace(/;/g,",");
 		var a = data.split(",");
@@ -47,75 +40,27 @@ function set_head() {
     });
 		
 }
-function set_e2() {
-	
-	query("ThirdPageMenu1P2", function(xml) {
-		var data = $(xml).find("string").text();
-		data=data.replace(/;/g,",");
-		var a = data.split(",");
-		var content="";
-		var dataAll=new Array();
-		for ( var i = 0; i < 5; i++) {
-			content+=getValue(a[i])*100+"%<br/>";
-			dataAll.push(getValue(a[i]));
-		}
-		$("#machine_2_").html(content);
-		
-		//i5 pie
-		var pieData = [ {
-			label : "",
-			data :dataAll[0]
-		}, {
-			label : "",
-			data :dataAll[1]
-		}, 
-		 {
-			label : "",
-			data :dataAll[2]
-		},
-		 {
-			label : "",
-			data :dataAll[3]
-		}, {
-			label : "",
-			data :dataAll[4]
-		}];
-		$.plot("#machine_pie", pieData, {
-			series : {
-				pie : {
-					show : true,
-					radius : 1,
-					label : {
-						show : false,
-						radius : 0.5,
-						background : {
-							opacity : 0.8
-						}
-					}
-				}
-			},
-			legend : {
-				show : false
-			},
-			colors: ["#97c636", "#fe8917", "#737373", "#e4440c", "#17c5fe"],
-		});
-    });
-		
-}
-function set_e3(dayCount) {
+
+//每日耗电趋势
+function set_e2(dayCount) {
 	var start=dateBefore(dayCount*24*3600*1000);
 	var end=new Date();
 	var startString=setDateString(start);
 	var endString=setDateString(end);
-	var e1=new Array();
-	queryDate("ThirdPageMenu1P3",startString,endString, function(xml) {
+	var eF1=new Array();
+	queryDate("FourthPageMenu1P2",startString,endString, function(xml) {
 		var data = $(xml).find("string").text();
 		data=data.replace(/;/g,",");
 		var a = data.split(",");
 		for ( var i = 0; i < (a.length-1); i++) {
-			if(i%2==1){
-				var x=parseInt(i/2);
-				e1.push([x,getValue(a[i])]);
+			var x=parseInt(i/2);
+			switch(i%2){
+			case 0:
+				break;
+			case 1:
+				eF1.push([x,floor(getValue(a[i]))]);
+				break;
+			default:break;
 			}
 		}
 		var ticks=new Array();
@@ -123,8 +68,60 @@ function set_e3(dayCount) {
 			var day=dateBefore((dayCount-i)*24*3600*1000);
 			ticks.push([i,day.getDate()]);
 		}
+		
 	var options = {
 			colors:["#4badec"],
+        series: { shadowSize: 0 }, // drawing is faster without shadows
+        xaxis: {show:true,ticks:ticks },
+        grid:{
+        borderColor:"#dadfe1",
+        }
+    };
+		$.plot("#efficiency2_body", [
+		{
+		data : eF1,
+		bars : {
+			show : true,
+			fill : true,
+			color:"#4badec",
+		}
+		}
+		],options);
+	});
+		
+}
+//逐时能耗及占用状态
+function set_e3() {
+	var start=dateBefore(1*24*3600*1000);
+	var end=new Date();
+	var startString=setDateString(start);
+	var endString=setDateString(end);
+	var e1=new Array(),
+	 e2=new Array(),
+	 ticks=new Array();
+	queryDate("FourthPageMenu1P3",startString,endString, function(xml) {
+		var data = $(xml).find("string").text();
+		data=data.replace(/;/g,",");
+		var a = data.split(",");
+		for ( var i = 0; i < (a.length-1); i++) {
+			var x=parseInt(i/3);
+			switch(i%3){
+			case 0:
+				break;
+			case 1:
+				e1.push([x,getValue(a[i])]);
+				break;
+			case 2:
+				e2.push([x,getValue(a[i])]);
+				break;
+				default:break;
+			}
+		}
+		for(var i=0;i<24;i++){
+			ticks.push([i,i+":00"]);
+		}
+	var options = {
+			colors:["#8cd981","#f56200"],
         series: { shadowSize: 0 }, // drawing is faster without shadows
         xaxis: {show:true ,ticks:ticks},
         grid:{
@@ -134,56 +131,23 @@ function set_e3(dayCount) {
 		$.plot("#energe3_", [
 		{
 		data : e1,
-		bars : {
+		lines : {
 			show : true,
 			fill : true,
-			color:"#c15d5f",
+			color:"#8cd981",
 		}
-		}
-		],options);
-	});
-}
-function set_e4() {
-	var start=dateBefore(1*24*3600*1000);
-	var end=new Date();
-	var startString=setDateString(start);
-	var endString=setDateString(end);
-	var e1=new Array();
-	queryDate("ThirdPageMenu1P4",startString,endString, function(xml) {
-		var data = $(xml).find("string").text();
-		data=data.replace(/;/g,",");
-		var a = data.split(",");
-		for ( var i = 0; i < (a.length-1); i++) {
-			if(i%2==1){
-				var x=parseInt(i/2);
-				e1.push([x,getValue(a[i])]);
-			}
-		}
-		var ticks=new Array();
-		for(var i=0;i<24;i++){
-			ticks.push([i,i+":00"]);
-		}
-	var options = {
-			colors:["#4badec"],
-        series: { shadowSize: 0 }, // drawing is faster without shadows
-        xaxis: {show:true ,ticks:ticks},
-        grid:{
-        borderColor:"#dadfe1",
-        }
-    };
-		$.plot("#energe4_", [
+		},
 		{
-		data : e1,
-		bars : {
-			show : true,
-			fill : true,
-			color:"#c15d5f",
-		}
-		}
+			data : e2,
+			lines : {
+				show : true,
+				fill : true,
+				color:"#f56200",
+			}
+			}
 		],options);
 	});
 }
-
 
 
 	

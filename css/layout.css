@@ -176,7 +176,6 @@ ul {
 	margin-top: 54px;
 	background: #727272 none repeat scroll 0 0;
 	width: 100%;
-	float: left;
 	text-align: left;
 }
 
@@ -529,13 +528,18 @@ ul {
 .e1_bottom {
 	text-align: left;
 	float: left;
-	line-height: 25px;
-	height: 25px;
+	line-height: 28px;
+	height: 28px;
 	width: 100%;
 	color: white;
 	font-size: 14px;
 }
-
+.e1_bottom div{
+	float:left;
+}
+.e1_bottom div:FIRST-CHILD{
+	margin-left: 400px;margin-right:60px
+}
 .e1_bottom span:FIRST-CHILD {
 	margin-left: 100px;
 }
@@ -596,4 +600,34 @@ ul {
 	margin: 4px;
 	line-height: 24px;
 	color: white;
+}
+
+#machine_2{
+	background:url('../images/efficiency/machine/e4_head.jpg') scroll no-repeat 0 0;
+	width:950px;height:127px;
+	position:relative;
+}
+#machine_2_{
+	margin:21px 0 0 127px;
+	float:left;
+	font-size:14px;
+	line-height:20px;
+}
+#efficiency2_body{
+	background:#ffffff;
+	height:350px;
+}
+#efficiency2_body img{
+	float:left;
+}
+#machine_pie{
+	float: left;
+    height: 300px;
+    margin: 0px 55px 20px;
+    width: 300px;
+	
+}
+.chart{
+	height:350px;width:950px;
+	
 }
