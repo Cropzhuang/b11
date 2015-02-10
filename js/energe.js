@@ -125,7 +125,7 @@ function set_e4() {
 	var options = {
 		colors:["#79a5b6","#9b756f","#8a9d39"],
         series: { shadowSize: 0 }, // drawing is faster without shadows
-        xaxis: { min: 0, max: 24 ,ticks: x_ticks },
+        xaxis: { min: 0, max: 23 ,ticks: x_ticks },
         grid:{
         borderColor:"#dadfe1", 
         }

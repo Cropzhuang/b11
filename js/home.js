@@ -231,7 +231,7 @@ function set_i2() {
 		        borderColor:"#dadfe1",
 		        }
 		    };
-		$.plot("#index2_body", [ {
+		$.plot("#index2_body", [{
 			data : realEnergy,
 			bars : {
 				show : true,
@@ -291,9 +291,10 @@ function set_i2() {
 			
 		}
 		$("#weather .w").each(function(n, d) {
+			if(imgArray[n]!=null&&imgArray[n]!=undefined)
 			$(d).html("<img src=\"images/"+imgArray[n]+"_0.jpg\" alt=\"\">"+minTempArray[n]+"/"+maxTempArray[n]+"°C");
 		
-		})
+		});
 	});
 	
 	

@@ -71,8 +71,8 @@ function queryDate(action,start,end,callback){
 var params={pStartTime:start,pEndTime:end};
 	
 	 $.ajax({
-		 url:"Service1.asmx/"+action,  
-         //url:"api/"+action+".xml",  
+		// url:"Service1.asmx/"+action,  
+         url:"api/"+action+".xml",  
          type:"post",
          dataType:"xml",  
          data:params,
@@ -84,8 +84,8 @@ var params={pStartTime:start,pEndTime:end};
 }
 function query(action,callback){
 	 $.ajax({
-		 url:"Service1.asmx/"+action,  
-       //  url:"api/"+action+".xml",  
+		// url:"Service1.asmx/"+action,  
+        url:"api/"+action+".xml",  
          type:"post",  
          dataType:"xml",  
          error: function(xml){  
