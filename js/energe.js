@@ -85,8 +85,8 @@ function set_e2(dayCount) {
 	});
 }
 function set_e4() {
-	var start=dateBefore(2*24*3600*1000);
-	var end=dateBefore(1*24*3600*1000);
+	var start=dateBefore(24*3600*1000);
+	var end=new Date();
 	var startString=setDateString(start);
 	var endString=setDateString(end);
 	var eair=new Array(),
@@ -100,8 +100,6 @@ function set_e4() {
 		var a = data.split(",");
 		for ( var i = 0; i < (a.length-1); i++) {
 			var num=parseInt((i%((a.length-1)/3))/2);
-			if(i < (a.length-1)/3)
-			x_ticks.push(num);
 			switch(i%2){
 			case 0:
 				continue;
@@ -117,10 +115,22 @@ function set_e4() {
 				break;
 			}
 		}
+		var dataLength=eair.length;
+		if(dataLength<24){
+			for(var i=dataLength;i<24;i++){
+				eair.push([i,0]);
+				eplugin.push([i,0]);
+				elight.push([i,0]);
+			}
+			
+		}
 		var lines_e4=[];
 		var e4_stroke=["#96cee3","#c98173","#97c636"];
 		for (var i=0;i<3;i++){
 		lines_e4[i]={ color:e4_stroke[i],show: true ,fill:true, fillColor:e4_stroke[i],lineWidth:2};
+		}
+		for(var i=0;i<24;i++){
+		x_ticks.push([i,i]);
 		}
 	var options = {
 		colors:["#79a5b6","#9b756f","#8a9d39"],
