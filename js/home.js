@@ -98,12 +98,13 @@ function set_runway(run0, run1, run2, run3, run4) {
 
 	}
 
-	function updateVal(value, total, R, hand, id) {
-
-		if (init) {
-			hand.animate({
+	function updateVal(value, total, R, hand, id,time,delay) {
+		//黑色底
+		 if (init) {
+			var anim = Raphael.animation({
 				arc : [ value, total, R, id ]
-			}, 900, ">");
+			}, time, ">");
+			hand.animate(anim.delay(delay));
 		}
 		/*
 		 * else { if (!value || value == total) { value = total;
@@ -123,7 +124,7 @@ function set_runway(run0, run1, run2, run3, run4) {
 		 * return out;
 		 */
 	}
-	function drawFontPosition(percentBefore, R, dom) {
+	function drawFontPosition(percentBefore, R, dom,time) {
 		var percent = (percentBefore - 1) / 100, path = new Array();
 		if (percent < 0.25 && percent >= 0) {
 			path = [ 240 * percent / 0.25, 240 - R ];
@@ -147,34 +148,51 @@ function set_runway(run0, run1, run2, run3, run4) {
 		$("#" + dom).text(percentBefore);
 		setTimeout(function() {
 			$("#" + dom).fadeIn("1000");
-		}, 1000);
+		}, time);
 	}
-	(function() {
-		updateVal(100, 100, 227, runway0bg, 5);
-		updateVal(run0, 100, 227, runway0, 0);
-		drawFontPosition(run0, 227, "i10");
+	$(function() {
+		var backTime=500;
+		var showTime=3000;
+//		var showDelay=2000;
+//		var backDelay=500;
+		var tback=new Array(5);
+		for (var i=0;i<5;i++){
+			var timeCirle=backTime+showTime;
+			tback[i]=timeCirle*i;
+		}
+		var tshow=new Array(5);
+		for (var i=0;i<5;i++){
+			tshow[i]=tback[i]+backTime;
+		}
+		updateVal(100, 100, 227, runway0bg,5,backTime,tback[0]);
+		updateVal(run0, 100, 227, runway0, 0,showTime,tshow[0]);
+		
 
-		updateVal(100, 100, 194, runway1bg, 5);
-		updateVal(run1, 100, 194, runway1, 1);
-		drawFontPosition(run1, 194, "i11");
+		updateVal(100, 100, 194, runway1bg, 5,backTime,tback[1]);
+		updateVal(run1, 100, 194, runway1, 1,showTime,tshow[1]);
+		
 
-		updateVal(100, 100, 161, runway2bg, 5);
-		updateVal(run2, 100, 161, runway2, 2);
-		drawFontPosition(run2, 161, "i12");
+		updateVal(100, 100, 161, runway2bg,5,backTime, tback[2]);
+		updateVal(run2, 100, 161, runway2,2,showTime,tshow[2]);
+		
+		updateVal(100, 100, 128, runway3bg, 5,backTime,tback[3]);
+		updateVal(run3, 100, 128, runway3, 3,showTime,tshow[3]);
+		
 
-		updateVal(100, 100, 128, runway3bg, 5);
-		updateVal(run3, 100, 128, runway3, 3);
-		drawFontPosition(run3, 128, "i13");
-
-		updateVal(100, 100, 95, runway4bg, 5);
-		updateVal(run4, 100, 95, runway4, 4);
-		drawFontPosition(run4, 95, "i14");
-		$("#holder_center").text(
-				Math.floor((run0 + run1 + run2 + run3 + run4) / 5));
+		updateVal(100, 100, 95, runway4bg, 5,backTime,tback[4]);
+		updateVal(run4, 100, 95, runway4, 4,showTime,tshow[4]);
+		
+		drawFontPosition(run0, 227, "i10",tshow[0]+showTime);
+		drawFontPosition(run1, 194, "i11",tshow[1]+showTime);
+		drawFontPosition(run2, 161, "i12",tshow[2]+showTime);
+		drawFontPosition(run3, 128, "i13",tshow[3]+showTime);
+		drawFontPosition(run4, 95, "i14",tshow[4]+showTime);
+		
+		$("#holder_center").text(	Math.floor((run0 + run1 + run2 + run3 + run4) / 5));
 		// 调用自身
 		// setTimeout(arguments.callee, 1000);
 		init = false;
-	})();
+	});
 
 }
 

@@ -1,11 +1,32 @@
 $(function() {
 	setRadar();
+	set_p1m2();
+	set_p1m3();
 	set_e2(42);
 	set_e4();
 	set_e5(30);
 	set_e6(30);
 });
-
+function set_p1m2(){
+	query("SecondPageP1M2", function(xml) {
+	var data = $(xml).find("string").text();
+	data=data.replace(/;/g,",");
+	var a = data.split(",");
+		for ( var i = 0; i < 5; i++) {
+			$("#p2m2"+i).text(parseInt(a[3*i].split(":")[1]*100)/100+"/"+parseInt(a[3*i+1].split(":")[1]*100)/100+"/"+parseInt(a[3*i+2].split(":")[1]*100)/100+"Kwh");
+		}
+	});
+}
+function set_p1m3(){
+	query("SecondPageP1M3", function(xml) {
+	var data = $(xml).find("string").text();
+	data=data.replace(/;/g,",");
+	var a = data.split(",");
+		for ( var i = 0; i < 5; i++) {
+			$("#p2m3"+i).text(parseInt(a[2*i].split(":")[1]*100)/100+"/"+parseInt(a[2*i+1].split(":")[1]*100)/100+"Kwh");
+		}
+	});
+}
 function set_e2(dayCount) {
 	var start=dateBefore(dayCount*24*3600*1000);
 	var end=new Date();
