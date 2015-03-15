@@ -71,25 +71,25 @@ function queryDate(action,start,end,callback){
 var params={pStartTime:start,pEndTime:end};
 	
 	 $.ajax({
-		// url:"Service1.asmx/"+action,  
-         url:"api/"+action+".xml",  
+	 url:"Service1.asmx/"+action,  
+     //    url:"api/"+action+".xml",  
          type:"post",
          dataType:"xml",  
          data:params,
          error: function(xml){  
-             alert('Error loading XML document'+xml);  
+           //  alert('Error loading XML document'+xml);  
          },  
          success: callback
 	 });
 }
 function query(action,callback){
 	 $.ajax({
-		// url:"Service1.asmx/"+action,  
-        url:"api/"+action+".xml",  
+	url:"Service1.asmx/"+action,  
+      //  url:"api/"+action+".xml",  
          type:"post",  
          dataType:"xml",  
          error: function(xml){  
-             alert('Error loading XML document'+xml); 
+          //   alert('Error loading XML document'+xml); 
          },
          success: callback
 	 });
@@ -137,4 +137,8 @@ function dateBefore(time){
 function setDateString(date){
 	return date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
 	
+}
+function labelFormatter(label, series) { 
+	return "<div style='font-size:10px; text-align:center; padding:0px; color:white; '>"
+			+ label + "<br/>" + Math.round(series.percent) + "%</div>";
 }

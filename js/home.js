@@ -390,10 +390,7 @@ function set_i5() {
 				show : false
 			}
 		});
-		function labelFormatter(label, series) {
-			return "<div style='font-size:20px; text-align:center; padding:0px; color:white;'>"
-					+ label + "<br/>" + Math.round(series.percent) + "%</div>";
-		}
+		
 		
 		$("#index5_right .i5_right_bg").each(function(n, d) {
 			var percent=getValue(dataAll[n+1]);

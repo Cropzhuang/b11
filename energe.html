@@ -10,6 +10,7 @@
 <link rel="stylesheet" type="text/css" href="./styles.css">-->
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/jquery.flot.js"></script>
+<script type="text/javascript" src="js/jquery.flot.pie.js"></script>
 <!--[if lte IE 8]><script  type="text/javascript" src="js/excanvas.min.js"></script><![endif]-->
 <script type="text/javascript" src="js/d3.v3.js"></script>
   <script type="text/javascript" src="js/radar-chart.js"></script>
@@ -30,7 +31,7 @@
 		});
 		
 		
-		})
+		});
 		
 		
 		
@@ -67,6 +68,20 @@ height:72px;width:100%;float:left;font-size:12px;color:#e5e5e5;
 #e1_left{
 height:100px;width:300px;padding:40px 15px;float:left;line-height:28px;
 }
+#nowEnergy{
+position:absolute;
+margin-top: 300px;
+text-align: center;
+font-size:72px;
+line-height:72px;
+width: 100%;
+color:#ffa331;
+}
+.e4_pie{
+width:160px;
+height:160px;
+margin:10px 0px;
+}
 </style>
 </head>
 <body>
@@ -101,7 +116,8 @@ height:100px;width:300px;padding:40px 15px;float:left;line-height:28px;
 	</div>
 	
 <div id="energe1" class="back_black" style="background:#3f3c3a" align="center">
-		<div id="energe1_" style="overflow:hidden;width:950px;">
+		<div id="energe1_" style="overflow:hidden;width:950px;position:relative;">
+			<div id="nowEnergy"></div>
 			<div id="energe1_head">
 			<table id="e1_left" >
 				<tr><td class="l">实际发电量(kWh)</td><td id="e1_0" class="r">279</td></tr>
@@ -177,7 +193,13 @@ height:100px;width:300px;padding:40px 15px;float:left;line-height:28px;
 			<div class="title">昨日分时耗电量</div>
 			<img src="images/energe/e4_head.jpg" alt="">
 			<div  class="e4_left back_grey"></div>
-			<div class="e4_right back_grey"></div>
+			<div class="e4_right back_grey">
+			<div id="e4_pie1" class="e4_pie">
+			
+			</div>
+			<div id="e4_pie2" class="e4_pie">
+			</div>
+			</div>
 		</div>
 	</div>
 	<div id="energe5" style="height:540px" align="center">

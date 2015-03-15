@@ -14,7 +14,10 @@ function set_p1m2(){
 	var a = data.split(",");
 		for ( var i = 0; i < 5; i++) {
 			$("#p2m2"+i).text(parseInt(a[3*i].split(":")[1]*100)/100+"/"+parseInt(a[3*i+1].split(":")[1]*100)/100+"/"+parseInt(a[3*i+2].split(":")[1]*100)/100+"Kwh");
+
 		}
+		
+		
 	});
 }
 function set_p1m3(){
@@ -22,10 +25,14 @@ function set_p1m3(){
 	var data = $(xml).find("string").text();
 	data=data.replace(/;/g,",");
 	var a = data.split(",");
+	var nowE=0;
 		for ( var i = 0; i < 5; i++) {
 			$("#p2m3"+i).text(parseInt(a[2*i].split(":")[1]*100)/100+"/"+parseInt(a[2*i+1].split(":")[1]*100)/100+"Kwh");
+			nowE+=parseInt(a[2*i].split(":")[1]*100)/100;
 		}
+		$("#nowEnergy").text(nowE);
 	});
+	
 }
 function set_e2(dayCount) {
 	var start=dateBefore(dayCount*24*3600*1000);
@@ -105,7 +112,10 @@ function set_e2(dayCount) {
 		],options);
 	});
 }
+
+
 function set_e4() {
+	//left
 	var start=dateBefore(24*3600*1000);
 	var end=new Date();
 	var startString=setDateString(start);
@@ -154,26 +164,96 @@ function set_e4() {
 		x_ticks.push([i,i]);
 		}
 	var options = {
-		colors:["#79a5b6","#9b756f","#8a9d39"],
+		colors:["#9b756f","#8a9d39","#79a5b6"],
         series: { shadowSize: 0 }, // drawing is faster without shadows
         xaxis: { min: 0, max: 23 ,ticks: x_ticks },
         grid:{
         borderColor:"#dadfe1", 
+        },
+        legend:{
+        	backgroundOpacity:0.4
         }
+        
     };
 		$.plot(".e4_left", [
 		{
-		data : eair,
-		lines:lines_e4[0]
-		},{
 		data : eplugin,
 		lines:lines_e4[1]
 		}, 
 		{
 		data : elight,
 		lines:lines_e4[2]
+		},
+		{
+			data : eair,
+			lines:lines_e4[0]
 		}
 		],options);
+	});
+	
+	//e4 right
+	var pieData1 = [ {
+		label : "",
+		data : 0.7
+	}, { 
+		label : "",
+		data :0.15
+	} ,
+	 {
+		label : "",
+		data :0.15
+	}];
+	$.plot("#e4_pie1", pieData1, {
+		series : {
+			pie : {
+				show : true,
+				radius : 1,
+				label : {
+					show : true,
+					radius : 0.5,
+					formatter : labelFormatter,
+					background : {
+						opacity : 1,
+						color: ['#dasdsd','#13asdd','#dasd13']
+					}
+				},
+				
+			}
+		},
+		legend : {
+			show : false
+		},
+		colors:["#9b756f","#8a9d39","#79a5b6"]
+	});
+	//e4 right2
+	var pieData2 = [ {
+		label : "",
+		data : 0.1
+	}, { 
+		label : "",
+		data :0.9
+	}];
+	$.plot("#e4_pie2", pieData2, {
+		series : {
+			pie : {
+				show : true,
+				radius : 1,
+				label : {
+					show : true,
+					radius : 0.5,
+					formatter : labelFormatter,
+					background : {
+						opacity : 1,
+						color: ['#1ecd78','#f3a24b']
+					}
+				},
+				
+			}
+		},
+		legend : {
+			show : false
+		},
+		colors:['#1ecd78','#f3a24b']
 	});
 }
 
