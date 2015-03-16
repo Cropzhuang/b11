@@ -157,7 +157,7 @@ function set_runway(run0, run1, run2, run3, run4) {
 //		var backDelay=500;
 		var tback=new Array(5);
 		for (var i=0;i<5;i++){
-			var timeCirle=backTime+showTime;
+			var timeCirle=backTime+showTime-2000;
 			tback[i]=timeCirle*i;
 		}
 		var tshow=new Array(5);

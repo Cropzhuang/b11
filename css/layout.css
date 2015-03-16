@@ -307,7 +307,6 @@ ul {
 }
 
 #index3 {
-	height: 650px;
 }
 /*height:400px;*/
 #index3_ {
@@ -332,7 +331,7 @@ ul {
 }
 
 #index4 {
-	height: 520px;
+	padding-bottom:54px;
 }
 
 #index4_ {
@@ -351,7 +350,6 @@ ul {
 	
 }
 #index5 {
-	height: 710px;
 }
 
 #index5_ {
