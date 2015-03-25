@@ -19,37 +19,36 @@ function set_runway(run0, run1, run2, run3, run4) {
 	}, path;
 	// Custom Attribute
 
-	r.customAttributes.arc = function(value, total, R, i) {
-		total = 100;
-		var percent = value / total;
-		var path;
+	 r.customAttributes.arc = function (value, total, R,i) {
+			total=100;
+			var percent=value/total;
+			var path;
+			
+		if(percent==0&&percent<0.2){
+			 path = [["M", 33, 240 - R], ["L",240*percent/0.2+33 , 240 - R]];//			
+			}else
+				
+			if(percent>=0.2&&percent<=0.8){
+				
+	            var alpha = 360 * (percent-0.2)*(0.75/0.6),
+	                a = alpha* Math.PI / 180,
+	                x = 240 + R * Math.sin(a),
+	                y = 240 - R * Math.cos(a),
+            // color = "hsb(".concat(Math.round(R) / 200, ",", value / total, ", .75)"),
+             path = [["M", 33, 240 - R], ["L", 240, 240 - R], ["A", R, R, 0, +(alpha > 180), 1, x, y]];
+			}else if(percent<=1&&percent>0.8){
+			 var alpha = 360 * 0.75,
+             a = alpha* Math.PI / 180,
+             x = 240 + R * Math.sin(a),
+             y = 240 - R * Math.cos(a),
+				endY=240-(percent-0.8)/0.2*75;
+				
+			path = [["M", 33, 240 - R], ["L", 240, 240 - R], ["A", R, R, 0, 1, 1, x, y]];
+			path.push(["L",x,endY]);
+			}
+         return {path: path, stroke: runwayColor[i]};
+     };
 
-		if (percent < 0.25 && percent >= 0) {
-			path = [ [ "M", 33, 240 - R ],
-					[ "L", 240 * percent / 0.25, 240 - R ] ];
-
-		} else if (percent >= 0.25 && percent <= 0.75) {
-
-			var alpha = 360 * percent, a = (90 - alpha) * Math.PI / 180, x = 240
-					+ R * Math.cos(a), y = 240 - R * Math.sin(a),
-			// color = "hsb(".concat(Math.round(R) / 200, ",", value / total, ",
-			// .75)"),
-			path = [ [ "M", 33, 240 - R ], [ "L", 240, 240 - R ],
-					[ "A", R, R, 0, +(alpha > 180), 1, x, y ] ];
-
-		} else if (percent <= 1 && percent > 0.75) {
-			var alpha = 360 * 0.75, a = (90 - alpha) * Math.PI / 180, x = 240
-					+ R * Math.cos(a), y = 240 - R * Math.sin(a), endY = 240 - (percent - 0.75) / 0.25 * 75;
-
-			path = [ [ "M", 33, 240 - R ], [ "L", 240, 240 - R ],
-					[ "A", R, R, 0, 1, 1, x, y ] ];
-			path.push([ "L", x, endY ]);
-		}
-		return {
-			path : path,
-			stroke : runwayColor[i]
-		};
-	};
 
 	var runway0bg = r.path().attr(param).attr({
 		arc : [ 0, 100, R, 5 ]
@@ -103,7 +102,7 @@ function set_runway(run0, run1, run2, run3, run4) {
 		 if (init) {
 			var anim = Raphael.animation({
 				arc : [ value, total, R, id ]
-			}, time, ">");
+			}, time, "linear");
 			hand.animate(anim.delay(delay));
 		}
 		/*
@@ -126,21 +125,25 @@ function set_runway(run0, run1, run2, run3, run4) {
 	}
 	function drawFontPosition(percentBefore, R, dom,time) {
 		var percent = (percentBefore - 1) / 100, path = new Array();
-		if (percent < 0.25 && percent >= 0) {
-			path = [ 240 * percent / 0.25, 240 - R ];
+		//直线
+		if (percent < 0.2 && percent >= 0) {
+			path = [ 240 * percent / 0.2, 240 - R ];
 
-		} else if (percent >= 0.25 && percent <= 0.75) {
+		} else if (percent >= 0.2 && percent <= 0.8) {
 
-			var alpha = 360 * percent, a = (90 - alpha) * Math.PI / 180, x = 240
-					+ R * Math.cos(a), y = 240 - R * Math.sin(a), endX = (percent - 0.25)
-					/ 0.25 * R;
+			var alpha = 360 * (percent-0.2)*(0.75/0.6),
+            a = alpha* Math.PI / 180,
+            x = 240 + R * Math.sin(a),
+            y = 240 - R * Math.cos(a),
 			// color = "hsb(".concat(Math.round(R) / 200, ",", value / total, ",
 			// .75)"),
 			path = [ x - 8, y - 10 ];
 
-		} else if (percent <= 1 && percent > 0.75) {
-			var alpha = 360 * 0.75, a = (90 - alpha) * Math.PI / 180, x = 240
-					+ R * Math.cos(a), y = 240 - R * Math.sin(a), endY = 240 - (percent - 0.75) / 0.25 * 75;
+		} else if (percent <= 1 && percent > 0.8) {
+			 var alpha = 360 * 0.75,
+             a = alpha* Math.PI / 180,
+             x = 240 + R * Math.sin(a),
+             y = 240 - R * Math.cos(a), endY=240-(percent-0.8)/0.2*75;
 			path = [ x - 10, endY ];
 		}
 		$("#" + dom).attr("style",
@@ -151,8 +154,8 @@ function set_runway(run0, run1, run2, run3, run4) {
 		}, time);
 	}
 	$(function() {
-		var backTime=500;
-		var showTime=3000;
+		var backTime=1000;
+		var showTime=4000;
 //		var showDelay=2000;
 //		var backDelay=500;
 		var tback=new Array(5);

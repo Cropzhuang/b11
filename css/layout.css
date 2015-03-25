@@ -478,7 +478,10 @@ ul {
 #energe1 {
 	height: 600px;
 }
-
+.e1_b1 .r{
+	margin-right:20px;
+	
+}
 #energe1_ {
 	background: url("../images/energe/energe1_bg.jpg") no-repeat scroll 0 0;
 	height: 600px;
