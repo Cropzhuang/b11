@@ -1,2 +1,2 @@
-<?xml version="1.0" encoding="utf-8" ?> 
-<string xmlns="http://tempuri.org/">alarm1:3,energy1:51.0909999999972,loadRate1:65,state1:1;alarm2:5,energy2:85.530999999999,loadRate2:76,state2:1;alarm3:5,energy3:1197,loadRate3:85,state3:2;alarm4:3,energy4:0,loadRate4:75,state4:2;</string> 
+<?xml version="1.0" encoding="utf-8"?>
+<string xmlns="http://tempuri.org/">alarm1:5,energy1:140.116999999998,loadRate1:60,state1:0,energyIndex1:2;alarm2:2,energy2:542.474999999984,loadRate2:55,state2:0,energyIndex2:2;alarm3:2,energy3:1506,loadRate3:40,state3:0,energyIndex3:2;alarm4:1,energy4:0,loadRate4:70,state4:0,energyIndex4:2;</string>
