@@ -227,7 +227,7 @@ function set_i2() {
 				planEnergy.push([num+1,floor(getValue(a[i]))]);
 				break;
 			case 3:
-				energyPerPeople.push([num,floor(getValue(a[i]))*200]);
+				energyPerPeople.push([num,floor(getValue(a[i]))*100]);
 				break;
 			default:
 				break;
@@ -333,10 +333,10 @@ function set_i4() {
 		}
 		$("#index4_ .d").each(function(n, d) {
 			var value=dataAll[n].split(":")[1];
-			switch (n % 5) {
+			switch (n % 7) {
 			case 1:
 				if(value==0){
-					
+					$(this).html("-");
 				}else	if(value<10)
 					$(this).html("<div class='orange_s'>"+value+"</div>");
 				else if(value<=99){
@@ -345,14 +345,22 @@ function set_i4() {
 					$(this).html("<div class='orange_l'>99</div>");;
 				}
 					break;
+			case 2:
+				$(this).text(round2(value)); 
+				break;
 			case 3:
 				$(this).text(floor(value)+"°C");
 				break;
-			case 4:
+			case 4: 
 				$(this).text(value);
 				break;
+			case 5:
+			case 6:
+				if(value==1)
+				$(this).show();
+				break;
 			default :
-				$(this).text(floor(value));
+				$(this).text(value);
 			}
 		});
 	});
@@ -369,12 +377,12 @@ function set_i5() {
 		//i5 pie
 		var pieData = [ {
 			label : "",
-			data : floor(getValue(dataAll[0]))
+			data : 100-floor(getValue(dataAll[0]))
 		}, {
 			label : "",
-			data :100-floor(getValue(dataAll[0]))
-		} ];
-		$.plot("#i5_pie", pieData, {
+			data :floor(getValue(dataAll[0]))
+		} ]; 
+		$.plot("#i5_pie", pieData, { 
 			series : {
 				pie : {
 					show : true,
@@ -391,7 +399,8 @@ function set_i5() {
 			},
 			legend : {
 				show : false
-			}
+			},
+			colors:["#39c122","#f2f2f2"]
 		});
 		
 		

@@ -13,7 +13,7 @@ function set_p1m2(){
 	data=data.replace(/;/g,",");
 	var a = data.split(",");
 		for ( var i = 0; i < 5; i++) {
-			$("#p2m2"+i).text(parseInt(a[3*i].split(":")[1]*100)/100+"/"+parseInt(a[3*i+1].split(":")[1]*100)/100+"/"+parseInt(a[3*i+2].split(":")[1]*100)/100+"Kwh");
+			$("#p2m2"+i).text(parseInt(a[3*i+2].split(":")[1]*100)/100+"/"+parseInt(a[3*i+1].split(":")[1]*100)/100+"/"+parseInt(a[3*i].split(":")[1]*100)/100+"Kwh");
 
 		}
 		
@@ -28,11 +28,11 @@ function set_p1m3(){
 	var nowE=0;
 		for ( var i = 0; i < 5; i++) {
 			$("#p2m3"+i).text(parseInt(a[2*i].split(":")[1]*100)/100+"/"+parseInt(a[2*i+1].split(":")[1]*100)/100+"Kwh");
-			nowE+=parseInt(a[2*i].split(":")[1]*100)/100;
+			nowE+=parseInt(a[2*i].split(":")[1]*100);
 		}
-		$("#nowEnergy").text(nowE);
+		$("#nowEnergy").text(nowE/100);
 	});
-	
+	 
 }
 function set_e2(dayCount) {
 	var start=dateBefore(dayCount*24*3600*1000);
@@ -408,124 +408,132 @@ function set_e6(dayCount) {
 }
 
 function setRadar(){
-	RadarChart.defaultConfig.color = function() {
-	};
-	RadarChart.defaultConfig.radius = 2;
-	var data0 = [ {
-		className : 'air',
-		axes : [ {
-			axis : "1F",
-			value : 6
+	query("SecondPageP1M2", function(xml) {
+		var data = $(xml).find("string").text();
+		data=data.replace(/;/g,",");
+		var a = data.split(","); 
+		RadarChart.defaultConfig.color = function() {
+		};
+		RadarChart.defaultConfig.radius = 2;
+		var data0 = [ {
+			className : 'air',
+			axes : [ {
+				axis : "1F",
+				value : getValue(a[1])/10
+			}, {
+				axis : "5F",
+				value : getValue(a[13])/10
+			}, {
+				axis : "4F",
+				value : getValue(a[10])/10
+			}, {
+				axis : "3F",
+				value : getValue(a[7])/10
+			}, {
+				axis : "2F",
+				value :getValue(a[4])/10
+			} ]
 		}, {
-			axis : "5F",
-			value : 7
+			className : 'plugin',
+			axes : [ {
+				axis : "1F",
+				value : getValue(a[0])/10
+			}, {
+				axis : "5F", 
+				value : getValue(a[12])/10
+			}, {
+				axis : "4F",
+				value : getValue(a[9])/10
+			}, {
+				axis : "3F",
+				value : getValue(a[6])/10
+			}, {
+				axis : "2F",
+				value :getValue(a[3])/10
+			} ]
 		}, {
-			axis : "4F",
-			value : 3
+			className : 'light', // optional can be used for styling
+			axes : [ {
+				axis : "1F",
+				value : getValue(a[2])/10
+			}, {
+				axis : "5F",
+				value : getValue(a[14])/10
+			}, {
+				axis : "4F",
+				value : getValue(a[11])/10
+			}, {
+				axis : "3F",
+				value : getValue(a[8])/10
+			}, {
+				axis : "2F",
+				value :getValue(a[5])/10
+			} ]
+		} ];
+		var data1 = [ {
+			className : 'radar4', // optional can be used for styling
+			axes : [ {
+				axis : "1F",
+				value : 13
+			}, {
+				axis : "5F",
+				value : 6
+			}, {
+				axis : "4F",
+				value : 5
+			}, {
+				axis : "3F",
+				value : 9
+			}, {
+				axis : "2F",
+				value : 2
+			} ]
 		}, {
-			axis : "3F",
-			value : 4
-		}, {
-			axis : "2F",
-			value : 9
-		} ]
-	}, {
-		className : 'plugin',
-		axes : [ {
-			axis : "1F",
-			value : 6
-		}, {
-			axis : "5F",
-			value : 7
-		}, {
-			axis : "4F",
-			value : 6.4
-		}, {
-			axis : "3F",
-			value : 6
-		}, {
-			axis : "2F",
-			value : 9
-		} ]
-	}, {
-		className : 'light', // optional can be used for styling
-		axes : [ {
-			axis : "1F",
-			value : 5
-		}, {
-			axis : "5F",
-			value : 6
-		}, {
-			axis : "4F",
-			value : 5
-		}, {
-			axis : "3F",
-			value : 9
-		}, {
-			axis : "2F",
-			value : 2
-		} ]
-	} ];
-	var data1 = [ {
-		className : 'radar4', // optional can be used for styling
-		axes : [ {
-			axis : "1F",
-			value : 13
-		}, {
-			axis : "5F",
-			value : 6
-		}, {
-			axis : "4F",
-			value : 5
-		}, {
-			axis : "3F",
-			value : 9
-		}, {
-			axis : "2F",
-			value : 2
-		} ]
-	}, {
-		className : 'radar5',
-		axes : [ {
-			axis : "1F",
-			value : 6
-		}, {
-			axis : "5F",
-			value : 7
-		}, {
-			axis : "4F",
-			value : 10
-		}, {
-			axis : "3F",
-			value : 13
-		}, {
-			axis : "2F",
-			value : 9
-		} ]
-	} ];
+			className : 'radar5',
+			axes : [ {
+				axis : "1F",
+				value : 6
+			}, {
+				axis : "5F",
+				value : 7
+			}, {
+				axis : "4F",
+				value : 10
+			}, {
+				axis : "3F",
+				value : 13
+			}, {
+				axis : "2F",
+				value : 9
+			} ]
+		} ];
+		var chart = RadarChart.chart();
+		var cfg = chart.config(); // retrieve default config
+		var svg = d3.select('#radar0').append('svg').attr('width', cfg.w).attr(
+				'height', cfg.h);
+		svg.append('g').classed('single', 1).datum(data0).call(chart);
+		var svg2 = d3.select('#radar1').append('svg').attr('width', cfg.w).attr(
+				'height', cfg.h);
+		svg2.append('g').classed('single', 1).datum(data1).call(chart);
+	});
 
-	function dataSet() {
-		return data0.map(function(d) {
-			return {
-				className : d.className,
-				axes : d.axes.map(function(axis) {
-					var a = Math.ceil(Math.random() * 10);
-					console.log(a);
-					return {
-						axis : axis.axis,
-						value : a
-					};
-				})
-			};
-		});
-	}
-	var chart = RadarChart.chart();
-	var cfg = chart.config(); // retrieve default config
-	var svg = d3.select('#radar0').append('svg').attr('width', cfg.w).attr(
-			'height', cfg.h);
-	svg.append('g').classed('single', 1).datum(data0).call(chart);
-	var svg2 = d3.select('#radar1').append('svg').attr('width', cfg.w).attr(
-			'height', cfg.h);
-	svg2.append('g').classed('single', 1).datum(data1).call(chart);
+	
+
+//	function dataSet() {
+//		return data0.map(function(d) {
+//			return {
+//				className : d.className,
+//				axes : d.axes.map(function(axis) {
+//					var a = Math.ceil(Math.random() * 10);
+//					console.log(a);
+//					return {
+//						axis : axis.axis,
+//						value : a
+//					};
+//				})
+//			};
+//		});
+//	}
+	
 	
 }
