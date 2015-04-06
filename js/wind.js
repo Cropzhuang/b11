@@ -21,7 +21,7 @@ function set_head() {
 				content=Math.round(getValue(a[i])*10)/10+"°C";
 				break;
 			case 2:
-				content=floor(getValue(a[i]))+"%";
+				content=floor(getValue(a[i])) ;
 				break;
 			default:break;
 			}
