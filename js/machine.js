@@ -56,7 +56,7 @@ function set_e2() {
 		var content="";
 		var dataAll=new Array();
 		for ( var i = 0; i < 5; i++) {
-			content+=getValue(a[i])*100+"%<br/>";
+			content+=parseInt(getValue(a[i])*100)+"%<br/>";
 			dataAll.push(getValue(a[i]));
 		}
 		$("#machine_2_").html(content);
