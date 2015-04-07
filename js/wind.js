@@ -17,16 +17,18 @@ function set_head() {
 			case 0:
 				content=Math.round(getValue(a[i])*10)/10;
 				break;
-			case 1:
-				content=Math.round(getValue(a[i])*10)/10+"°C";
-				break;
-			case 2:
-				content=floor(getValue(a[i])) ;
-				break;
 			default:break;
 			}
 			$("#e11_"+i).text(content);
 		}
+    });
+	
+	query("FourthPageMenu1others", function(xml) {
+		var data = $(xml).find("string").text();
+		data=data.replace(/;/g,",");
+		var a = data.split(",");
+		$("#e11_1").text(parseInt(getValue(a[18]))+"°C");
+		$("#e11_2").text(parseInt(getValue(a[4])));
     });
 	query("FourthPageMenu1P1M2", function(xml) {
 		var data = $(xml).find("string").text();

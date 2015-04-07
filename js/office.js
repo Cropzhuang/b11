@@ -17,23 +17,27 @@ function set_head() {
 			switch(i){
 			case 0:
 				content=Math.round(getValue(a[i])*10)/10;
+				$("#e11_"+i).text(content);
 				break;
 			case 1:
-				content=Math.round(getValue(a[i])*10)/10+"°C";
-				break;
-			case 2:
-				content=floor(getValue(a[i]))+"%";
+				content=Math.round(getValue(a[i])*10)/10;
+				$("#e11_"+i).text(content+"°C");
 				break;
 			case 3:
-				content=floor(getValue(a[i]));
-				break;
-			case 4:
-				content=floor(getValue(a[i]))+"Lux";
+				content=Math.round(getValue(a[i])*10)/10;
+				$("#e11_"+i).text(content);
 				break;
 			default:break;
 			}
-			$("#e11_"+i).text(content);
 		}
+    });
+	
+	query("ThirdPageMenu4thers", function(xml) {
+		var data = $(xml).find("string").text();
+		data=data.replace(/;/g,",");
+		var a = data.split(",");
+		$("#e11_2").html(getValue(a[3])+"%");
+		$("#e11_4").html(getValue(a[2])+"Lux");
     });
 	query("ThirdPageMenu4P1M2", function(xml) {
 		var data = $(xml).find("string").text();

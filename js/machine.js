@@ -1,6 +1,7 @@
 $(function() {
 	set_head();
 	set_e2();
+	set_bg();
 	//set_e3();
 	set_e3(30);
 	set_e4();
@@ -17,22 +18,11 @@ function set_head() {
 			switch(i){
 			case 0:
 				content=Math.round(getValue(a[i])*10)/10;
-				break;
-			case 1:
-				content=Math.round(getValue(a[i])*10)/10;
-				break;
-			case 2:
-				content=floor(getValue(a[i]))+"%";
-				break;
-			case 3:
-				content=floor(getValue(a[i]));
-				break;
-			case 4:
-				content=floor(getValue(a[i]))+"Lux";
+				$("#e11_"+i).text(content);
 				break;
 			default:break;
 			}
-			$("#e11_"+i).text(content);
+			
 		}
     });
 	query("ThirdPageMenu1P1M2", function(xml) {
@@ -47,38 +37,88 @@ function set_head() {
     });
 		
 }
-function set_e2() {
-	
-	query("ThirdPageMenu1P2", function(xml) {
+function set_bg(){
+	query("ThirdPageMenu1P1Others", function(xml) {
 		var data = $(xml).find("string").text();
 		data=data.replace(/;/g,",");
 		var a = data.split(",");
 		var content="";
-		var dataAll=new Array();
-		for ( var i = 0; i < 5; i++) {
-			content+=parseInt(getValue(a[i])*100)+"%<br/>";
-			dataAll.push(getValue(a[i]));
+		var d;
+		for ( var i = 0; i < (a.length-1); i++) {
+			var value=parseInt(getValue(a[i])*10)/10;
+			switch(i){
+			case 9:
+			case 10:
+			case 11:
+			case 12:
+			case 13:
+			case 14:
+			case 15:
+			case 16:
+				value+="°C";
+				break;
+			case 17:
+				value+="KW";
+				break;
+			case 18:
+				value+="%";
+				break;
+			case 19:
+				value+="V";
+				break;
+			case 20:
+				value+="V";
+				break;
+			case 21:
+				value+="分";
+				break;
+			case 22:
+				value+="KW";
+				break;
+			case 23:
+				value+="立方米/时";
+				break;
+			case 24:
+				value+="°C";
+				break;
+			case 25:
+				value+="°C";
+				break;
+			case 26:
+				value=	getValue(a[i]);
+				break;
+			default :
+				break;
+			}
+			if(i>8&&i<35)
+			$("#d"+(i-9)).text(value);
+			if(i>=35&&i<40){
+				content+=floor(getValue(a[i])) +"%<br/>"; 
+			}
 		}
+		$("#e11_1").html(parseInt(getValue(a[0])*100)/100);
+		$("#e11_2").html(getValue(a[1])+"%");
+		$("#e11_3").html(parseInt(getValue(a[41])));
+		$("#e11_4").html(getValue(a[2])+"Lux"); 
 		$("#machine_2_").html(content);
-		
 		//i5 pie
-		var pieData = [ {
+		var pieData = [{
 			label : "",
-			data :dataAll[0]
+			data :floor(getValue(a[35]))
 		}, {
 			label : "",
-			data :dataAll[1]
+			data :floor(getValue(a[36]))
 		}, 
 		 {
 			label : "",
-			data :dataAll[2]
+			data :floor(getValue(a[37]))
 		},
 		 {
 			label : "",
-			data :dataAll[3]
+			data :floor(getValue(a[38]))
 		}, {
 			label : "",
-			data :dataAll[4]
+			data :floor(getValue(a[39]))
 		}];
 		$.plot("#machine_pie", pieData, {
 			series : {
@@ -99,6 +139,61 @@ function set_e2() {
 			},
 			colors: ["#97c636", "#fe8917", "#737373", "#e4440c", "#17c5fe"],
 		});
+    });
+	
+}
+function set_e2() {
+	
+	query("ThirdPageMenu1P2", function(xml) {
+		var data = $(xml).find("string").text();
+		data=data.replace(/;/g,",");
+		var a = data.split(",");
+		var content="";
+		var dataAll=new Array();
+		for ( var i = 0; i < 5; i++) {
+			content+=parseInt(getValue(a[i])*100)+"%<br/>";
+			dataAll.push(getValue(a[i]));
+		}
+		$("#machine_2_").html(content);
+		
+//		//i5 pie
+//		var pieData = [ {
+//			label : "",
+//			data :dataAll[0]
+//		}, {
+//			label : "",
+//			data :dataAll[1]
+//		}, 
+//		 {
+//			label : "",
+//			data :dataAll[2]
+//		},
+//		 {
+//			label : "",
+//			data :dataAll[3]
+//		}, {
+//			label : "",
+//			data :dataAll[4]
+//		}];
+//		$.plot("#machine_pie", pieData, {
+//			series : {
+//				pie : {
+//					show : true,
+//					radius : 1,
+//					label : {
+//						show : false,
+//						radius : 0.5,
+//						background : {
+//							opacity : 0.8
+//						}
+//					}
+//				}
+//			},
+//			legend : {
+//				show : false
+//			},
+//			colors: ["#97c636", "#fe8917", "#737373", "#e4440c", "#17c5fe"],
+//		});
     });
 		
 }

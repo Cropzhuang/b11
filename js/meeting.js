@@ -16,24 +16,22 @@ function set_head() {
 			switch(i){
 			case 0:
 				content=Math.round(getValue(a[i])*10)/10;
-				break;
-			case 1:
-				content=Math.round(getValue(a[i])*10)/10+"°C";
-				break;
-			case 2:
-				content=floor(getValue(a[i]))+"%";
-				break;
-			case 3:
-				content=floor(getValue(a[i]));
-				break;
-			case 4:
-				content=floor(getValue(a[i]))+"Lux";
+				$("#e11_"+i).text(content);
 				break;
 			default:break;
 			}
-			$("#e11_"+i).text(content);
+			
 		}
     });
+	query("ThirdPageMenu2thers", function(xml) {
+		var data = $(xml).find("string").text();
+		data=data.replace(/;/g,",");
+		var a = data.split(",");
+		$("#e11_1").text(getValue(a[7])+"°C");
+		$("#e11_2").text(getValue(a[0])+"%");
+		$("#e11_3").text(parseInt(getValue(a[6])));
+		$("#e11_4").text(getValue(a[9])+"Lux");
+    })
 	query("ThirdPageMenu2P1M2", function(xml) {
 		var data = $(xml).find("string").text();
 		data=data.replace(/;/g,",");
