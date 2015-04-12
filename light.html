@@ -16,19 +16,48 @@
 <link type="text/css" rel="stylesheet" href="css/example.css" />
 <script src="js/common.js"></script>
 <script src="js/light.js"></script>
+<style type="text/css">
+#alarm_2 div {
+	position: absolute;
+	color: white;
+	font-size: 12px;
+	line-height: 18px;
+	width: 60px;
+	height: 60px;
+	text-align:right;
+}
 
+#d0 {
+	margin: 58px 640px;
+}
+
+#d1 {
+	margin: 58px 810px;
+}
+
+#d2 {
+	margin: 175px 640px;
+}
+
+#d3 {
+	margin: 175px 810px;
+}
+
+#d4 {
+	margin: 295px 640px;
+}
+
+#d5 {
+	margin: 295px 810px;
+}
+</style>
 </head>
 <body>
-		<div id="nav" align="center">
+	<div id="nav" align="center">
 		<div id="nav_" style="overflow:hidden;width:950px;">
-			<div class="wuhanb11 yahei">
-			</div>
-			<div  class="nav">
-				首页
-			</div>
-			<div  class="nav">
-				能耗
-			</div>
+			<div class="wuhanb11 yahei"></div>
+			<div class="nav">首页</div>
+			<div class="nav">能耗</div>
 			<div id="nav3" class="nav" style="position:relative">
 				能效
 				<div id="efficiency" class="sub_nav" style="z-index: 1000">
@@ -48,47 +77,56 @@
 			</div>
 		</div>
 	</div>
-	
-<div id="efficiency1"  class="back_grey" align="center">
+
+	<div id="efficiency1" class="back_grey" align="center">
 		<div id="efficiency1_" style="overflow:hidden;width:950px;">
 			<div style="height:40px" class="back_grey"></div>
-			<div ><img src="images/device/sun/sunhead0.jpg"></div>
-			<div class="efficiency_body" style="background:url('images/device/sun/e1_bg.jpg')">
+			<div>
+				<img src="images/device/sun/sunhead0.jpg">
+			</div>
+			<div class="efficiency_body"
+				style="background:url('images/device/sun/e1_bg.jpg')">
 				<div id="e1_left">
-					<div id="e11_0" class="e1_content r" ></div>
-				<div id="e11_1" class="e1_content r" ></div>
-				<div id="e11_2" class="e1_content r" ></div>
+					<div id="e11_0" class="e1_content r"></div>
+					<div id="e11_1" class="e1_content r"></div>
+					<div id="e11_2" style="padding-top: 50px;" class="e1_content r"></div>
 				</div>
 				<div id="e1_right">
-					<div class="e2_content r xieti " ></div>
+					<div class="e2_content r xieti "></div>
 				</div>
 			</div>
 			<div id="alarm" class="red l heiti">报警</div>
 			<div id="alarm_body" class="l">暂无报警</div>
-			<div id="alarm_2" style="float:left;background:url(images/device/sun/sun.png) no-repeat;width:910px;height:419px" >
+			<div id="alarm_2"
+				style="float:left;background:url(images/device/sun/sun.png) no-repeat;width:910px;height:419px">
+				<div id="d0">-</div>
+				<div id="d1">-</div>
+				<div id="d2">-</div>
+				<div id="d3">-</div>
+				<div id="d4">-</div>
+				<div id="d5">-</div>
 			</div>
 		</div>
 	</div>
-	<div id="efficiency2"  class="back_grey" align="center">
-		<div  style="overflow:hidden;width:950px;">
+	<div id="efficiency2" class="back_grey" align="center">
+		<div style="overflow:hidden;width:950px;">
 			<div class="title">能耗分类趋势</div>
 			<div id="efficiency2_h2"></div>
 			<div id="efficiency2_body"></div>
 
 		</div>
 	</div>
-	<div id="efficiency3" style="height:550px" class="back_grey" align="center">
-		<div  style="overflow:hidden;width:950px;">
+	<div id="efficiency3" style="height:550px" class="back_grey"
+		align="center">
+		<div style="overflow:hidden;width:950px;">
 			<div class="title">每日耗电趋势(kWh)</div>
-			<div id="energe3_">
-				
-			</div>
+			<div id="energe3_"></div>
 		</div>
 	</div>
 	<div id="efficiency4" style="height:510px;" align="center">
-		<div  style="overflow:hidden;width:950px;">
+		<div style="overflow:hidden;width:950px;">
 			<div class="title">逐时能耗趋势及占用状态</div>
-			
+
 		</div>
 	</div>
 	<div id="foot" align="center">

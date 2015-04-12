@@ -38,6 +38,11 @@ function set_head() {
 		var a = data.split(",");
 		$("#e11_2").html(getValue(a[3])+"%");
 		$("#e11_4").html(getValue(a[2])+"Lux");
+		$("#d0").html(getValue(a[10]+"°C"));
+		$("#d1").html(getValue(a[11]+"°C"));
+		$("#d2").html(getValue(a[12]+"°C"));
+		$("#d3").html(getValue(a[13]+"°C"));
+		$("#d4").html(getValue(a[14]+"°C"));
     });
 	query("ThirdPageMenu4P1M2", function(xml) {
 		var data = $(xml).find("string").text();
