@@ -442,15 +442,15 @@ function set_i5() {
 					}
 					var content = "";
 					if (n == 0) {
-						content = "功率因数0." + percent + " 优";
+						content = "功率因数" + parseInt(percent )/100 + " 优";
 					} else if (n == 1) {
-						content = "谐波畸变 " + percent + "% 优";
+						content = "谐波畸变 " + parseInt(percent*100)/100  + "% 优";
 					} else if (n == 2) {
-						content = "负荷 " + percent + "% 中";
+						content = "负荷 " + parseInt(percent*100)/100  + "% 中";
 					} else if (n == 3) {
-						content = "已用电量 " + percent + "% 预警";
+						content = "已用电量 " + parseInt(percent*100)/100  + "% 预警";
 					}
-					$(d).html(
+					$(d).html( 
 							"<img src=\"images/home/i5_" + picPointer
 									+ ".png\" alt=\"\">" + content);
 
