@@ -28,7 +28,7 @@ function set_head() {
 		data=data.replace(/;/g,",");
 		var a = data.split(",");
 		$("#e11_1").text(parseInt(getValue(a[18]))+"°C");
-		$("#e11_2").text(parseInt(getValue(a[4])));
+		$("#e11_2").text(parseInt(getValue(a[4]))+"");
     });
 	query("FourthPageMenu1P1M2", function(xml) {
 		var data = $(xml).find("string").text();

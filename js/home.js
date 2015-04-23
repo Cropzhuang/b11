@@ -346,7 +346,7 @@ function set_i2() {
 }
 
 function set_i4() {
-
+	
 	query("FirstPageP4", function(xml) {
 		var data = $(xml).find("string").text();
 		var a = data.split(";");

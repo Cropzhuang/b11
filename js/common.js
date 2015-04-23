@@ -69,7 +69,6 @@ function queryDate(action,start,end,callback){
 // var params;
 // if(start!=null&&start!="")
 var params={pStartTime:start,pEndTime:end};
-	
 	 $.ajax({
 	// url:"Service1.asmx/"+action,  
          url:"api/"+action+".xml",  
@@ -82,6 +81,22 @@ var params={pStartTime:start,pEndTime:end};
          success: callback
 	 });
 }
+function queryDateYear(action,start,end,interval,callback){
+	// var params;
+	// if(start!=null&&start!="")
+	var params={pStartTime:start,pEndTime:end,interval:interval};
+		 $.ajax({
+		// url:"Service1.asmx/"+action,  
+	         url:"api/"+action+".xml",  
+	         type:"post",
+	         dataType:"xml",  
+	         data:params,
+	         error: function(xml){  
+	           //  alert('Error loading XML document'+xml);  
+	         },  
+	         success: callback
+		 });
+	}
 function query(action,callback){
 	 $.ajax({
 	//url:"Service1.asmx/"+action,  

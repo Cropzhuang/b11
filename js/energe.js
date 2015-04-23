@@ -48,7 +48,7 @@ function set_e1_animation() {
 	var end = new Date();
 	var startString = setDateString(start);
 	var endString = setDateString(end);
-
+	queryDateYear("FirstPageP2EnergyData")
 	queryDate("FirstPageP2EnergyData", startString, endString, function(xml) {
 		var data = $(xml).find("string").text();
 		data = data.replace(/;/g, ",");

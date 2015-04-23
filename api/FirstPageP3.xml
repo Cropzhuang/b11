@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<string xmlns="http://tempuri.org/">alarm1:5,energy1:230.901000000013,temperatur1:22.5,humidity:37.2,PUE:1.52,UPS:60,repairStatus:1;alarm2:1,energy2:1.67000000000007,ocuppy2:1,temperatur2:0,co22:422.199982,MeetingModel:演讲模式,repairStatus:1;alarm3:5,energy3:2.40299999999999,ocuppy3:1,temperatur3:24,nextTime3:13:30,watchTimes:2,repairStatus:0;</string>
+<string xmlns="http://tempuri.org/">alarm1:5,energy1:236.672999999981,temperatur1:21.5,humidity:37.2,PUE:1.52,UPS:60,repairStatus:1,cleanStatus:1;alarm2:1,energy2:36.9919999999997,ocuppy2:1,temperatur2:20.5,co22:444.599976,MeetingModel:演讲模式,repairStatus:1,cleanStatus:1;</string>
