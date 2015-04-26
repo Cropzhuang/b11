@@ -234,7 +234,7 @@ function set_i2() {
 						break;
 					case 3:
 						energyPerPeople
-								.push([ num, floor(getValue(a[i])) * 100 ]);
+								.push([ num, floor(getValue(a[i])) ]);
 						break;
 					default:
 						break;

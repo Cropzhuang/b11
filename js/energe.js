@@ -3,7 +3,7 @@ $(function() {
 	set_e1_animation();
 	set_p1m2();
 	set_p1m3();
-	set_e2(42);
+	set_e2(30);
 	set_e4();
 	set_e5(30);
 	set_e6(30);
@@ -14,12 +14,41 @@ function set_p1m2() {
 		var data = $(xml).find("string").text();
 		data = data.replace(/;/g, ",");
 		var a = data.split(",");
+		var r0=new Array(5);var r1=new Array(5);var r2=new Array(5);
 		for ( var i = 0; i < 5; i++) {
-			$("#p2m2" + i).text(
-					parseInt(a[3 * i + 2].split(":")[1] * 100) / 100 + "/"
-							+ parseInt(a[3 * i + 1].split(":")[1] * 100) / 100
-							+ "/" + parseInt(a[3 * i].split(":")[1] * 100)
-							/ 100 + "Kwh");
+			r0[i]=parseInt(a[3 * i + 2].split(":")[1] * 100) / 100 ;
+			r1[i]=parseInt(a[3 * i + 1].split(":")[1] * 100) / 100 ;
+			r2[i]=parseInt(a[3 * i ].split(":")[1] * 100) / 100 ;
+		}
+		var max0=Math.max.apply(null, r0);
+		var min0=Math.min.apply(null, r0);
+		var max1=Math.max.apply(null, r1);
+		var min1=Math.min.apply(null,r1);
+		var max2=Math.max.apply(null, r2);
+		var min2=Math.min.apply(null,r2);
+		for ( var i = 0; i < 5; i++) {
+			var i0=r0[i];
+			var i1=r1[i];
+			var i2=r2[i];
+			if(i0==max0){
+				i0="<span class='red'>"+i0+"</span>";
+			}else if(i0==min0){
+				i0="<span class='green'>"+i0+"</span>";
+			}
+			if(i1==max1){
+				i1="<span class='red'>"+i1+"</span>";
+			}else if(i1==min1){
+				i1="<span class='green'>"+i1+"</span>";
+			}
+			if(i2==max2){
+				i2="<span class='red'>"+i2+"</span>";
+			}else if(i2==min2){
+				i2="<span class='green'>"+i2+"</span>";
+			}
+			$("#p2m2" + i).html(i0
+					 + "/"+i1
+							
+							+ "/" +i2 + "Kwh");
 
 		}
 
@@ -31,7 +60,9 @@ function set_p1m3() {
 		data = data.replace(/;/g, ",");
 		var a = data.split(",");
 		var nowE = 0;
+		
 		for ( var i = 0; i < 5; i++) {
+			
 			$("#p2m3" + i).text(
 					parseInt(a[2 * i].split(":")[1] * 100) / 100 + "/"
 							+ parseInt(a[2 * i + 1].split(":")[1] * 100) / 100
@@ -95,12 +126,26 @@ function update() {
 	setTimeout(update, 300);
 }
 function set_e2(dayCount) {
+	if(dayCount<10){
+		$("#energe2").find(".month").removeClass("white");
+		$("#energe2").find(".year").removeClass("white");
+		$("#energe2").find(".week").addClass("white");
+	}else if(dayCount<40){
+		$("#energe2").find(".week").removeClass("white");
+		$("#energe2").find(".year").removeClass("white");
+		$("#energe2").find(".month").addClass("white");
+	}else if(dayCount<400){
+		$("#energe2").find(".week").removeClass("white");
+		$("#energe2").find(".month").removeClass("white");
+		$("#energe2").find(".year").addClass("white");
+	}
 	var start = dateBefore(dayCount * 24 * 3600 * 1000);
+	var isInterval=dayCount<100?0:1;
 	var end = new Date();
 	var startString = setDateString(start);
 	var endString = setDateString(end);
 	var eF1 = new Array(), eF2 = new Array(), eF3 = new Array(), eF4 = new Array(), eF5 = new Array(), x_ticks = new Array();
-	queryDate("SecondPageP2", startString, endString,
+	queryDateYear("SecondPageP2", startString, endString,isInterval,
 			function(xml) {
 				var data = $(xml).find("string").text();
 				data = data.replace(/;/g, ",");
@@ -132,9 +177,17 @@ function set_e2(dayCount) {
 					}
 				}
 				var ticks = new Array();
+				
+				if(isInterval==0)
 				for ( var i = 0; i < dayCount; i++) {
 					var day = dateBefore((dayCount - i) * 24 * 3600 * 1000);
 					ticks.push([ i, day.getDate() ]);
+				}
+				else{
+					for ( var i = 0; i < 12; i++) {
+						var day = dateBefore((12 - i)*30 * 24 * 3600 * 1000);
+						ticks.push([ i, day.getMonth()+1 ]);
+					}
 				}
 				var lines_e2 = [];
 				var e2_stroke = [ "#a6f34b", "#fc6565", "#73d5ff", "#48ae5b",
@@ -147,6 +200,7 @@ function set_e2(dayCount) {
 					};
 				}
 				var options = {
+						colors:e2_stroke,
 					series : {
 						shadowSize : 0
 					}, // drawing is faster without shadows
@@ -325,6 +379,19 @@ function set_e4() {
 }
 
 function set_e5(dayCount) {
+	if(dayCount<10){
+		$("#energe5").find(".month").removeClass("white");
+		$("#energe5").find(".year").removeClass("white");
+		$("#energe5").find(".week").addClass("white");
+	}else if(dayCount<40){
+		$("#energe5").find(".week").removeClass("white");
+		$("#energe5").find(".year").removeClass("white");
+		$("#energe5").find(".month").addClass("white");
+	}else if(dayCount<400){
+		$("#energe5").find(".week").removeClass("white");
+		$("#energe5").find(".month").removeClass("white");
+		$("#energe5").find(".year").addClass("white");
+	}
 	var start = dateBefore(dayCount * 24 * 3600 * 1000);
 	var end = new Date();
 	var startString = setDateString(start);

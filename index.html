@@ -42,17 +42,18 @@
 			var s = $(xml).find("string").text();
 			var a = s.split(";");
 			var k = 0;
+			var co="";
+			var co2="";
 			for ( var i = 0; i < a.length; i++) {
 				var d = a[i].split(",");
 				for ( var j = 0; j < d.length; j++) {
 					switch (k) {
 					case 0:
-					case 7:
-					case 14:
+					case 8:
+					case 16:
 						if (floor(getValue(d[j])) > 9)
 							$("#i3_" + k)
-									.html(
-											"<div class='orange_l'>"
+									.html("<div class='orange_l'>"
 													+ round2(getValue(d[j]))
 													+ "</div>");
 						else
@@ -63,21 +64,33 @@
 													+ "</div>");
 
 						break;
+						case 6:
+						  co=getValue(d[j])==1?"<img class='d' title='repair' src='images/repair.jpg' style='display: block;float:left'>":"";
+						  break;
+						case 7:
+							co+= getValue(d[j])==1?"<img class='d' title='clean' src='images/clean.jpg' style='display: block;float:left'>":"";
+							break;
+							case 14:
+				co2= getValue(d[j])==1?"<img class='d' title='repair' src='images/repair.jpg' style='display: block;float:left'>":"";
+						  break;
+						case 15:
+			co2+= getValue(d[j])==1?"<img class='d' title='clean' src='images/clean.jpg' style='display: block;float:left'>":"";
+							break;
 					case 2:
-					case 10:
-					case 17:
+					case 11:
+					case 19:
 						$("#i3_" + k).text(round2(getValue(d[j])) + "°C");
 						break;
 					case 3:
 						$("#i3_" + k).text(round2(getValue(d[j])) + "%");
 						break;
-					case 11:
+					case 12:
 						$("#i3_" + k).text(round2(getValue(d[j])) + "ppm");
 						break;
-					case 12:
+					case 13:
 						$("#i3_" + k).text(getValue(d[j]));
 						break;
-					case 18:
+					case 20:
 						$("#i3_" + k).text(getValue(d[j]));
 						break;
 					default:
@@ -85,8 +98,10 @@
 						break;
 					}
 					k += 1;
-				}
+				} 
 			}
+			$("#i3_6").html(co);
+			$("#i3_14").html(co2);
 		});
 
 		//p4
@@ -220,57 +235,57 @@
 					<td class="l">报警</td>
 					<td id="i3_0" class="r"></td>
 					<td class="l">报警</td>
-					<td id="i3_7" class="r"></td>
+					<td id="i3_8" class="r"></td>
 					<td class="l">报警</td>
-					<td id="i3_14" class="r"></td>
+					<td id="i3_16" class="r"></td>
 				</tr>
 				<tr>
 					<td class="l">能耗</td>
 					<td id="i3_1" class="r"></td>
 					<td class="l">能耗</td>
-					<td id="i3_8" class="r"></td>
+					<td id="i3_9" class="r"></td>
 					<td class="l">能耗</td>
-					<td id="i3_15" class="r"></td>
+					<td id="i3_17" class="r"></td>
 				</tr>
 				<tr>
 					<td class="l">温度</td>
 					<td id="i3_2" class="r"></td>
 					<td class="l">占用状态</td>
-					<td id="i3_9" class="r"></td>
+					<td id="i3_10" class="r"></td>
 					<td class="l">占用状态</td>
-					<td id="i3_16" class="r"></td>
+					<td id="i3_18" class="r"></td>
 				</tr>
 				<tr>
 					<td class="l">湿度</td>
 					<td id="i3_3" class="r"></td>
 					<td class="l">温度</td>
-					<td id="i3_10" class="r"></td>
+					<td id="i3_11" class="r"></td>
 					<td class="l">温度</td>
-					<td id="i3_17" class="r"></td>
+					<td id="i3_19" class="r"></td>
 				</tr>
 				<tr>
 					<td class="l">PUE</td>
 					<td id="i3_4" class="r"></td>
 					<td class="l">二氧化碳浓度</td>
-					<td id="i3_11" class="r"></td>
+					<td id="i3_12" class="r"></td>
 					<td class="l">下次参观时间</td>
-					<td id="i3_18" class="r"></td>
+					<td id="i3_20" class="r"></td>
 				</tr>
 				<tr>
 					<td class="l">UPS负荷</td>
 					<td id="i3_5" class="r"></td>
 					<td class="l">会议场景模式</td>
-					<td id="i3_12" class="r"></td>
+					<td id="i3_13" class="r"></td>
 					<td class="l">当日参观次数</td>
-					<td id="i3_19" class="r"></td>
+					<td id="i3_21" class="r"></td>
 				</tr>
 				<tr>
 					<td class="l">状态</td>
 					<td id="i3_6" class="r"></td>
 					<td class="l">状态</td>
-					<td id="i3_13" class="r"></td>
+					<td id="i3_14" class="r"></td>
 					<td class="l">状态</td>
-					<td id="i3_20" class="r"></td>
+					<td id="i3_22" class="r"></td>
 				</tr>
 			</table>
 		</div>

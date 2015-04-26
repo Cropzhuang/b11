@@ -187,7 +187,9 @@ ul {
 .back_white {
 	background: #ffffff none repeat scroll 0 0;
 }
-
+.green{
+	color:#17e358;
+}
 .back_grey {
 	background: #F2F2F2 none repeat scroll 0 0;
 }
@@ -376,6 +378,17 @@ ul {
 	float: left;
 	width: 235px;
 	color: white;
+}
+.title span{
+	padding :0 10px;
+	cursor:pointer;
+	color:#a7a7a7;
+}
+.title white{
+	color:white;
+}
+.title span:hover{
+	color:#ffffff;
 }
 
 #i5_pie {
