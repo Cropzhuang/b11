@@ -70,11 +70,11 @@ function queryDate(action,start,end,callback){
 // if(start!=null&&start!="")
 var params={pStartTime:start,pEndTime:end};
 	 $.ajax({
-	 url:"Service1.asmx/"+action,  
-//         url:"api/"+action+".xml",  
+//	 url:"Service1.asmx/"+action,  
+         url:"api/"+action+".xml",  
          type:"post",
          dataType:"xml",  
-         data:params,
+         data:params, 
          error: function(xml){  
            //  alert('Error loading XML document'+xml);  
          },  
@@ -86,8 +86,8 @@ function queryDateYear(action,start,end,interval,callback){
 	// if(start!=null&&start!="")
 	var params={pStartTime:start,pEndTime:end,interval:interval};
 		 $.ajax({
-		 url:"Service1.asmx/"+action,  
-//	         url:"api/"+action+".xml",  
+//		 url:"Service1.asmx/"+action,  
+	         url:"api/"+action+".xml",  
 	         type:"post",
 	         dataType:"xml",  
 	         data:params,
@@ -99,8 +99,8 @@ function queryDateYear(action,start,end,interval,callback){
 	}
 function query(action,callback){
 	 $.ajax({
-	url:"Service1.asmx/"+action,  
-//        url:"api/"+action+".xml",  
+//	url:"Service1.asmx/"+action,  
+        url:"api/"+action+".xml",  
          type:"post",  
          dataType:"xml",  
          error: function(xml){  

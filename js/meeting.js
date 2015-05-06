@@ -27,7 +27,7 @@ function set_head() {
 		var data = $(xml).find("string").text();
 		data=data.replace(/;/g,",");
 		var a = data.split(",");
-		$("#e11_1").text(getValue(a[7])+"°C");
+		$("#e11_1").text(getValue(a[7])+"℃");
 		$("#e11_2").text(getValue(a[0])+"%");
 		$("#e11_3").text(parseInt(getValue(a[6])));
 		$("#e11_4").text(getValue(a[9])+"Lux");

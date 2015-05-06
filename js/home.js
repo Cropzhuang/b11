@@ -400,12 +400,13 @@ function set_i5() {
 				dataAll.push(a[i].split(",")[j]);
 		}
 		// i5 pie
-		var pieData = [ {
-			label : "",
-			data : 100 - floor(getValue(dataAll[0]))
-		}, {
+		var pieData = [ 
+		{
 			label : "",
 			data : floor(getValue(dataAll[0]))
+		},{
+			label : "",
+			data : 100 - floor(getValue(dataAll[0]))
 		} ];
 		$.plot("#i5_pie", pieData, {
 			series : {

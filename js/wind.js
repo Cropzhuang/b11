@@ -3,6 +3,16 @@ $(function() {
 	//set_e3();
 	set_e2(30);
 	set_e3();
+	$("#dwind").mouseenter(function(){
+		$("#dwind_alert").show();
+	}).mouseleave(function(){
+		$("#dwind_alert").hide();
+	});
+	$("#dhot").mouseenter(function(){
+		$("#dhot_alert").show();
+	}).mouseleave(function(){
+		$("#dhot_alert").hide();
+	});
 });
 
 function set_head() {
@@ -27,8 +37,41 @@ function set_head() {
 		var data = $(xml).find("string").text();
 		data=data.replace(/;/g,",");
 		var a = data.split(",");
-		$("#e11_1").text(parseInt(getValue(a[18]))+"°C");
-		$("#e11_2").text(parseInt(getValue(a[4]))+"");
+		$("#e11_1").text(parseInt(getValue(a[18]))+"℃");
+		$("#e11_2").html(parseInt(getValue(a[4]))+"<br/>m³");
+		
+		$("#d0").text(getValue(a[12]));
+		$("#d1").text(getValue(a[10]));
+		$("#d2").text(getValue(a[11]));
+		$("#d3").text(getValue(a[16])+"Hrs");
+		$("#d4").text(getValue(a[19])+"℃");
+		$("#d5").text(parseInt(getValue(a[15]))+"%");
+		$("#d6").text(getValue(a[21]));
+		$("#d7").text(getValue(a[13]));
+		var runmode="Normal";
+		switch (getValue(a[14])){
+			case 0:
+				runmode="Normal";
+				break;
+			case 1:
+				runmode="Morning";
+				break;
+			case 2:
+				runmode="Eco";
+				break;
+			case 3:
+				runmode="Remote";
+				break;
+			default :
+				runmode="Normal";
+				break;
+		}
+		$("#d8").text(runmode);
+		$("#d9").text(getValue(a[20])+"Hrs");
+		$("#d10").text(getValue(a[19])+"℃");
+		$("#d11").text(getValue(a[17]));
+		$("#d12").text(getValue(a[0]));
+		$("#d13").text(getValue(a[1]));
     });
 	query("FourthPageMenu1P1M2", function(xml) {
 		var data = $(xml).find("string").text();

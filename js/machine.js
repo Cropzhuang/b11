@@ -55,7 +55,7 @@ function set_bg(){
 			case 14:
 			case 15:
 			case 16:
-				value+="°C";
+				value+="℃";
 				break;
 			case 17:
 				value+="KW";
@@ -79,10 +79,10 @@ function set_bg(){
 				value+="立方米/时";
 				break;
 			case 24:
-				value+="°C";
+				value+="℃";
 				break;
 			case 25:
-				value+="°C";
+				value+="℃";
 				break;
 			case 26:
 				value=	getValue(a[i]);

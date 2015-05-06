@@ -159,18 +159,18 @@ function set_e2(dayCount) {
 						continue;
 					case 1:
 						if (i < (a.length - 1) / 5)
-							eF1.push([ num, floor(getValue(a[i])) ]);
+							eF2.push([ num, floor(getValue(a[i])) ]);
 						else if (i >= (a.length - 1) / 5
 								&& i < (a.length - 1) * 2 / 5)
-							eF2.push([ num, floor(getValue(a[i])) ]);
+							eF3.push([ num, floor(getValue(a[i])) ]);
 						else if (i >= (a.length - 1) * 2 / 5
 								&& i < (a.length - 1) * 3 / 5)
-							eF3.push([ num, floor(getValue(a[i])) ]);
+							eF4.push([ num, floor(getValue(a[i])) ]);
 						else if (i >= (a.length - 1) * 3 / 5
 								&& i < (a.length - 1) * 4 / 5)
-							eF4.push([ num, floor(getValue(a[i])) ]);
-						else if (i < a.length - 1)
 							eF5.push([ num, floor(getValue(a[i])) ]);
+						else if (i < a.length - 1)
+							eF1.push([ num, floor(getValue(a[i])) ]);
 						break;
 					default:
 						break;
