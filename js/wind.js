@@ -37,17 +37,18 @@ function set_head() {
 		var data = $(xml).find("string").text();
 		data=data.replace(/;/g,",");
 		var a = data.split(",");
+		$("#e11_0").text(parseInt(getValue(a[8])*100)/100); 
 		$("#e11_1").text(parseInt(getValue(a[18]))+"℃");
 		$("#e11_2").html(parseInt(getValue(a[4]))+"<br/>m³");
 		
-		$("#d0").text(getValue(a[12]));
-		$("#d1").text(getValue(a[10]));
-		$("#d2").text(getValue(a[11]));
-		$("#d3").text(getValue(a[16])+"Hrs");
+		$("#d0").text(getValue(a[12])==1?"开启":"关闭");
+		$("#d1").text(getValue(a[10])==0?"正常":"报警");
+		$("#d2").text(getValue(a[11])==1?"手动":"自动");
+		$("#d3").text(getValue(a[16])+"Pa");
 		$("#d4").text(getValue(a[19])+"℃");
 		$("#d5").text(parseInt(getValue(a[15]))+"%");
-		$("#d6").text(getValue(a[21]));
-		$("#d7").text(getValue(a[13]));
+		$("#d6").text(getValue(a[21])+"%");
+		$("#d7").text(getValue(a[13])==0?"正常":"报警");
 		var runmode="Normal";
 		switch (getValue(a[14])){
 			case 0:
@@ -69,7 +70,7 @@ function set_head() {
 		$("#d8").text(runmode);
 		$("#d9").text(getValue(a[20])+"Hrs");
 		$("#d10").text(getValue(a[19])+"℃");
-		$("#d11").text(getValue(a[17]));
+		$("#d11").text(getValue(a[17])+"Pa");
 		$("#d12").text(getValue(a[0]));
 		$("#d13").text(getValue(a[1]));
     });
