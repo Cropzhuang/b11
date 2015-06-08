@@ -27,7 +27,7 @@
 			$("#e1_"+i).text(floor(getValue(a[i])));
 			}
 			$("#e1_"+4).text(getValue(a[4]).substring(0, 4));
-			
+			$("#nowEnergy").text(getValue(a[5]).replace(";",""));
 		});
 		
 		
@@ -129,7 +129,7 @@ margin:10px 0px;
 			</div>
 			<div id="energe1_body" class="e1_b1">
 					<div class="l" >
-					<div id="e1_b1_t" class="e1_element"><img  src="images/energe/5f.png" alt=""><span id="p2m34">-/-Kwh</span><br/><span class="brown">实时功耗/累计功耗</span></div>
+					<div id="e1_b1_t" class="e1_element"><img  src="images/energe/5f.png" alt=""><span id="p2m34">-/-Kwh</span><br/><span class="brown">实时功率/累计功耗</span></div>
 					<div class="r">
 					<span id="p2m24">-/-/-Kwh</span><br/>照明/空调/插座
 					</div>
@@ -137,7 +137,7 @@ margin:10px 0px;
 			</div>
 			<div id="energe2_body" class="e1_b1">
 					<div class="l" >
-					<div id="e1_b1_t" class="e1_element"><img  src="images/energe/4f.png" alt=""><span id="p2m33"></span><br/><span class="brown">实时功耗/累计功耗</span></div>
+					<div id="e1_b1_t" class="e1_element"><img  src="images/energe/4f.png" alt=""><span id="p2m33"></span><br/><span class="brown">实时功率/累计功耗</span></div>
 					<div class="r">
 					<span id="p2m23">-/-/-Kwh</span><br/>照明/空调/插座
 					</div>
@@ -145,7 +145,7 @@ margin:10px 0px;
 			</div>
 			<div id="energe3_body" class="e1_b1">
 					<div class="l" >
-					<div id="e1_b1_t" class="e1_element"><img  src="images/energe/3f.png" alt=""><span id="p2m32">-/-Kwh</span><br/><span class="brown">实时功耗/累计功耗</span></div>
+					<div id="e1_b1_t" class="e1_element"><img  src="images/energe/3f.png" alt=""><span id="p2m32">-/-Kwh</span><br/><span class="brown">实时功率/累计功耗</span></div>
 					<div class="r">
 					<span id="p2m22">-/-/-Kwh</span><br/>照明/空调/插座
 					</div>
@@ -153,7 +153,7 @@ margin:10px 0px;
 			</div>
 			<div id="energe4_body" class="e1_b1">
 					<div class="l" >
-					<div id="e1_b1_t" class="e1_element"><img  src="images/energe/2f.png" alt=""><span id="p2m31">-/-Kwh</span><br/><span class="brown">实时功耗/累计功耗</span></div>
+					<div id="e1_b1_t" class="e1_element"><img  src="images/energe/2f.png" alt=""><span id="p2m31">-/-Kwh</span><br/><span class="brown">实时功率/累计功耗</span></div>
 					<div class="r">
 					<span id="p2m21">-/-/-Kwh</span><br/>照明/空调/插座
 					</div>
@@ -161,7 +161,7 @@ margin:10px 0px;
 			</div>
 			<div id="energe5_body" class="e1_b1">
 					<div class="l" >
-					<div id="e1_b1_t" class="e1_element"><img  src="images/energe/1f.png" alt=""><span id="p2m30">-/-Kwh</span><br/><span class="brown">实时功耗/累计功耗</span></div>
+					<div id="e1_b1_t" class="e1_element"><img  src="images/energe/1f.png" alt=""><span id="p2m30">-/-Kwh</span><br/><span class="brown">实时功率/累计功耗</span></div>
 					<div class="r">
 					<span id="p2m20">-/-/-Kwh</span><br/>照明/空调/插座
 					</div>
@@ -182,7 +182,7 @@ margin:10px 0px;
 	</div>
 	<div id="energe3" style="padding-bottom:54px;" class="back_grey" align="center">
 		<div  style="overflow:hidden;width:950px;">
-			<div class="title" >类比 <span style="margin-left:700px" class="white">Month</span><span >Year</span></div>
+			<div class="title" >类比 <span style="margin-left:700px" class="white">月</span><span >年</span></div>
 			<img src="images/energe/e3_head.jpg">
 			<div id="energe3_" style="background:#ffffff;float:left">
 			<div id="radar0">

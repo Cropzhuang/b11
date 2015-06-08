@@ -210,7 +210,6 @@ function set_i2() {
 	var startString = setDateString(start);
 	var endString = setDateString(end);
 	var realEnergy = new Array(), planEnergy = new Array(), energyPerPeople = new Array(), x_ticks = new Array();
-
 	queryDate(
 			"FirstPageP2EnergyData",
 			startString,
@@ -219,9 +218,11 @@ function set_i2() {
 				var data = $(xml).find("string").text();
 				data = data.replace(/;/g, ",");
 				var a = data.split(",");
+				$("#index2_h2").html("<div>当前天气：<span id=\"i2_1\">晴</span> 气温：<span id=\"i2_2\">21</span>°C 相对湿度：<span id=\"i2_3\">70%</span> PM2.5：<span id=\"i2_4\">"+floor(getValue(a[a.length-2]))+"</span><br>"
+					+"当前楼内人员：<span id=\"i2_5\">"+floor(getValue(a[a.length-3]))+"</span> 已消耗当日计划能源：<span id=\"i2_6\">62%</span></div>")
 				for ( var i = 0; i < a.length - 1; i++) {
 					var num = parseInt(i / 4) * 3;
-					var dateNew = dateBefore((12 - num) * 24 * 3600 * 1000);
+				//	var dateNew = dateBefore((12 - num) * 24 * 3600 * 1000);
 					x_ticks.push(num);
 					switch (i % 4) {
 					case 0:
@@ -483,7 +484,7 @@ function set_i6() {
 		}
 		$("#index6 .r").each(function(n, d) {
 			var value = dataAll[n].split(":")[1];
-			switch (n % 4) {
+			switch (n % 5) {
 			case 0:
 				if (value < 10)
 					$(this).html("<div class='orange_s'>" + value + "</div>");
@@ -500,8 +501,11 @@ function set_i6() {
 			case 2:
 				$(this).text(floor(value) + "%");
 				break;
+			case 3:
+				$(this).text(floor(value) + "%");
+				break;
 			default:
-				$(this).text(floor(value));
+				$(this).text(floor(value)==0?"正常":"报警");
 			}
 		});
 	});

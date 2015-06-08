@@ -46,10 +46,10 @@ function set_head() {
     });
 	query("ThirdPageMenu4P1M2", function(xml) {
 		var data = $(xml).find("string").text();
-		data=data.replace(/;/g,",");
+		data=data.replace(/;/g,","); 
 		var a = data.split(",");
 		var content="";
-		for ( var i = 0; i < (a.length-1); i++) {
+		for ( var i = 0; i < (a.length-2); i++) {
 			content+=floor(getValue(a[i]))+"kWh<br/>";
 		}
 		$(".e2_content").html(content);

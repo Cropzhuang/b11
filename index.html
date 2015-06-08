@@ -38,71 +38,95 @@
 		});
 
 		//p3
-		query("FirstPageP3", function(xml) {
-			var s = $(xml).find("string").text();
-			var a = s.split(";");
-			var k = 0;
-			var co="";
-			var co2="";
-			for ( var i = 0; i < a.length; i++) {
-				var d = a[i].split(",");
-				for ( var j = 0; j < d.length; j++) {
-					switch (k) {
-					case 0:
-					case 8:
-					case 16:
-						if (floor(getValue(d[j])) > 9)
-							$("#i3_" + k)
-									.html("<div class='orange_l'>"
+		query(
+				"FirstPageP3",
+				function(xml) {
+					var s = $(xml).find("string").text();
+					var a = s.split(";");
+					var k = 0;
+					var co = "";
+					var co2 = "";
+					var co3 = "";
+					for ( var i = 0; i < a.length; i++) {
+						var d = a[i].split(",");
+						for ( var j = 0; j < d.length; j++) {
+							switch (k) {
+							case 0:
+							case 8:
+							case 16:
+								if (floor(getValue(d[j])) > 9)
+									$("#i3_" + k).html(
+											"<div class='orange_l'>"
 													+ round2(getValue(d[j]))
 													+ "</div>");
-						else
-							$("#i3_" + k)
-									.html(
+								else
+									$("#i3_" + k).html(
 											"<div class='orange_s'>"
 													+ round2(getValue(d[j]))
 													+ "</div>");
 
-						break;
-						case 6:
-						  co=getValue(d[j])==1?"<img class='d' title='repair' src='images/repair.jpg' style='display: block;float:left'>":"";
-						  break;
-						case 7:
-							co+= getValue(d[j])==1?"<img class='d' title='clean' src='images/clean.jpg' style='display: block;float:left'>":"";
-							break;
+								break;
+							case 6:
+								co = getValue(d[j]) == 1 ? "<img class='d' title='repair' src='images/repair.jpg' style='display: block;float:left'>"
+										: "";
+								break;
+							case 7:
+								co += getValue(d[j]) == 1 ? "<img class='d' title='clean' src='images/clean.jpg' style='display: block;float:left'>"
+										: "";
+								break;
 							case 14:
-				co2= getValue(d[j])==1?"<img class='d' title='repair' src='images/repair.jpg' style='display: block;float:left'>":"";
-						  break;
-						case 15:
-			co2+= getValue(d[j])==1?"<img class='d' title='clean' src='images/clean.jpg' style='display: block;float:left'>":"";
-							break;
-					case 2:
-					case 11:
-					case 19:
-						$("#i3_" + k).text(round2(getValue(d[j])) + "°C");
-						break;
-					case 3:
-						$("#i3_" + k).text(round2(getValue(d[j])) + "%");
-						break;
-					case 12:
-						$("#i3_" + k).text(round2(getValue(d[j])) + "ppm");
-						break;
-					case 13:
-						$("#i3_" + k).text(getValue(d[j]));
-						break;
-					case 20:
-						$("#i3_" + k).text(getValue(d[j]));
-						break;
-					default:
-						$("#i3_" + k).text(round2(getValue(d[j])));
-						break;
+								co2 = getValue(d[j]) == 1 ? "<img class='d' title='repair' src='images/repair.jpg' style='display: block;float:left'>"
+										: "";
+								break;
+							case 15:
+								co2 += getValue(d[j]) == 1 ? "<img class='d' title='clean' src='images/clean.jpg' style='display: block;float:left'>"
+										: "";
+								break;
+							case 22:
+								co3 = getValue(d[j]) == 1 ? "<img class='d' title='repair' src='images/repair.jpg' style='display: block;float:left'>"
+										: "";
+								break;
+							case 23:
+								co3 += getValue(d[j]) == 1 ? "<img class='d' title='clean' src='images/clean.jpg' style='display: block;float:left'>"
+										: "";
+								break;
+							case 2:
+							case 11:
+							case 19:
+								$("#i3_" + k).text(
+										round2(getValue(d[j])) + "°C");
+								break;
+							case 3:
+								$("#i3_" + k)
+										.text(round2(getValue(d[j])) + "%");
+								break;
+							case 10:
+							case 18:
+								$("#i3_" + k).text(
+										round2(getValue(d[j])) == 0 ? "占用"
+												: "非占用");
+								break;
+							case 12:
+								$("#i3_" + k).text(
+										round2(getValue(d[j])) + "ppm");
+								break;
+							case 13:
+								$("#i3_" + k).text(getValue(d[j]));
+								break;
+							case 20:
+								$("#i3_" + k).text(getValue(d[j]));
+								break;
+							default:
+								$("#i3_" + k).text(round2(getValue(d[j])));
+								break;
+							}
+							k += 1;
+						}
 					}
-					k += 1;
-				} 
-			}
-			$("#i3_6").html(co);
-			$("#i3_14").html(co2);
-		});
+					$("#i3_6").html(co);
+					$("#i3_14").html(co2);
+					$("#i3_22").html(co3);
+				});
 
 		//p4
 
@@ -224,12 +248,9 @@
 			<div class="title">关键区域</div>
 			<table id="index3_" class="table">
 				<tr id="index3_head">
-					<th colspan=2><img src="images/i3_h1.jpg" alt="">
-					</th>
-					<th colspan=2><img src="images/i3_h2.jpg" alt="">
-					</th>
-					<th colspan=2><img src="images/i3_h3.jpg" alt="">
-					</th>
+					<th colspan=2><img src="images/i3_h1.jpg" alt=""></th>
+					<th colspan=2><img src="images/i3_h2.jpg" alt=""></th>
+					<th colspan=2><img src="images/i3_h3.jpg" alt=""></th>
 				</tr>
 				<tr>
 					<td class="l">报警</td>
@@ -310,7 +331,9 @@
 					<td class="d"></td>
 					<td class="d"></td>
 					<td class="d"></td>
-					<td ><img class="d" title="repair" src="images/repair.jpg"><img class="d" title="clean" src="images/clean.jpg"></td>
+					<td><img class="d" title="repair" src="images/repair.jpg"><img
+						class="d" title="clean" src="images/clean.jpg">
+					</td>
 				</tr>
 				<tr>
 					<td>2F</td>
@@ -319,7 +342,9 @@
 					<td class="d"></td>
 					<td class="d"></td>
 					<td class="d"></td>
-					<td ><img class="d" title="repair" src="images/repair.jpg"><img class="d" title="clean" src="images/clean.jpg"></td>
+					<td><img class="d" title="repair" src="images/repair.jpg"><img
+						class="d" title="clean" src="images/clean.jpg">
+					</td>
 				</tr>
 				<tr>
 					<td>3F</td>
@@ -328,7 +353,9 @@
 					<td class="d"></td>
 					<td class="d"></td>
 					<td class="d"></td>
-					<td><img class="d" title="repair" src="images/repair.jpg"><img class="d" title="clean" src="images/clean.jpg"></td>
+					<td><img class="d" title="repair" src="images/repair.jpg"><img
+						class="d" title="clean" src="images/clean.jpg">
+					</td>
 				</tr>
 				<tr>
 					<td>4F</td>
@@ -337,7 +364,9 @@
 					<td class="d"></td>
 					<td class="d"></td>
 					<td class="d"></td>
-					<td ><img class="d" title="repair" src="images/repair.jpg"><img class="d" title="clean" src="images/clean.jpg"></td>
+					<td><img class="d" title="repair" src="images/repair.jpg"><img
+						class="d" title="clean" src="images/clean.jpg">
+					</td>
 				</tr>
 				<tr>
 					<td>5F</td>
@@ -346,7 +375,9 @@
 					<td class="d"></td>
 					<td class="d"></td>
 					<td class="d"></td>
-					<td ><img class="d" title="repair" src="images/repair.jpg"><img class="d" title="clean" src="images/clean.jpg"></td>
+					<td><img class="d" title="repair" src="images/repair.jpg"><img
+						class="d" title="clean" src="images/clean.jpg">
+					</td>
 				</tr>
 			</table>
 		</div>
@@ -395,38 +426,42 @@
 			<div class="i6_c">
 				<div class="i6_title l">新风系统</div>
 				<div class="r" id="i6_0">
-					<div class="orange_s">2</div>
+					<div class="orange_s">-</div>
 				</div>
-				<div class="r" id="i6_1">2340kWh</div>
-				<div class="r" id="i6_2">60%</div>
+				<div class="r" id="i6_1">-</div>
+				<div class="r" id="i6_2">-</div>
 				<div class="r" id="i6_3"></div>
+				<div style="display:none" class="r" id="i6_4"></div>
 			</div>
 			<div class="i6_c">
 				<div class="i6_title l">给排水系统</div>
-				<div class="r" id="i6_4">
-					<div class="orange_s">2</div>
+				<div class="r" id="i6_5">
+					<div class="orange_s">-</div>
 				</div>
-				<div class="r" id="i6_5">2340kWh</div>
-				<div class="r" id="i6_6">60%</div>
-				<div class="r" id="i6_7">正常</div>
+				<div class="r" id="i6_6">-</div>
+				<div class="r" id="i6_7">-</div>
+				<div class="r" id="i6_8">-</div>
+				<div style="display:none" class="r" id="i6_9"></div>
 			</div>
 			<div class="i6_c">
 				<div class="i6_title l">照明系统</div>
-				<div class="r" id="i6_8">
-					<div class="orange_s">2</div>
+				<div class="r" id="i6_10">
+					<div class="orange_s">-</div>
 				</div>
-				<div class="r" id="i6_9">2340kWh</div>
-				<div class="r" id="i6_10">60%</div>
-				<div class="r" id="i6_11">正常</div>
+				<div class="r" id="i6_11">-</div>
+				<div class="r" id="i6_12">-</div>
+				<div class="r" id="i6_13">-</div>
+				<div style="display:none" class="r" id="i6_14"></div>
 			</div>
 			<div class="i6_c">
 				<div class="i6_title l">电梯系统</div>
-				<div class="r" id="i6_12">
-					<div class="orange_l">25</div>
+				<div class="r" id="i6_15">
+					<div class="orange_l">-</div>
 				</div>
-				<div class="r" id="i6_13">2340kWh</div>
-				<div class="r" id="i6_14">60%</div>
-				<div class="r" id="i6_15">正常</div>
+				<div class="r" id="i6_16">-</div>
+				<div class="r" id="i6_17">-</div>
+				<div class="r" id="i6_18">-</div>
+				<div style="display:none" class="r" id="i6_19"></div>
 			</div>
 
 		</div>

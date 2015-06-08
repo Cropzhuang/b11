@@ -69,7 +69,7 @@ function set_p1m3() {
 							+ "Kwh");
 			nowE += parseInt(a[2 * i].split(":")[1] * 100);
 		}
-		$("#nowEnergy").text(nowE / 100);
+		//$("#nowEnergy").text(nowE / 100);
 	});
 
 }
@@ -79,7 +79,7 @@ function set_e1_animation() {
 	var end = new Date();
 	var startString = setDateString(start);
 	var endString = setDateString(end);
-	queryDateYear("FirstPageP2EnergyData")
+	queryDateYear("FirstPageP2EnergyData");
 	queryDate("FirstPageP2EnergyData", startString, endString, function(xml) {
 		var data = $(xml).find("string").text();
 		data = data.replace(/;/g, ",");

@@ -79,7 +79,7 @@ function set_head() {
 		data=data.replace(/;/g,",");
 		var a = data.split(",");
 		var content="";
-		for ( var i = 0; i < (a.length-1); i++) {
+		for ( var i = 0; i < (a.length-2); i++) {
 			content+=floor(getValue(a[i]))+"kWh<br/>";
 		}
 		$(".e2_content").html(content);
@@ -158,8 +158,8 @@ function set_e3() {
 				e1.push([x,getValue(a[i])]);
 				break;
 			case 2:
-				e2.push([x,getValue(a[i])]);
-				break;
+				e2.push([x,getValue(a[i])*1000]);
+				break; 
 				default:break;
 			}
 		}

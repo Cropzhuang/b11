@@ -37,7 +37,7 @@ function set_head() {
 		data=data.replace(/;/g,",");
 		var a = data.split(",");
 		var content="";
-		for ( var i = 0; i < (a.length-1); i++) {
+		for ( var i = 0; i < (a.length-2); i++) {
 			content+=floor(getValue(a[i]))+"kWh<br/>";
 		}
 		$(".e2_content").html(content);
@@ -61,10 +61,10 @@ function set_e3(dayCount) {
 			case 0:
 				continue;
 			case 1:
-				eF1.push([x,floor(getValue(a[i]))]);
+				eF1.push([x,getValue(a[i])]);
 				break;
 			case 2:
-				eF2.push([x,floor(getValue(a[i]))]);
+				eF2.push([x,getValue(a[i])]);
 				break;
 			default:
 				break;
@@ -92,10 +92,11 @@ function set_e3(dayCount) {
 			fill : true,
 			color:"#4badec",
 		}
-		},{
-		data : eF2,
-		lines:{ show: true ,color:"#ff8a00",lineWidth:3}
 		}
+//		,{
+//		data : eF2,
+//		lines:{ show: true ,color:"#ff8a00",lineWidth:3}
+//		}
 		],options);
 	});
 		
